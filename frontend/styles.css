@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #040414, #000010);
+  font-family: "Poppins", sans-serif;
+}
+
+#searchBar {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  width: 250px;
+  outline: none;
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+#addNode {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 55px;
+  background: #14b8a6;
+  border-radius: 50%;
+  font-size: 36px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #14b8a6aa;
+}
+
+#addNode:hover {
+  background: #0d9488;
+  transform: scale(1.1);
+}
+
+.node text {
+  fill: white;
+  text-anchor: middle;
+  font-size: 10px;
+  pointer-events: none;
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0,0,0,0.85);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  pointer-events: none;
+  font-size: 12px;
+  max-width: 250px;
+}
+
+.cluster-label {
+  fill: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-anchor: middle;
+  opacity: 0.4;
+  cursor: pointer;
+  user-select: none;
+}
+
+.rename-input {
+  position: absolute;
+  background: rgba(0,0,0,0.9);
+  border: 1px solid #14b8a6;
+  color: white;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 4px;
+  outline: none;
+}
