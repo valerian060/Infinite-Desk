@@ -1,17 +1,1006 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Knowledge Galaxy</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <title>Knowledge Galaxy — Frontend</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- D3.js library for force-directed graph visualization -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  
+  <style>
+    :root {
+      --bg-deep: #00000a; /* Deepest black for contrast */
+      --panel: rgba(10, 10, 10, 0.6);
+      --glass: rgba(255, 255, 255, 0.08); /* Subtle glass for controls */
+      --primary: #5bc0ff; /* Light blue primary for contrast */
+      --danger: #ff5252;
+    }
+    
+    * { box-sizing: border-box; font-family: Inter, "Segoe UI", Roboto, Arial, sans-serif }
+    html, body { 
+      height: 100%; 
+      margin: 0; 
+      color: #fff; 
+      overflow: hidden; 
+      /* Milky Way/Deep Space Background - MADE STRONGER */
+      background: var(--bg-deep);
+      background-image: radial-gradient(circle at center, rgba(20, 20, 50, 0.8) 20%, var(--bg-deep) 80%);
+    }
+
+    #galaxySvg {
+        /* CRITICAL FIX: Prevents native browser panning/scrolling, allowing D3 to handle zoom and drag events */
+        touch-action: none; 
+    }
+    
+    /* Minimal Top Bar for controls - UPDATED FOR TRANSPARENT/SLEEK LOOK */
+    #topbar, #bottombar {
+      position: absolute; 
+      left: 50%; 
+      transform: translateX(-50%);
+      height: 48px;
+      display: flex; justify-content: center; align-items: center; gap: 12px;
+      z-index: 30; pointer-events: auto;
+      
+      /* SLEEK UPDATE: Transparent background, no border, slight shadow */
+      background: rgba(255, 255, 255, 0.05); /* Very subtle white tint */
+      padding: 8px 18px;
+      border-radius: 16px; 
+      border: none; /* Removed border */
+      backdrop-filter: blur(10px); /* Enhanced glass effect */
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    }
+    
+    #topbar {
+      top: 18px; 
+    }
+
+    #bottombar {
+      bottom: 18px; 
+    }
+
+    /* Icon Buttons (Remain Sleek) */
+    #topbar button, #bottombar button {
+      background: var(--glass); 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff; 
+      padding: 0; 
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      width: 40px; height: 40px;
+      display: flex; justify-content: center; align-items: center;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+    #topbar button:hover, #bottombar button:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(91, 192, 255, 0.4); /* Primary color glow */
+    }
+    /* Larger button size for bottom bar actions */
+    #bottombar button {
+        width: 45px; height: 45px;
+    }
+
+    /* Select and Input Fields */
+    #collectionSelect, #searchBox, .modal-content input, .modal-content select {
+      background: rgba(255, 255, 255, 0.04); 
+      border: 1px solid var(--primary); /* Highlight input fields slightly */
+      color: #fff; 
+      padding: 8px 12px; 
+      border-radius: 10px;
+      outline: none;
+      height: 40px;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    #collectionSelect:focus, #searchBox:focus {
+        border-color: #fff;
+        box-shadow: 0 0 5px rgba(91, 192, 255, 0.5);
+    }
+    #searchBox { width: 200px; font-size: 14px; }
+    #collectionSelect { font-size: 14px; }
+    /* Ensure dropdown options have dark background */
+    #collectionSelect option {
+    background-color: #000; /* Black background */
+    color: #fff; /* White text */
+    }
+
+    /* Status element for feedback on cluster count */
+    #status { font-size: 13px; opacity: 0.9; margin-left: 10px; color: #ccffcc; font-weight: 600; }
+    
+    #canvasWrap {
+      position: absolute; inset: 0; display: block; overflow: hidden;
+    }
+    
+    /* Drop Zones (side-area) - adjusted to fit new theme */
+    .side-area {
+      position: absolute; width: 120px; 
+      display: flex; align-items: center; justify-content: center;
+      z-index: 25; pointer-events: none; opacity: 0; transition: opacity 300ms, transform 140ms;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+    }
+    
+    #leftMergeArea, #rightDeleteArea { 
+        top: 80px; 
+        bottom: 80px; 
+        height: auto;
+    }
+
+    /* Only visible when dragging near the edge */
+    .side-area.visible { opacity: 1; pointer-events: auto; }
+    
+    #leftMergeArea { 
+      left: 12px; 
+      background: rgba(30, 150, 250, 0.1); 
+      border-radius: 16px; 
+      border: 2px solid rgba(91, 192, 255, 0.8);
+    }
+    #rightDeleteArea { 
+      right: 12px; 
+      background: rgba(255, 50, 50, 0.1); 
+      border-radius: 16px; 
+      border: 2px solid rgba(255, 50, 50, 0.8);
+    }
+    
+    .area-label { 
+      text-align: center; color: #fff; padding: 18px 8px; font-weight: 600; 
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); 
+    }
+    .area-label small { 
+      display: block; font-weight: 400; opacity: 0.8; font-size: 12px; margin-top: 6px; 
+    }
+    
+    /* Tooltip */
+    .tooltip {
+      position: absolute; z-index: 40; pointer-events: none; background: rgba(10, 10, 10, 0.95); 
+      color: #fff; padding: 12px 16px; border-radius: 12px; font-size: 14px; 
+      max-width: 300px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(91, 192, 255, 0.3); /* Subtle primary highlight */
+    }
+    
+    /* D3/SVG Styles */
+    .node circle {
+      transition: r 0.1s;
+      opacity: 0.9;
+    }
+    
+    .node:hover circle {
+      r: 14;
+      opacity: 1;
+      stroke-width: 2.5; /* Stronger hover effect */
+    }
+
+    .cluster-group circle {
+        transition: r 0.3s;
+    }
+    
+    .cluster-group text {
+        filter: drop-shadow(0 0 4px #000);
+        pointer-events: all; 
+        cursor: pointer;
+    }
+    
+    /* Modal styles (kept dark and crisp) */
+    .modal-backdrop {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
+        background: rgba(0,0,0,0.85); display: flex; justify-content: center; 
+        align-items: center; z-index: 9999;
+    }
+    .modal-content {
+        background: #181818; padding: 30px; border-radius: 16px; 
+        max-width: 400px; width: 90%; text-align: center; 
+        box-shadow: 0 15px 45px rgba(0,0,0,0.7);
+        border: 2px solid rgba(91, 192, 255, 0.1);
+    }
+    .modal-content h3 { margin-top: 0; color: var(--primary); font-weight: 700; }
+    .modal-content label { display: block; text-align: left; margin: 15px 0 5px 0; font-size: 14px; opacity: 0.8; }
+    .modal-content button {
+        background: var(--primary); color: var(--bg-deep); font-weight: 600; border: none; 
+        padding: 10px 20px; border-radius: 10px; cursor: pointer; 
+        margin-top: 25px; margin-right: 10px; transition: background 0.2s, transform 0.1s;
+    }
+    .modal-content button.cancel { background: #333; color: #fff; }
+    .modal-content button:hover:not(.cancel) { background: #85d3ff; transform: translateY(-1px); }
+
+    /* Dropdown Styling (Dark options added here) */
+    .clusterSelect select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      border: 1px solid var(--glass);
+      outline: none;
+      cursor: pointer;
+      /* Style additions for dark mode readability */
+      background: var(--panel); 
+      color: #fff; }
+
+    
+  </style>
 </head>
 <body>
-  <input id="searchBar" type="text" placeholder="🔍 Search topics...">
-  <div id="addNode">+</div>
-  <div class="tooltip" style="opacity:0;"></div>
-  <svg id="canvas"></svg>
+  <!-- Top Toolbar: Collection Select and Search -->
+  <div id="topbar">
+    <select id="collectionSelect" title="Select Collection"></select>
+    <input id="searchBox" placeholder="🔍 Search nodes..." title="Search Nodes"/>
+    <span id="status"></span>
+  </div>
+  
+  <!-- Bottom Toolbar: Actions -->
+  <div id="bottombar">
+    <button id="addNodeBtn" title="Add New Node">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+    </button>
+    
+    <button id="reclusterBtn" title="Recluster (AI)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.76 2.76L3 7"></path><path d="M3 3v4h4"></path><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.76-2.76L21 17"></path><path d="M21 21v-4h-4"></path></svg>
+    </button>
+    
+    <button id="saveLayoutBtn" title="Save Layout">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+    </button>
+  </div>
+  
+  <!-- Bins/Areas -->
+  <div id="leftMergeArea" class="side-area">
+    <div class="area-label">⇆ Merge Clusters<br><small>Drop 2 nodes from different clusters</small></div>
+  </div>
+  <div id="rightDeleteArea" class="side-area">
+    <div class="area-label">🗑 Delete Node<br><small>Drop node here to delete</small></div>
+  </div>
 
-  <script src="main.js"></script>
+  <div id="canvasWrap">
+    <svg id="galaxySvg"></svg>
+  </div>
+
+  <div class="tooltip" style="opacity:0;"></div>
+  
+  <!-- Modal Container for all custom dialogs -->
+  <div id="modalContainer"></div>
+
+  <script>
+    // main.js
+    // Knowledge Galaxy frontend (D3.js v7) designed to work with the API schema provided
+
+    const API_BASE = "http://127.0.0.1:8000";
+    const svg = d3.select("#galaxySvg");
+    const wrap = document.getElementById("canvasWrap");
+    const tooltip = d3.select(".tooltip");
+    const modalContainer = document.getElementById("modalContainer");
+    let width = wrap.clientWidth;
+    let height = wrap.clientHeight;
+    svg.attr("width", width).attr("height", height);
+
+    let currentTransform = d3.zoomIdentity;
+    let collections = [];
+    let currentCollection = null;
+    let clusters = [];
+    let nodes = [];
+    let links = [];
+    
+    // Buffer stores cluster IDs for the merge operation
+    let mergeBuffer = []; 
+    
+    const mergeAreaEl = d3.select("#leftMergeArea");
+    const deleteAreaEl = d3.select("#rightDeleteArea");
+    const statusEl = document.getElementById("status");
+    
+    // Define vibrant "Rainbow" colors for the clusters
+    const CLUSTER_COLORS = [
+      "#ff6666", // Red-Pink
+      "#ffaa66", // Orange
+      "#ffcc00", // Gold/Yellow
+      "#66ff66", // Bright Green
+      "#66ccff", // Sky Blue
+      "#aa66ff", // Violet
+      "#ff66aa", // Magenta
+      "#ff00ff"  // Electric Pink (up to 8 colors)
+    ];
+    
+    // D3 Setup
+    const defs = svg.append("defs");
+    defs.append("filter").attr("id","glow")
+      .html(`<feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+             <feMerge>
+               <feMergeNode in="coloredBlur"/>
+               <feMergeNode in="SourceGraphic"/>
+             </feMerge>`);
+
+    const g = svg.append("g");
+    const linksLayer = g.append("g").attr("class","links");
+    // Layer order: links -> nodes -> clusters (clusters layer on top for clickability)
+    const nodesLayer = g.append("g").attr("class","nodes"); 
+    const clustersLayer = g.append("g").attr("class", "clusters"); 
+
+    // ------------------ ZOOM ------------------
+    const zoom = d3.zoom()
+      .scaleExtent([0.25, 6])
+      .on("zoom", event => {
+        currentTransform = event.transform;
+        g.attr("transform", currentTransform);
+      });
+    svg.call(zoom);
+    
+    // ------------------ UTILS ------------------
+    
+    function notify(msg, t = 2200){
+      statusEl.textContent = msg;
+      setTimeout(() => { if (statusEl.textContent === msg) statusEl.textContent = ""; }, t);
+    }
+    
+    // Generic function to display a custom modal with provided HTML content
+    function showCustomModal(contentHtml) {
+        const modal = document.createElement('div');
+        modal.className = 'modal-backdrop';
+        const content = document.createElement('div');
+        content.className = 'modal-content';
+        content.innerHTML = contentHtml;
+        modal.appendChild(content);
+        modalContainer.appendChild(modal);
+        return modal;
+    }
+
+    // Custom confirm modal replacement for window.confirm
+    function showConfirmModal(title, message) {
+      return new Promise((resolve) => {
+        const content = `
+            <h3>${title}</h3>
+            <p style="margin-bottom: 20px;">${message}</p>
+            <button id="modalConfirmOk">Yes, Proceed</button>
+            <button class="cancel" id="modalConfirmCancel">Cancel</button>
+        `;
+        const modal = showCustomModal(content);
+        
+        document.getElementById('modalConfirmOk').onclick = () => { modal.remove(); resolve(true); };
+        document.getElementById('modalConfirmCancel').onclick = () => { modal.remove(); resolve(false); };
+      });
+    }
+
+    /**
+     * Calculates the bounding box of all cluster centers and adjusts the zoom 
+     * and pan to ensure all clusters are visible and centered.
+     */
+    function centerViewOnLoad() {
+      if (!clusters.length) return;
+
+      // 1. Calculate the bounding box based on cluster centers
+      const minX = d3.min(clusters, d => d.cx);
+      const maxX = d3.max(clusters, d => d.cx);
+      const minY = d3.min(clusters, d => d.cy);
+      const maxY = d3.max(clusters, d => d.cy);
+
+      const dataWidth = maxX - minX;
+      const dataHeight = maxY - minY;
+      const centerX = minX + dataWidth / 2;
+      const centerY = minY + dataHeight / 2;
+      
+      // Calculate scaling factor to fit data comfortably within the view (e.g., 90% of screen)
+      const scaleX = width / dataWidth;
+      const scaleY = height / dataHeight;
+      let scale = Math.min(scaleX, scaleY) * 0.9;
+      
+      // Clamp scale to reasonable limits
+      scale = Math.min(Math.max(scale, 0.5), 1.5); 
+
+      // 2. Determine the new translation (tx, ty)
+      const tx = width / 2 - scale * centerX;
+      const ty = height / 2 - scale * centerY;
+      
+      // 3. Apply the transform
+      currentTransform = d3.zoomIdentity.translate(tx, ty).scale(scale);
+      svg.call(zoom.transform, currentTransform);
+    }
+
+
+    // ------------------ COLLECTIONS - DYNAMIC GRID IMPLEMENTATION ------------------
+    async function loadCollections(){
+      try{
+        // RE-ENABLE API FETCH
+        const res = await fetch(`${API_BASE}/api/collections`);
+        
+        if (!res.ok) {
+            throw new Error(`API returned status ${res.status}`);
+        }
+        
+        collections = await res.json();
+        
+        // --- CONFIRMATION LOGGING ---
+        console.log("Collections received from API:", collections);
+        // --- END CONFIRMATION LOGGING ---
+        
+        const sel = document.getElementById("collectionSelect");
+        sel.innerHTML = "";
+        
+        collections.forEach(c => {
+          const opt = document.createElement("option");
+          opt.value = c.id; opt.textContent = c.name; sel.appendChild(opt);
+        });
+        
+        if (collections.length > 0) {
+          sel.value = collections[0].id;
+          sel.addEventListener("change", () => loadCollectionById(+sel.value));
+          await loadCollectionById(collections[0].id);
+        } else {
+            notify("No collections found via API.", 3000);
+        }
+      } catch (e) { 
+        console.error("loadCollections error:", e); 
+        notify("Failed to fetch collections. Check if FastAPI server is running at " + API_BASE); 
+      }
+    }
+
+    async function loadCollectionById(collectionId){
+      const coll = collections.find(c => c.id == collectionId);
+      if (!coll) { notify("Collection not found"); return; }
+      currentCollection = coll;
+      
+      // Deep copy to prevent modifying the collection in the global array until API confirms
+      clusters = JSON.parse(JSON.stringify(coll.clusters || []));
+      nodes = []; // Clear old nodes
+      
+      // --- CONFIRMATION STATUS UPDATE ---
+      console.log(`Loading Collection: ${coll.name}. Clusters found: ${clusters.length}`);
+      notify(`Loaded Collection: ${coll.name}. Found ${clusters.length} clusters.`, 4000);
+      // --- END CONFIRMATION STATUS UPDATE ---
+      
+      const numClusters = clusters.length;
+      
+      // 1. Calculate optimal R x C grid dimensions for guaranteed separation
+      // Use ceil(sqrt(N)) for columns, giving a layout that is roughly square or wide.
+      const C = Math.ceil(Math.sqrt(numClusters)); 
+      const R = Math.ceil(numClusters / C); 
+      
+      // Calculate Cell dimensions (ensure we stay within the visible width/height)
+      const CW = width / C; // Cell Width
+      const CH = height / R; // Cell Height
+      
+      // Assign rainbow colors and ensure initial cluster positions are set
+      clusters.forEach((cl, index) => {
+        cl.color = CLUSTER_COLORS[index % CLUSTER_COLORS.length];
+        cl.nodes = cl.nodes || [];
+
+        // Dynamic Grid Placement: Only apply if positions are NOT already saved/defined
+        if (cl.cx === undefined || cl.cx === null || isNaN(cl.cx)) {
+            
+            // Calculate grid cell (r, c) based on the cluster index
+            const r = Math.floor(index / C);
+            const c = index % C;
+            
+            const x_start = c * CW;
+            const y_start = r * CH;
+            
+            // Calculate random position within the central part of the cell (20% to 80% of cell bounds)
+            const minOffset = 0.2;
+            const maxOffset = 0.8; 
+            
+            cl.cx = x_start + (minOffset * CW) + Math.random() * ( (maxOffset - minOffset) * CW );
+            cl.cy = y_start + (minOffset * CH) + Math.random() * ( (maxOffset - minOffset) * CH );
+        }
+
+        // Initialize node positions relative to their cluster center
+        cl.nodes.forEach(n => {
+          const node = JSON.parse(JSON.stringify(n));
+          node.id = node.id || `nid_${Math.random().toString(36).slice(2, 9)}`;
+          node.title = node.title || "Untitled";
+          node.summary = node.summary || "";
+          node.cluster_id = cl.id;
+          
+          // Initial node position based on cluster center
+          node.x = (node.x !== undefined && node.x !== null && !isNaN(node.x)) ? node.x : (cl.cx + (Math.random() - 0.5) * 80);
+          node.y = (node.y !== undefined && node.y !== null && !isNaN(node.y)) ? node.y : (cl.cy + (Math.random() - 0.5) * 80);
+          nodes.push(node);
+        });
+      });
+
+      buildLinks();
+      render();
+      // Center the view to ensure all newly placed, separated clusters are immediately visible
+      centerViewOnLoad(); 
+    }
+
+    function buildLinks(){
+      links = [];
+      const nodeById = new Map(nodes.map(n => [n.id, n]));
+      nodes.forEach(n => {
+        if (Array.isArray(n.similar_to)) {
+          n.similar_to.forEach(tid => {
+            const t = nodeById.get(tid);
+            // Ensure link is added only once (e.g., source < target ID)
+            if (t && n.id < t.id) { 
+                links.push({ 
+                    source: n.id, 
+                    target: t.id,
+                    // Check if the two connected nodes belong to different clusters
+                    isCrossCluster: n.cluster_id !== t.cluster_id
+                }); 
+            }
+          });
+        }
+      });
+    }
+
+    // ------------------ RENDER ------------------
+    function render(){
+      linksLayer.selectAll("*").remove();
+      nodesLayer.selectAll("*").remove();
+      clustersLayer.selectAll("*").remove();
+
+      // similarity links
+      linksLayer.selectAll("line").data(links, d => `${d.source}->${d.target}`).enter()
+        .append("line")
+        // Cross-cluster links are bright yellow (high visibility for connections across groups)
+        .attr("stroke", d => d.isCrossCluster ? "#ffdd55" : "rgba(255, 255, 255, 0.2)") 
+        .attr("stroke-opacity", d => d.isCrossCluster ? 0.75 : 0.3) /* Increased opacity for local links */
+        .attr("stroke-width", d => d.isCrossCluster ? 2.5 : 1) 
+        .attr("stroke-dasharray", d => d.isCrossCluster ? "8 4" : "none"); 
+
+      // cluster groups
+      const clusterG = clustersLayer.selectAll(".cluster-group").data(clusters, d => d.id).enter()
+        .append("g").attr("class", "cluster-group");
+
+      // Cluster background circle (Soft area) - represents the 'nebula'
+      clusterG.append("circle")
+        .attr("r", 35) /* Slightly larger area */
+        .attr("cx", d => d.cx)
+        .attr("cy", d => d.cy)
+        .attr("fill", d => d.color)
+        .attr("opacity", 0.08)
+        .attr("stroke", d => d.color)
+        .attr("stroke-width", 1)
+        .attr("stroke-opacity", 0.3);
+
+      // Cluster Center Marker (Visual Core)
+      clusterG.append("circle")
+        .attr("class", "cluster-core") // Added class for easier targeting
+        .attr("r", 8) 
+        .attr("cx", d => d.cx)
+        .attr("cy", d => d.cy)
+        .attr("fill", d => d.color)
+        .attr("opacity", 0.9)
+        .attr("stroke", d => d.color) // Subtle stroke matching the core color
+        .attr("stroke-width", 1.5)
+        .attr("filter", "url(#glow)"); // Apply glow to the center marker as well
+
+      // Cluster label (Centered)
+      clusterG.append("text")
+        .attr("x", d => d.cx)
+        .attr("y", d => d.cy + 35) /* Moved label slightly lower for better separation (from 30 to 35) */
+        .text(d => d.name)
+        .attr("text-anchor", "middle")
+        .style("font-weight", "600")
+        .style("font-size", "14px")
+        .style("fill", d => d.color) 
+        .style("text-shadow", d => `0 0 5px ${d.color}`)
+        // Click handler for renaming
+        .on("click", (event, d) => {
+            event.stopPropagation(); // Stop zoom/pan from kicking in on click
+            showRenameClusterModal(d);
+        });
+
+      // cluster drag moves cluster + nodes
+      clusterG.call(d3.drag()
+        .on("start", (event, d) => event.sourceEvent.stopPropagation()) // Keeps drag separate from pan
+        .on("drag", (event, d) => {
+          const dx = event.dx, dy = event.dy;
+          d.cx += dx; d.cy += dy;
+          // Move all nodes in the cluster
+          nodes.filter(n => n.cluster_id === d.id).forEach(n => { n.x += dx; n.y += dy; });
+          renderPositions();
+        })
+      );
+
+      // nodes - the 'stars'
+      const nodeG = nodesLayer.selectAll(".node").data(nodes, d => d.id).enter()
+        .append("g").attr("class", "node").attr("transform", d => `translate(${d.x},${d.y})`)
+        .style("cursor", "grab");
+
+      nodeG.append("circle")
+        .attr("r", 10) /* Slightly smaller node for a star-like look */
+        .attr("fill", d => clusters.find(c => c.id === d.cluster_id)?.color || "#999")
+        .attr("filter", "url(#glow)"); // Removed stroke for a cleaner look
+
+      nodeG.append("text")
+        .text(d => d.title)
+        .attr("dy", 18) /* Move title below the node */
+        .attr("fill", "#fff")
+        .attr("text-anchor", "middle")
+        .style("font-size", "10px")
+        .style("pointer-events", "none")
+        .attr("opacity", 0.9);
+
+      // tooltip
+      nodeG.on("mouseover", (event, d) => {
+        tooltip.style("left", (event.pageX + 18) + "px")
+          .style("top", (event.pageY - 20) + "px")
+          .style("opacity", 1)
+          .html(`<strong>${d.title}</strong><div style="margin-top:6px;font-size:12px">${d.summary || "No summary provided."}</div>`);
+      }).on("mousemove", (event) => {
+        tooltip.style("left", (event.pageX + 18) + "px").style("top", (event.pageY - 20) + "px");
+      }).on("mouseout", () => tooltip.style("opacity", 0));
+
+      // ------------------ NODE DRAG & DROP LOGIC (Stabilized for zoom and link sync) ------------------
+      nodeG.call(d3.drag()
+        .on("start", (event, d) => {
+          event.sourceEvent.stopPropagation(); // Ensures dragging a node doesn't pan the canvas
+          
+          // 1. Wake up the simulation
+          if (sim) sim.alphaTarget(0.3).restart(); 
+          
+          // 2. PIN THE NODE & CALCULATE OFFSET (World Coordinates)
+          d.fx = d.x; 
+          d.fy = d.y;
+          const mouseX = currentTransform.invertX(event.x);
+          const mouseY = currentTransform.invertY(event.y);
+          
+          // Store the offset from node center (d.x, d.y) to mouse position (mouseX, mouseY)
+          d._dragOffsetX = d.x - mouseX; 
+          d._dragOffsetY = d.y - mouseY; 
+          
+          d3.select(event.sourceEvent.target.parentNode).raise(); 
+        })
+        .on("drag", (event, d) => {
+          // 3. GET NEW MOUSE POSITION IN WORLD COORDINATES
+          const mouseX = currentTransform.invertX(event.x);
+          const mouseY = currentTransform.invertY(event.y);
+          
+          // 4. APPLY OFFSET to calculate the new fixed position
+          d.fx = mouseX + d._dragOffsetX;
+          d.fy = mouseY + d._dragOffsetY;
+
+          // Update d.x/d.y for link redrawing
+          d.x = d.fx;
+          d.y = d.fy;
+          
+          // --- Drop Zone Visibility Logic ---
+          const SCREEN_EDGE_THRESHOLD = 180;
+          mergeAreaEl.classed("visible", event.x < SCREEN_EDGE_THRESHOLD);
+          deleteAreaEl.classed("visible", width - event.x < SCREEN_EDGE_THRESHOLD);
+          // --- End Visibility Logic ---
+
+          // This call ensures nodes and links update together, preventing the link desync issue
+          renderPositions();
+        })
+        .on("end", (event, d) => {
+          // 5. CLEANUP AND RELEASE NODE
+          delete d._dragOffsetX; 
+          delete d._dragOffsetY;
+          d.fx = null;
+          d.fy = null;
+          
+          if (sim) sim.alphaTarget(0); 
+
+          // Always hide areas on drag end
+          mergeAreaEl.classed("visible", false);
+          deleteAreaEl.classed("visible", false);
+          
+          const nodeRect = event.sourceEvent.target.getBoundingClientRect();
+          const deleteAreaRect = deleteAreaEl.node().getBoundingClientRect();
+          const mergeAreaRect = mergeAreaEl.node().getBoundingClientRect();
+
+          if (isOverlapping(nodeRect, deleteAreaRect)) {
+            deleteNode(d.id);
+          } 
+          else if (isOverlapping(nodeRect, mergeAreaRect)) {
+            handleMergeDrop(d);
+          }
+          
+          renderPositions();
+        })
+      );
+      
+      // Call renderPositions explicitly after all elements are created
+      renderPositions(); 
+
+      startSimulation();
+    }
+
+    // ------------------ RENDER POSITIONS ------------------
+    function renderPositions(){
+      // 1. Links
+      linksLayer.selectAll("line")
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+        
+      // 2. Nodes
+      nodesLayer.selectAll(".node").attr("transform", d => `translate(${d.x},${d.y})`);
+      
+      // 3. Cluster Graphics
+      // Update Cluster Center Marker Position
+      clustersLayer.selectAll(".cluster-group").select(".cluster-core")
+        .attr("cx", d => d.cx).attr("cy", d => d.cy); 
+      
+      // Update Cluster Background Circle Position
+      clustersLayer.selectAll(".cluster-group").select("circle:not(.cluster-core)")
+        .attr("cx", d => d.cx).attr("cy", d => d.cy); 
+
+      // Update Cluster Label Position (Below)
+      clustersLayer.selectAll(".cluster-group").select("text")
+        .attr("x", d => d.cx).attr("y", d => d.cy + 35); // Using new lower position
+    }
+
+    // ------------------ SIMULATION - IMPROVED CLUSTERING ------------------
+    let sim;
+    
+    /**
+     * Custom D3 force to repel nodes from their cluster center if they are too close.
+     * This creates an exclusion zone, preventing nodes from covering the cluster core/label.
+     */
+    function forceRepelClusterCenter(alpha) {
+        // --- UPDATED: Increased repulsion radius to 70px for greater label clearance ---
+        const minDistanceSq = 70 * 70; // Exclusion radius squared (70 pixels)
+        // --------------------------------------------------------------------------
+        // Increased strength factor from 0.005 to 0.01 to make the repulsion stronger
+        const strength = 0.01 * alpha; 
+
+        for (const node of nodes) {
+            const cluster = clusters.find(cl => cl.id === node.cluster_id);
+            if (!cluster) continue;
+
+            const dx = node.x - cluster.cx;
+            const dy = node.y - cluster.cy;
+            const distanceSq = dx * dx + dy * dy;
+
+            if (distanceSq < minDistanceSq && distanceSq > 1) {
+                // Calculate a force vector to push the node away from the center.
+                // The closer the node, the stronger the repulsion (due to 1/distanceSq behavior).
+                const forceMag = strength * (minDistanceSq - distanceSq) / distanceSq; 
+                
+                node.vx += dx * forceMag;
+                node.vy += dy * forceMag;
+            }
+        }
+    }
+
+    function startSimulation(){
+      if (sim) sim.stop();
+      sim = d3.forceSimulation(nodes)
+        // Increased overall repulsion from -100 to -120 to better separate nodes globally
+        .force("charge", d3.forceManyBody().strength(-120)) 
+        .force("collide", d3.forceCollide().radius(16).strength(0.95)) 
+        .force("link", d3.forceLink(links).id(d => d.id).distance(60).strength(0.2)) 
+        // Pull nodes toward their pre-calculated cluster center
+        .force("x", d3.forceX().x(d => clusters.find(cl => cl.id === d.cluster_id)?.cx || width / 2).strength(0.1)) 
+        .force("y", d3.forceY().y(d => clusters.find(cl => cl.id === d.cluster_id)?.cy || height / 2).strength(0.1))
+        
+        // ADDED: Custom force to create an exclusion zone around the cluster core and label
+        .force("centerRepulsion", forceRepelClusterCenter)
+        
+        .alphaDecay(0.02)
+        .on("tick", () => renderPositions());
+    }
+
+    // ------------------ API / CRUD LOGIC ------------------
+
+    function isOverlapping(rect1, rect2) {
+        return rect1.x < rect2.x + rect2.width &&
+               rect1.x + rect1.width > rect2.x &&
+               rect1.y < rect2.y + rect2.height &&
+               rect1.y + rect1.height > rect2.y;
+    }
+
+    async function deleteNode(nodeId) {
+        const confirmed = await showConfirmModal(`Delete Node`, `Are you sure you want to delete node ${nodeId}? This cannot be undone.`);
+        if (!confirmed) return;
+        
+        notify(`Deleting node ${nodeId}...`);
+        try {
+            // Placeholder: Call the API
+            // const res = await fetch(`${API_BASE}/api/nodes/${nodeId}`, { method: 'DELETE' });
+            // if (!res.ok) throw new Error("API delete failed");
+
+            nodes = nodes.filter(n => n.id !== nodeId);
+            // Also update the in-memory cluster structure
+            clusters.forEach(cl => {
+                cl.nodes = cl.nodes.filter(n => n.id !== nodeId);
+            });
+            buildLinks(); 
+            render(); 
+            notify(`Node ${nodeId} deleted.`, 2500);
+        } catch (e) {
+            console.error("Delete node error:", e);
+            notify("Failed to delete node. (Check console for API error)");
+        }
+    }
+
+    function handleMergeDrop(node) {
+        if (mergeBuffer.length === 0) {
+            mergeBuffer.push(node.cluster_id);
+            notify(`Cluster ${node.cluster_id} selected for merge. Drop a node from the target cluster.`);
+        } else if (mergeBuffer.length === 1) {
+            const cluster1 = mergeBuffer[0];
+            const cluster2 = node.cluster_id;
+
+            if (cluster1 === cluster2) {
+                notify("Cannot merge a cluster with itself. Resetting buffer.", 2500);
+            } else {
+                mergeClusters(cluster1, cluster2);
+            }
+            mergeBuffer = []; 
+        }
+    }
+
+    async function mergeClusters(c1_id, c2_id) {
+        notify(`Merging Cluster ${c2_id} into Cluster ${c1_id}...`);
+        try {
+            // Placeholder: Call the API
+            // const res = await fetch(`${API_BASE}/api/clusters/merge`, {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ cluster1: c1_id, cluster2: c2_id })
+            // });
+
+            await loadCollectionById(currentCollection.id);
+            notify("Clusters merged successfully. Data reloaded.", 3000);
+        } catch (e) {
+            console.error("Merge clusters error:", e);
+            notify("Failed to merge clusters. (Check console for API error)");
+        }
+    }
+    
+    // Node Creation Functionality
+    document.getElementById("addNodeBtn").addEventListener("click", showCreateNodeModal);
+    
+    function showCreateNodeModal() {
+        if (!currentCollection || clusters.length === 0) {
+            return notify("No clusters available. Load a collection first.", 3000);
+        }
+
+        const clusterOptions = clusters.map(c => 
+            `<option value="${c.id}" style="color:${c.color};">${c.name} (ID: ${c.id})</option>`
+        ).join('');
+
+        const content = `
+            <h3>Create New Node</h3>
+            <form id="createNodeForm">
+                <label for="nodeTitle">Node Title</label>
+                <input id="nodeTitle" type="text" placeholder="Enter title" required>
+                
+                <label for="clusterSelect">Assign to Cluster</label>
+                <select id="clusterSelect" required>
+                    ${clusterOptions}
+                </select>
+                
+                <button type="submit">Create Node</button>
+                <button type="button" class="cancel" id="cancelCreate">Cancel</button>
+            </form>
+        `;
+        
+        const modal = showCustomModal(content);
+        
+        document.getElementById('cancelCreate').onclick = () => modal.remove();
+        
+        document.getElementById('createNodeForm').onsubmit = (event) => {
+            event.preventDefault();
+            const title = document.getElementById('nodeTitle').value;
+            const clusterId = parseInt(document.getElementById('clusterSelect').value);
+            
+            if (title && clusterId) {
+                addNewNode(title, clusterId);
+                modal.remove();
+            } else {
+                notify("Title is required.", 2000);
+            }
+        };
+    }
+    
+    function addNewNode(title, clusterId) {
+        const cluster = clusters.find(c => c.id === clusterId);
+        if (!cluster) { return notify("Invalid cluster selected.", 2500); }
+
+        const newNodeId = `nid_${Math.random().toString(36).slice(2, 9)}`;
+        const newNode = {
+            id: newNodeId,
+            title: title,
+            summary: "Newly created node.",
+            cluster_id: clusterId,
+            // Initial position near the cluster center
+            x: cluster.cx + (Math.random() - 0.5) * 50,
+            y: cluster.cy + (Math.random() - 0.5) * 50,
+            similar_to: [] 
+        };
+
+        nodes.push(newNode);
+        cluster.nodes.push({ id: newNodeId, title: title, summary: newNode.summary });
+        
+        buildLinks();
+        render(); 
+        
+        notify(`Node "${title}" added to cluster ${clusterId}. (API POST simulated)`, 3000);
+    }
+    
+    // Cluster Renaming Functionality
+    function showRenameClusterModal(cluster) {
+        const content = `
+            <h3>Rename Cluster ${cluster.id}</h3>
+            <form id="renameClusterForm">
+                <label for="clusterName">New Cluster Name</label>
+                <input id="clusterName" type="text" value="${cluster.name}" required>
+                
+                <button type="submit">Rename</button>
+                <button type="button" class="cancel" id="cancelRename">Cancel</button>
+            </form>
+        `;
+        
+        const modal = showCustomModal(content);
+        
+        document.getElementById('cancelRename').onclick = () => modal.remove();
+        
+        document.getElementById('renameClusterForm').onsubmit = (event) => {
+            event.preventDefault();
+            const newName = document.getElementById('clusterName').value;
+            
+            if (newName && newName !== cluster.name) {
+                // Update local model
+                cluster.name = newName;
+                // Update D3 element immediately
+                clustersLayer.selectAll(".cluster-group").select("text").filter(d=>d.id===cluster.id).text(newName);
+                
+                notify(`Cluster ${cluster.id} renamed to "${newName}". (API PATCH simulated)`, 3000);
+            } else {
+                notify("Name not changed.", 2000);
+            }
+            modal.remove();
+        };
+    }
+
+
+    // ------------------ BUTTON ACTIONS ------------------
+
+    document.getElementById("saveLayoutBtn").addEventListener("click", saveLayout);
+    async function saveLayout() {
+        if (!currentCollection) return;
+        notify("Saving layout...");
+        const positions = {};
+        const clusterPositions = {};
+        
+        nodes.forEach(n => { positions[n.id] = { x: n.x, y: n.y }; });
+        clusters.forEach(c => { clusterPositions[c.id] = { cx: c.cx, cy: c.cy }; });
+
+        try {
+            // This is a placeholder for your FastAPI endpoint
+            // await fetch(`${API_BASE}/api/collections/${currentCollection.id}/save`, {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify({ node_positions: positions, cluster_positions: clusterPositions })
+            // });
+            notify("Layout saved! (API POST simulated)", 2000);
+        } catch (e) {
+            console.error("Save layout error:", e);
+            notify("Failed to save layout. (Check console for API error)");
+        }
+    }
+
+    document.getElementById("reclusterBtn").addEventListener("click", recluster);
+    async function recluster() {
+        if (!currentCollection) return;
+        notify("Requesting re-clustering (AI placeholder)...");
+        try {
+            // This is a placeholder for your FastAPI endpoint
+            // await fetch(`${API_BASE}/api/ai/recluster/${currentCollection.id}`);
+            notify("Re-cluster request sent. Reload the collection to see changes. (API GET simulated)", 4000);
+        } catch (e) {
+            console.error("Recluster error:", e);
+            notify("Failed to send re-cluster request. (Check console for API error)");
+        }
+    }
+
+
+    // ------------------ WINDOW RESIZE ------------------
+    window.addEventListener("resize", () => {
+      width = wrap.clientWidth; height = wrap.clientHeight;
+      svg.attr("width", width).attr("height", height);
+      if (sim) {
+        // Update force center for the new dimensions
+        sim.force("x").x(d => clusters.find(cl => cl.id === d.cluster_id)?.cx || width / 2);
+        sim.force("y").y(d => clusters.find(cl => cl.id === d.cluster_id)?.cy || height / 2);
+        sim.alpha(1).restart();
+      }
+    });
+
+    // ------------------ INIT ------------------
+    loadCollections().catch(e => console.error(e));
+  </script>
 </body>
 </html>

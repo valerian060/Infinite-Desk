@@ -1,82 +1,166 @@
+:root{
+  --bg-dark: #05060b;
+  --panel: rgba(10,10,10,0.6);
+  --glass: rgba(255,255,255,0.04);
+}
+
+*{box-sizing:border-box;font-family:Inter, "Segoe UI", Roboto, Arial, sans-serif}
+html,body{height:100%;margin:0;background:var(--bg-dark);color:#fff;overflow:hidden}
+#topbar{
+  position: absolute; top:12px; left:12px; right:12px; height:48px;
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  z-index:30; pointer-events:auto;
+}
+#topbar > * { display:flex; align-items:center; gap:8px;}
+#collectionSelect, #searchBox {
+  background:var(--glass); border:1px solid rgba(255,255,255,0.06); color:#fff; padding:8px 10px; border-radius:8px;
+  outline:none;
+}
+#searchBox { width:320px; }
+#reclusterBtn, #saveLayoutBtn {
+  padding:8px 12px; border-radius:8px; border:none; background:linear-gradient(90deg,#2b6cff,#7a3cff);
+  color:#fff; cursor:pointer; box-shadow:0 4px 18px rgba(0,0,0,0.5);
+}
+#status { font-size:13px; opacity:0.9; margin-left:10px }
+
+#canvasWrap{
+  position:absolute; inset:0; display:block; overflow:hidden;
+  background-image: url('');
+  background-size:cover; background-position:center; filter:brightness(0.35);
+}
+
+/* left & right side areas */
+.side-area{
+  position: absolute; top:60px; bottom:12px; width:120px; display:flex; align-items:center; justify-content:center;
+  z-index:25; pointer-events:none; opacity:0.08; transition:opacity 160ms, transform 140ms;
+}
+.side-area.visible{ opacity:0.95; pointer-events:auto; }
+#leftMergeArea{ left:12px; background:linear-gradient(90deg, rgba(10,50,120,0.12), rgba(10,50,120,0.02)); border-radius:12px; }
+#rightDeleteArea{ right:12px; background:linear-gradient(270deg, rgba(150,20,20,0.12), rgba(150,20,20,0.02)); border-radius:12px; }
+.area-label { text-align:center; color:#fff; padding:18px 8px; font-weight:600; text-shadow:0 0 6px rgba(255,255,255,0.08) }
+.area-label small{ display:block; font-weight:400; opacity:0.8; font-size:12px; margin-top:6px; }
+
+/* tooltip */
+.tooltip {
+  position:absolute; z-index:40; pointer-events:none; background:rgba(0,0,0,0.75); color:#fff; padding:8px 10px;
+  border-radius:8px; font-size:13px; max-width:260px; box-shadow:0 6px 24px rgba(0,0,0,0.6);
+}
+
+/* node styles are in SVG via JS (filters). */
+
+/* small helper */
+.hidden { display:none; }
+
 body {
   margin: 0;
   overflow: hidden;
-  background: radial-gradient(circle at center, #040414, #000010);
-  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at center, #000010 40%, #020024);
+  color: #fff;
+  font-family: sans-serif;
 }
 
-#searchBar {
-  position: absolute;
-  top: 15px;
-  left: 20px;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: none;
-  font-size: 16px;
-  width: 250px;
-  outline: none;
-  background: rgba(255,255,255,0.2);
-  color: white;
+/* Glowing node style */
+.node circle {
+  stroke: #ffffff;
+  stroke-width: 2px;
+  fill-opacity: 0.9;
+  filter: drop-shadow(0 0 8px #00ffff);
+  transition: transform 0.2s ease, fill 0.3s;
 }
 
-#addNode {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 55px;
-  height: 55px;
-  background: #14b8a6;
-  border-radius: 50%;
-  font-size: 36px;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px #14b8a6aa;
+.node:hover circle {
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 12px #00ffcc);
 }
 
-#addNode:hover {
-  background: #0d9488;
-  transform: scale(1.1);
-}
-
-.node text {
-  fill: white;
-  text-anchor: middle;
-  font-size: 10px;
-  pointer-events: none;
-}
-
-.tooltip {
-  position: absolute;
-  background: rgba(0,0,0,0.85);
-  color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
-  pointer-events: none;
-  font-size: 12px;
-  max-width: 250px;
-}
-
+/* Cluster labels */
 .cluster-label {
-  fill: white;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: bold;
-  text-anchor: middle;
-  opacity: 0.4;
-  cursor: pointer;
-  user-select: none;
+  text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #00ffff;
+  animation: rainbowGlow 4s linear infinite;
 }
 
-.rename-input {
-  position: absolute;
-  background: rgba(0,0,0,0.9);
-  border: 1px solid #14b8a6;
-  color: white;
-  font-size: 14px;
-  padding: 5px;
-  border-radius: 4px;
-  outline: none;
+/* Rainbow glow animation */
+@keyframes rainbowGlow {
+  0% { color: red; }
+  25% { color: yellow; }
+  50% { color: lime; }
+  75% { color: cyan; }
+  100% { color: magenta; }
 }
+
+/* Merge & delete zones */
+.zone {
+  position: fixed;
+  top: 0;
+  width: 15%;
+  height: 100%;
+  opacity: 0.1;
+  transition: opacity 0.3s, filter 0.3s;
+  z-index: 5;
+}
+
+.zone:hover {
+  opacity: 0.3;
+  filter: brightness(1.5) saturate(1.8);
+}
+
+#mergeZone {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 255, 0, 0.5), transparent);
+  box-shadow: inset 0 0 15px #00ff00;
+}
+
+#deleteZone {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 0, 0, 0.5), transparent);
+  box-shadow: inset 0 0 15px #ff0000;
+}
+
+/* Bottom toolbar styles */
+#bottomToolbar {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.6);
+  padding: 6px 12px;
+  border-radius: 24px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 1000;
+}
+
+#bottomToolbar button {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  color: #fff;
+  cursor: pointer;
+  padding: 6px;
+  transition: transform 0.1s, color 0.2s;
+}
+
+#bottomToolbar button:hover {
+  color: #ffeb3b;
+  transform: scale(1.2);
+}
+
+#bottomToolbar input#searchBox {
+  width: 140px;
+  border-radius: 14px;
+  border: none;
+  padding: 4px 8px;
+  font-size: 14px;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  text-align: center;
+}
+
+#bottomToolbar input::placeholder {
+  color: #ddd;
+}
+
