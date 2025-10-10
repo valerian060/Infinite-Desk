@@ -1,0 +1,152 @@
+[
+  {
+    "_id": "cluster_001",
+    "id": "cluster_001",
+    "sheet_id": "col_001",
+    "cluster_label": 0,
+    "name": "Neural Networks",
+    "user_defined_name": "Neural Networks",
+    "color": "#3498db",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_002",
+    "id": "cluster_002",
+    "sheet_id": "col_001",
+    "cluster_label": 1,
+    "name": "Data Processing",
+    "user_defined_name": "Data Processing",
+    "color": "#e74c3c",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_003",
+    "id": "cluster_003",
+    "sheet_id": "col_001",
+    "cluster_label": 2,
+    "name": "ML Algorithms",
+    "user_defined_name": "ML Algorithms",
+    "color": "#2ecc71",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_004",
+    "id": "cluster_004",
+    "sheet_id": "col_001",
+    "cluster_label": 3,
+    "name": "Computer Vision",
+    "user_defined_name": "Computer Vision",
+    "color": "#f39c12",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_005",
+    "id": "cluster_005",
+    "sheet_id": "col_001",
+    "cluster_label": 4,
+    "name": "Natural Language Processing",
+    "user_defined_name": "Natural Language Processing",
+    "color": "#9b59b6",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_006",
+    "id": "cluster_006",
+    "sheet_id": "col_001",
+    "cluster_label": 5,
+    "name": "Deep Learning",
+    "user_defined_name": "Deep Learning",
+    "color": "#1abc9c",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_007",
+    "id": "cluster_007",
+    "sheet_id": "col_001",
+    "cluster_label": 6,
+    "name": "Reinforcement Learning",
+    "user_defined_name": "Reinforcement Learning",
+    "color": "#e67e22",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_008",
+    "id": "cluster_008",
+    "sheet_id": "col_001",
+    "cluster_label": 7,
+    "name": "Time Series",
+    "user_defined_name": "Time Series",
+    "color": "#34495e",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_009",
+    "id": "cluster_009",
+    "sheet_id": "col_001",
+    "cluster_label": 8,
+    "name": "Feature Engineering",
+    "user_defined_name": "Feature Engineering",
+    "color": "#16a085",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_010",
+    "id": "cluster_010",
+    "sheet_id": "col_001",
+    "cluster_label": 9,
+    "name": "Model Deployment",
+    "user_defined_name": "Model Deployment",
+    "color": "#c0392b",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_011",
+    "id": "cluster_011",
+    "sheet_id": "col_001",
+    "cluster_label": 10,
+    "name": "Statistical Methods",
+    "user_defined_name": "Statistical Methods",
+    "color": "#8e44ad",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_012",
+    "id": "cluster_012",
+    "sheet_id": "col_001",
+    "cluster_label": 11,
+    "name": "Optimization",
+    "user_defined_name": "Optimization",
+    "color": "#2980b9",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_013",
+    "id": "cluster_013",
+    "sheet_id": "col_001",
+    "cluster_label": 12,
+    "name": "Data Visualization",
+    "user_defined_name": "Data Visualization",
+    "color": "#27ae60",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_014",
+    "id": "cluster_014",
+    "sheet_id": "col_001",
+    "cluster_label": 13,
+    "name": "Big Data",
+    "user_defined_name": "Big Data",
+    "color": "#d35400",
+    "node_count": 3
+  },
+  {
+    "_id": "cluster_015",
+    "id": "cluster_015",
+    "sheet_id": "col_001",
+    "cluster_label": 14,
+    "name": "AutoML",
+    "user_defined_name": "AutoML",
+    "color": "#7f8c8d",
+    "node_count": 2
+  }
+]

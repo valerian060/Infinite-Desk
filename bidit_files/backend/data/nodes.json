@@ -1,0 +1,801 @@
+[
+  {
+    "_id": "node_001",
+    "id": "node_001",
+    "cluster_id": "cluster_001",
+    "title": "CNN Architecture",
+    "content": {
+      "text": "Convolutional Neural Networks for image recognition"
+    },
+    "summary": "Convolutional Neural Networks for image recognition",
+    "position": {
+      "x": 300,
+      "y": 200
+    },
+    "color": "#3498db",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:00:00Z"
+  },
+  {
+    "_id": "node_002",
+    "id": "node_002",
+    "cluster_id": "cluster_001",
+    "title": "RNN Basics",
+    "content": {
+      "text": "Recurrent Neural Networks for sequential data"
+    },
+    "summary": "Recurrent Neural Networks for sequential data",
+    "position": {
+      "x": 450,
+      "y": 200
+    },
+    "color": "#3498db",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:01:00Z"
+  },
+  {
+    "_id": "node_003",
+    "id": "node_003",
+    "cluster_id": "cluster_001",
+    "title": "LSTM Networks",
+    "content": {
+      "text": "Long Short-Term Memory cells for long sequences"
+    },
+    "summary": "Long Short-Term Memory cells for long sequences",
+    "position": {
+      "x": 600,
+      "y": 200
+    },
+    "color": "#3498db",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:02:00Z"
+  },
+  {
+    "_id": "node_004",
+    "id": "node_004",
+    "cluster_id": "cluster_001",
+    "title": "GAN Models",
+    "content": {
+      "text": "Generative Adversarial Networks for synthesis"
+    },
+    "summary": "Generative Adversarial Networks for synthesis",
+    "position": {
+      "x": 750,
+      "y": 200
+    },
+    "color": "#3498db",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:03:00Z"
+  },
+  {
+    "_id": "node_005",
+    "id": "node_005",
+    "cluster_id": "cluster_002",
+    "title": "Data Cleaning",
+    "content": {
+      "text": "Handling missing values and outliers"
+    },
+    "summary": "Handling missing values and outliers",
+    "position": {
+      "x": 900,
+      "y": 200
+    },
+    "color": "#e74c3c",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:04:00Z"
+  },
+  {
+    "_id": "node_006",
+    "id": "node_006",
+    "cluster_id": "cluster_002",
+    "title": "Feature Engineering",
+    "content": {
+      "text": "Creating meaningful features from raw data"
+    },
+    "summary": "Creating meaningful features from raw data",
+    "position": {
+      "x": 300,
+      "y": 320
+    },
+    "color": "#e74c3c",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:05:00Z"
+  },
+  {
+    "_id": "node_007",
+    "id": "node_007",
+    "cluster_id": "cluster_002",
+    "title": "Data Normalization",
+    "content": {
+      "text": "Scaling features to standard ranges"
+    },
+    "summary": "Scaling features to standard ranges",
+    "position": {
+      "x": 450,
+      "y": 320
+    },
+    "color": "#e74c3c",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:06:00Z"
+  },
+  {
+    "_id": "node_008",
+    "id": "node_008",
+    "cluster_id": "cluster_003",
+    "title": "Random Forest",
+    "content": {
+      "text": "Ensemble learning with decision trees"
+    },
+    "summary": "Ensemble learning with decision trees",
+    "position": {
+      "x": 600,
+      "y": 320
+    },
+    "color": "#2ecc71",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:07:00Z"
+  },
+  {
+    "_id": "node_009",
+    "id": "node_009",
+    "cluster_id": "cluster_003",
+    "title": "Gradient Boosting",
+    "content": {
+      "text": "XGBoost and LightGBM techniques"
+    },
+    "summary": "XGBoost and LightGBM techniques",
+    "position": {
+      "x": 750,
+      "y": 320
+    },
+    "color": "#2ecc71",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:08:00Z"
+  },
+  {
+    "_id": "node_010",
+    "id": "node_010",
+    "cluster_id": "cluster_003",
+    "title": "SVM",
+    "content": {
+      "text": "Support Vector Machines for classification"
+    },
+    "summary": "Support Vector Machines for classification",
+    "position": {
+      "x": 900,
+      "y": 320
+    },
+    "color": "#2ecc71",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:09:00Z"
+  },
+  {
+    "_id": "node_011",
+    "id": "node_011",
+    "cluster_id": "cluster_004",
+    "title": "Object Detection",
+    "content": {
+      "text": "YOLO and R-CNN architectures"
+    },
+    "summary": "YOLO and R-CNN architectures",
+    "position": {
+      "x": 300,
+      "y": 440
+    },
+    "color": "#f39c12",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:10:00Z"
+  },
+  {
+    "_id": "node_012",
+    "id": "node_012",
+    "cluster_id": "cluster_004",
+    "title": "Image Segmentation",
+    "content": {
+      "text": "Semantic and instance segmentation"
+    },
+    "summary": "Semantic and instance segmentation",
+    "position": {
+      "x": 450,
+      "y": 440
+    },
+    "color": "#f39c12",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:11:00Z"
+  },
+  {
+    "_id": "node_013",
+    "id": "node_013",
+    "cluster_id": "cluster_004",
+    "title": "Face Recognition",
+    "content": {
+      "text": "FaceNet and DeepFace systems"
+    },
+    "summary": "FaceNet and DeepFace systems",
+    "position": {
+      "x": 600,
+      "y": 440
+    },
+    "color": "#f39c12",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:12:00Z"
+  },
+  {
+    "_id": "node_014",
+    "id": "node_014",
+    "cluster_id": "cluster_005",
+    "title": "Transformers",
+    "content": {
+      "text": "Attention mechanism and BERT"
+    },
+    "summary": "Attention mechanism and BERT",
+    "position": {
+      "x": 750,
+      "y": 440
+    },
+    "color": "#9b59b6",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:13:00Z"
+  },
+  {
+    "_id": "node_015",
+    "id": "node_015",
+    "cluster_id": "cluster_005",
+    "title": "Word Embeddings",
+    "content": {
+      "text": "Word2Vec and GloVe vectors"
+    },
+    "summary": "Word2Vec and GloVe vectors",
+    "position": {
+      "x": 900,
+      "y": 440
+    },
+    "color": "#9b59b6",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:14:00Z"
+  },
+  {
+    "_id": "node_016",
+    "id": "node_016",
+    "cluster_id": "cluster_005",
+    "title": "Text Classification",
+    "content": {
+      "text": "Sentiment analysis and categorization"
+    },
+    "summary": "Sentiment analysis and categorization",
+    "position": {
+      "x": 300,
+      "y": 560
+    },
+    "color": "#9b59b6",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:15:00Z"
+  },
+  {
+    "_id": "node_017",
+    "id": "node_017",
+    "cluster_id": "cluster_005",
+    "title": "Language Models",
+    "content": {
+      "text": "GPT and large language models"
+    },
+    "summary": "GPT and large language models",
+    "position": {
+      "x": 450,
+      "y": 560
+    },
+    "color": "#9b59b6",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:16:00Z"
+  },
+  {
+    "_id": "node_018",
+    "id": "node_018",
+    "cluster_id": "cluster_006",
+    "title": "Transfer Learning",
+    "content": {
+      "text": "Using pre-trained models"
+    },
+    "summary": "Using pre-trained models",
+    "position": {
+      "x": 600,
+      "y": 560
+    },
+    "color": "#1abc9c",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:17:00Z"
+  },
+  {
+    "_id": "node_019",
+    "id": "node_019",
+    "cluster_id": "cluster_006",
+    "title": "Neural Architecture",
+    "content": {
+      "text": "Designing effective networks"
+    },
+    "summary": "Designing effective networks",
+    "position": {
+      "x": 750,
+      "y": 560
+    },
+    "color": "#1abc9c",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:18:00Z"
+  },
+  {
+    "_id": "node_020",
+    "id": "node_020",
+    "cluster_id": "cluster_006",
+    "title": "Batch Normalization",
+    "content": {
+      "text": "Stabilizing training process"
+    },
+    "summary": "Stabilizing training process",
+    "position": {
+      "x": 900,
+      "y": 560
+    },
+    "color": "#1abc9c",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:19:00Z"
+  },
+  {
+    "_id": "node_021",
+    "id": "node_021",
+    "cluster_id": "cluster_007",
+    "title": "Q-Learning",
+    "content": {
+      "text": "Value-based RL algorithms"
+    },
+    "summary": "Value-based RL algorithms",
+    "position": {
+      "x": 300,
+      "y": 680
+    },
+    "color": "#e67e22",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:20:00Z"
+  },
+  {
+    "_id": "node_022",
+    "id": "node_022",
+    "cluster_id": "cluster_007",
+    "title": "Policy Gradient",
+    "content": {
+      "text": "Actor-critic methods"
+    },
+    "summary": "Actor-critic methods",
+    "position": {
+      "x": 450,
+      "y": 680
+    },
+    "color": "#e67e22",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:21:00Z"
+  },
+  {
+    "_id": "node_023",
+    "id": "node_023",
+    "cluster_id": "cluster_007",
+    "title": "Deep RL",
+    "content": {
+      "text": "DQN and A3C algorithms"
+    },
+    "summary": "DQN and A3C algorithms",
+    "position": {
+      "x": 600,
+      "y": 680
+    },
+    "color": "#e67e22",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:22:00Z"
+  },
+  {
+    "_id": "node_024",
+    "id": "node_024",
+    "cluster_id": "cluster_008",
+    "title": "ARIMA Models",
+    "content": {
+      "text": "Auto-regressive integrated models"
+    },
+    "summary": "Auto-regressive integrated models",
+    "position": {
+      "x": 750,
+      "y": 680
+    },
+    "color": "#34495e",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:23:00Z"
+  },
+  {
+    "_id": "node_025",
+    "id": "node_025",
+    "cluster_id": "cluster_008",
+    "title": "LSTM Forecasting",
+    "content": {
+      "text": "Sequential prediction with LSTM"
+    },
+    "summary": "Sequential prediction with LSTM",
+    "position": {
+      "x": 900,
+      "y": 680
+    },
+    "color": "#34495e",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:24:00Z"
+  },
+  {
+    "_id": "node_026",
+    "id": "node_026",
+    "cluster_id": "cluster_008",
+    "title": "Prophet",
+    "content": {
+      "text": "Facebook's forecasting tool"
+    },
+    "summary": "Facebook's forecasting tool",
+    "position": {
+      "x": 300,
+      "y": 800
+    },
+    "color": "#34495e",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:25:00Z"
+  },
+  {
+    "_id": "node_027",
+    "id": "node_027",
+    "cluster_id": "cluster_009",
+    "title": "Feature Selection",
+    "content": {
+      "text": "Choosing relevant features"
+    },
+    "summary": "Choosing relevant features",
+    "position": {
+      "x": 450,
+      "y": 800
+    },
+    "color": "#16a085",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:26:00Z"
+  },
+  {
+    "_id": "node_028",
+    "id": "node_028",
+    "cluster_id": "cluster_009",
+    "title": "Dimensionality Reduction",
+    "content": {
+      "text": "PCA and t-SNE techniques"
+    },
+    "summary": "PCA and t-SNE techniques",
+    "position": {
+      "x": 600,
+      "y": 800
+    },
+    "color": "#16a085",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:27:00Z"
+  },
+  {
+    "_id": "node_029",
+    "id": "node_029",
+    "cluster_id": "cluster_009",
+    "title": "Feature Scaling",
+    "content": {
+      "text": "Min-Max and Standard scaling"
+    },
+    "summary": "Min-Max and Standard scaling",
+    "position": {
+      "x": 750,
+      "y": 800
+    },
+    "color": "#16a085",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:28:00Z"
+  },
+  {
+    "_id": "node_030",
+    "id": "node_030",
+    "cluster_id": "cluster_010",
+    "title": "Docker Containers",
+    "content": {
+      "text": "Containerizing ML models"
+    },
+    "summary": "Containerizing ML models",
+    "position": {
+      "x": 900,
+      "y": 800
+    },
+    "color": "#c0392b",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:29:00Z"
+  },
+  {
+    "_id": "node_031",
+    "id": "node_031",
+    "cluster_id": "cluster_010",
+    "title": "API Development",
+    "content": {
+      "text": "RESTful APIs for models"
+    },
+    "summary": "RESTful APIs for models",
+    "position": {
+      "x": 300,
+      "y": 920
+    },
+    "color": "#c0392b",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:30:00Z"
+  },
+  {
+    "_id": "node_032",
+    "id": "node_032",
+    "cluster_id": "cluster_010",
+    "title": "Cloud Deployment",
+    "content": {
+      "text": "AWS, Azure, GCP hosting"
+    },
+    "summary": "AWS, Azure, GCP hosting",
+    "position": {
+      "x": 450,
+      "y": 920
+    },
+    "color": "#c0392b",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:31:00Z"
+  },
+  {
+    "_id": "node_033",
+    "id": "node_033",
+    "cluster_id": "cluster_011",
+    "title": "Hypothesis Testing",
+    "content": {
+      "text": "T-tests and chi-square tests"
+    },
+    "summary": "T-tests and chi-square tests",
+    "position": {
+      "x": 600,
+      "y": 920
+    },
+    "color": "#8e44ad",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:32:00Z"
+  },
+  {
+    "_id": "node_034",
+    "id": "node_034",
+    "cluster_id": "cluster_011",
+    "title": "Regression Analysis",
+    "content": {
+      "text": "Linear and logistic regression"
+    },
+    "summary": "Linear and logistic regression",
+    "position": {
+      "x": 750,
+      "y": 920
+    },
+    "color": "#8e44ad",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:33:00Z"
+  },
+  {
+    "_id": "node_035",
+    "id": "node_035",
+    "cluster_id": "cluster_011",
+    "title": "Bayesian Methods",
+    "content": {
+      "text": "Probabilistic inference"
+    },
+    "summary": "Probabilistic inference",
+    "position": {
+      "x": 900,
+      "y": 920
+    },
+    "color": "#8e44ad",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:34:00Z"
+  },
+  {
+    "_id": "node_036",
+    "id": "node_036",
+    "cluster_id": "cluster_012",
+    "title": "Gradient Descent",
+    "content": {
+      "text": "First-order optimization"
+    },
+    "summary": "First-order optimization",
+    "position": {
+      "x": 300,
+      "y": 1040
+    },
+    "color": "#2980b9",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:35:00Z"
+  },
+  {
+    "_id": "node_037",
+    "id": "node_037",
+    "cluster_id": "cluster_012",
+    "title": "Adam Optimizer",
+    "content": {
+      "text": "Adaptive learning rates"
+    },
+    "summary": "Adaptive learning rates",
+    "position": {
+      "x": 450,
+      "y": 1040
+    },
+    "color": "#2980b9",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:36:00Z"
+  },
+  {
+    "_id": "node_038",
+    "id": "node_038",
+    "cluster_id": "cluster_012",
+    "title": "Hyperparameter Tuning",
+    "content": {
+      "text": "Grid and random search"
+    },
+    "summary": "Grid and random search",
+    "position": {
+      "x": 600,
+      "y": 1040
+    },
+    "color": "#2980b9",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:37:00Z"
+  },
+  {
+    "_id": "node_039",
+    "id": "node_039",
+    "cluster_id": "cluster_013",
+    "title": "Matplotlib",
+    "content": {
+      "text": "Basic plotting library"
+    },
+    "summary": "Basic plotting library",
+    "position": {
+      "x": 750,
+      "y": 1040
+    },
+    "color": "#27ae60",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:38:00Z"
+  },
+  {
+    "_id": "node_040",
+    "id": "node_040",
+    "cluster_id": "cluster_013",
+    "title": "Seaborn",
+    "content": {
+      "text": "Statistical visualizations"
+    },
+    "summary": "Statistical visualizations",
+    "position": {
+      "x": 900,
+      "y": 1040
+    },
+    "color": "#27ae60",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:39:00Z"
+  },
+  {
+    "_id": "node_041",
+    "id": "node_041",
+    "cluster_id": "cluster_013",
+    "title": "Plotly",
+    "content": {
+      "text": "Interactive charts"
+    },
+    "summary": "Interactive charts",
+    "position": {
+      "x": 300,
+      "y": 1160
+    },
+    "color": "#27ae60",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:40:00Z"
+  },
+  {
+    "_id": "node_042",
+    "id": "node_042",
+    "cluster_id": "cluster_014",
+    "title": "Spark",
+    "content": {
+      "text": "Distributed data processing"
+    },
+    "summary": "Distributed data processing",
+    "position": {
+      "x": 450,
+      "y": 1160
+    },
+    "color": "#d35400",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:41:00Z"
+  },
+  {
+    "_id": "node_043",
+    "id": "node_043",
+    "cluster_id": "cluster_014",
+    "title": "Hadoop",
+    "content": {
+      "text": "MapReduce framework"
+    },
+    "summary": "MapReduce framework",
+    "position": {
+      "x": 600,
+      "y": 1160
+    },
+    "color": "#d35400",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:42:00Z"
+  },
+  {
+    "_id": "node_044",
+    "id": "node_044",
+    "cluster_id": "cluster_014",
+    "title": "Data Lakes",
+    "content": {
+      "text": "Scalable storage solutions"
+    },
+    "summary": "Scalable storage solutions",
+    "position": {
+      "x": 750,
+      "y": 1160
+    },
+    "color": "#d35400",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:43:00Z"
+  },
+  {
+    "_id": "node_045",
+    "id": "node_045",
+    "cluster_id": "cluster_015",
+    "title": "AutoKeras",
+    "content": {
+      "text": "Automated neural architecture search"
+    },
+    "summary": "Automated neural architecture search",
+    "position": {
+      "x": 900,
+      "y": 1160
+    },
+    "color": "#7f8c8d",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:44:00Z"
+  },
+  {
+    "_id": "node_046",
+    "id": "node_046",
+    "cluster_id": "cluster_015",
+    "title": "H2O AutoML",
+    "content": {
+      "text": "Automated machine learning platform"
+    },
+    "summary": "Automated machine learning platform",
+    "position": {
+      "x": 300,
+      "y": 1280
+    },
+    "color": "#7f8c8d",
+    "similar_to": [],
+    "created_at": "2025-10-11T00:45:00Z"
+  },
+  {
+    "_id": "node_20251011010632427275",
+    "id": "node_20251011010632427275",
+    "cluster_id": "cluster_014",
+    "title": "Data mining",
+    "content": {
+      "text": ""
+    },
+    "summary": "",
+    "position": {
+      "x": 1519.9444804072066,
+      "y": 908.6355220645592
+    },
+    "color": "#d35400",
+    "similar_to": [],
+    "created_at": "2025-10-11T01:06:32.429620"
+  }
+]

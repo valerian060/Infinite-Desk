@@ -1,0 +1,19 @@
+[
+  {
+    "_id": "col_001",
+    "id": "col_001",
+    "name": "Machine Learning & Data Science",
+    "description": "Comprehensive AI, ML, and Data Science knowledge base",
+    "created_at": "2025-10-11T00:00:00Z",
+    "statistics": {
+      "total_nodes": 50,
+      "total_clusters": 15
+    },
+    "tags": [
+      "machine-learning",
+      "ai",
+      "data-science",
+      "deep-learning"
+    ]
+  }
+]
