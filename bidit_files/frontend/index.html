@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infinite Desk - Floating Knowledge Map</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+        <p>Loading your infinite desk...</p>
+    </div>
+
+    <!-- Top Controls -->
+    <div class="controls">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Search..." />
+        </div>
+
+        <div class="button-group">
+            <button id="createClusterBtn" class="control-btn btn-create">➕ Cluster</button>
+            <button id="createNodeBtn" class="control-btn btn-create">➕ Node</button>
+        </div>
+    </div>
+
+    <!-- Main SVG Canvas -->
+    <svg id="galaxy" class="galaxy-canvas"></svg>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <script src="main.js"></script>
+</body>
+</html>
