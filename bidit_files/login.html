@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Infinite Desk</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+        <div class="circle circle-1"></div>
+        <div class="circle circle-2"></div>
+        <div class="circle circle-3"></div>
+    </div>
+
+    <!-- Back Button -->
+    <button class="back-btn" onclick="window.location.href='home.html'">← Back to Home</button>
+
+    <!-- Auth Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Logo -->
+            <div class="logo">Infinite Desk</div>
+            <p class="welcome-text">Welcome back! Login to continue</p>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+
+                <div class="form-options">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn" id="loginSubmitBtn">
+                    <span id="loginBtnText">Login →</span>
+                    <span id="loginSpinner" class="spinner hidden"></span>
+                </button>
+
+                <p class="message" id="loginMessage"></p>
+            </form>
+
+            <!-- Signup Link -->
+            <div class="alternate-action">
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+            </div>
+
+            <!-- Demo Credentials -->
+            <div class="demo-credentials">
+                <p><strong>Demo Login:</strong></p>
+                <p>Email: demo@infinitedesk.com</p>
+                <p>Password: demo123</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="login.js"></script>
+</body>
+</html>
