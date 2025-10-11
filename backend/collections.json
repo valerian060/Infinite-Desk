@@ -1,0 +1,347 @@
+[
+    {
+        "id": 1,
+        "name": "CS Core Knowledge (10 Clusters - Major Expansion)",
+        "clusters": [
+            {
+                "id": 101,
+                "name": "Algorithms & Complexity",
+                "cx": 150, "cy": 100,
+                "nodes": [
+                    {"id": "A1", "title": "Big O Notation", "summary": "Formal notation for expressing the worst-case complexity of an algorithm.", "similar_to": ["A2", "D1", "A6"], "embedding": []},
+                    {"id": "A2", "title": "Merge Sort", "summary": "A stable, $O(n \\log n)$ divide-and-conquer sorting algorithm.", "similar_to": ["A1", "A3", "A8"], "embedding": []},
+                    {"id": "A3", "title": "Dijkstra's Algorithm", "summary": "Finds the shortest paths in a graph, $O((V+E)\\log V)$.", "similar_to": ["A2", "D3", "A7"], "embedding": []},
+                    {"id": "A4", "title": "Dynamic Programming (DP)", "summary": "Solving complex problems by storing subproblem results.", "similar_to": ["A1", "D2", "A9"], "embedding": []},
+                    {"id": "A5", "title": "NP-Completeness", "summary": "Class of decision problems for which verification is polynomial time.", "similar_to": ["A1", "A6", "A10"], "embedding": []},
+                    {"id": "A6", "title": "Greedy Algorithms", "summary": "Making locally optimal choices to find a global optimum.", "similar_to": ["A1", "A5", "A3"], "embedding": []},
+                    {"id": "A7", "title": "A* Search", "summary": "An informed search algorithm that uses heuristics.", "similar_to": ["A3", "D3"], "embedding": []},
+                    {"id": "A8", "title": "Quick Sort", "summary": "An in-place, unstable sorting algorithm with $O(n \\log n)$ average complexity.", "similar_to": ["A2", "D1"], "embedding": []},
+                    {"id": "A9", "title": "Backtracking", "summary": "A general algorithm for finding solutions incrementally.", "similar_to": ["A4", "D3"], "embedding": []},
+                    {"id": "A10", "title": "Amortized Analysis", "summary": "A method for analyzing a sequence of operations to find the average time per operation.", "similar_to": ["A1", "A5"], "embedding": []}
+                ]
+            },
+            {
+                "id": 102,
+                "name": "Data Structures",
+                "cx": 400, "cy": 100,
+                "nodes": [
+                    {"id": "D1", "title": "Hash Map Collisions", "summary": "Separate chaining vs. open addressing in Hash Maps.", "similar_to": ["A1", "D2", "D6"], "embedding": []},
+                    {"id": "D2", "title": "Linked List vs Array", "summary": "Trade-offs: $O(1)$ insertion vs. $O(1)$ random access.", "similar_to": ["D1", "D3", "D8"], "embedding": []},
+                    {"id": "D3", "title": "Tree Traversal (BFS/DFS)", "summary": "In-order, pre-order, post-order, and level-order traversals.", "similar_to": ["A3", "D2", "D5"], "embedding": []},
+                    {"id": "D4", "title": "AVL Trees", "summary": "Self-balancing binary search tree where balance factor is $\\pm 1$ or $0$.", "similar_to": ["D3", "A2", "D6"], "embedding": []},
+                    {"id": "D5", "title": "Trie (Prefix Tree)", "summary": "A tree structure for efficient string retrieval.", "similar_to": ["D3", "A6"], "embedding": []},
+                    {"id": "D6", "title": "Min/Max Heap", "summary": "A complete binary tree that maintains the heap property.", "similar_to": ["D4", "A2"], "embedding": []},
+                    {"id": "D7", "title": "Disjoint Set Union (DSU)", "summary": "Data structure that tracks a set of elements partitioned into disjoint subsets.", "similar_to": ["A3", "D2"], "embedding": []},
+                    {"id": "D8", "title": "Segment Trees", "summary": "A tree data structure for storing intervals or segments.", "similar_to": ["D3", "D4"], "embedding": []},
+                    {"id": "D9", "title": "Skip List", "summary": "A probabilistic alternative to balanced trees that uses multiple levels of linked lists.", "similar_to": ["D2", "D1"], "embedding": []}
+                ]
+            },
+            {
+                "id": 103,
+                "name": "Operating Systems",
+                "cx": 650, "cy": 100,
+                "nodes": [
+                    {"id": "O1", "title": "Threading vs. Process", "summary": "Parallelism (processes) vs. concurrency (threads).", "similar_to": ["O2", "P4"], "embedding": []},
+                    {"id": "O2", "title": "Deadlocks Conditions", "summary": "Mutual exclusion, Hold and wait, No preemption, Circular wait.", "similar_to": ["O1", "O3", "O6"], "embedding": []},
+                    {"id": "O3", "title": "Virtual Memory/Paging", "summary": "Mapping virtual addresses to physical memory pages.", "similar_to": ["O2", "O4"], "embedding": []},
+                    {"id": "O4", "title": "Process Scheduling", "summary": "Algorithms like Round Robin, FCFS, and shortest job first.", "similar_to": ["O1", "O2"], "embedding": []},
+                    {"id": "O5", "title": "File Systems (i-nodes)", "summary": "Data structure storing file metadata.", "similar_to": ["O3"], "embedding": []},
+                    {"id": "O6", "title": "Semaphores & Mutexes", "summary": "Synchronization primitives to control shared resource access.", "similar_to": ["O2", "O1"], "embedding": []},
+                    {"id": "O7", "title": "Kernel Mode vs. User Mode", "summary": "Dual mode of operation to protect the OS.", "similar_to": ["O3", "O4"], "embedding": []},
+                    {"id": "O8", "title": "Thrashing", "summary": "A state where a computer's virtual memory subsystem is in a constant state of paging.", "similar_to": ["O3", "O4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 104,
+                "name": "Web Development (Frontend)",
+                "cx": 150, "cy": 400,
+                "nodes": [
+                    {"id": "W1", "title": "React Hooks", "summary": "useState, useEffect, useContext - managing state and side effects.", "similar_to": ["W2", "P1", "W4"], "embedding": []},
+                    {"id": "W2", "title": "REST API Principles", "summary": "Uniform interface, statelessness, cacheability.", "similar_to": ["W1", "B1", "N4"], "embedding": []},
+                    {"id": "W3", "title": "Tailwind CSS Utility-First", "summary": "Composing interfaces from small utility classes.", "similar_to": ["W1", "C1"], "embedding": []},
+                    {"id": "W4", "title": "Component Lifecycles", "summary": "Mounting, updating, and unmounting phases.", "similar_to": ["W1", "W2"], "embedding": []},
+                    {"id": "W5", "title": "Virtual DOM vs Real DOM", "summary": "Efficient diffing algorithm for minimizing direct DOM manipulation.", "similar_to": ["W1", "W4"], "embedding": []},
+                    {"id": "W6", "title": "Server-Side Rendering (SSR)", "summary": "Rendering an initial page view on the server.", "similar_to": ["W4", "W5"], "embedding": []},
+                    {"id": "W7", "title": "WebSockets", "summary": "A protocol providing full-duplex communication over a single TCP connection.", "similar_to": ["W2", "N1"], "embedding": []},
+                    {"id": "W8", "title": "Shadow DOM", "summary": "Encapsulated DOM subtree used to manage web component styling.", "similar_to": ["W5", "C1"], "embedding": []},
+                    {"id": "W9", "title": "State Management (Redux/Zustand)", "summary": "Patterns for managing global application state outside of component state.", "similar_to": ["W1", "W4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 105,
+                "name": "Databases & SQL",
+                "cx": 400, "cy": 400,
+                "nodes": [
+                    {"id": "B1", "title": "Normalization (3NF)", "summary": "Reducing redundancy and improving data integrity.", "similar_to": ["B2", "W2"], "embedding": []},
+                    {"id": "B2", "title": "ACID Properties", "summary": "Atomicity, Consistency, Isolation, Durability in transactions.", "similar_to": ["B1", "B4", "F5"], "embedding": []},
+                    {"id": "B3", "title": "SQL Join Types", "summary": "INNER, LEFT, RIGHT, FULL joins and their uses.", "similar_to": ["B1", "B6"], "embedding": []},
+                    {"id": "B4", "title": "Indexing (B-Tree)", "summary": "Creating indexes to speed up data retrieval operations.", "similar_to": ["B1", "D1", "B7"], "embedding": []},
+                    {"id": "B5", "title": "NoSQL Types (KV, Document, Graph)", "summary": "Understanding different non-relational database models.", "similar_to": ["B1", "B2"], "embedding": []},
+                    {"id": "B6", "title": "Transaction Isolation Levels", "summary": "Defining how transactions interact (e.g., Read Committed, Serializable).", "similar_to": ["B2", "B3"], "embedding": []},
+                    {"id": "B7", "title": "Database Sharding/Partitioning", "summary": "Distributing a single logical database across multiple servers.", "similar_to": ["B4", "F3"], "embedding": []},
+                    {"id": "B8", "title": "Denormalization", "summary": "Intentionally introducing redundancy to improve read performance.", "similar_to": ["B1", "B4"], "embedding": []},
+                    {"id": "B9", "title": "Two-Phase Commit (2PC)", "summary": "Protocol to achieve atomicity in a distributed transaction.", "similar_to": ["B2", "F5"], "embedding": []}
+                ]
+            },
+            {
+                "id": 106,
+                "name": "Python/Fundamentals",
+                "cx": 650, "cy": 400,
+                "nodes": [
+                    {"id": "P1", "title": "Python Decorators", "summary": "Using '@' syntax to wrap functions and modify behavior.", "similar_to": ["P2", "W1", "P6"], "embedding": []},
+                    {"id": "P2", "title": "Generators vs. Lists", "summary": "Memory efficiency and lazy evaluation using the 'yield' keyword.", "similar_to": ["P1", "D1"], "embedding": []},
+                    {"id": "P3", "title": "Lambda Functions", "summary": "Small, anonymous functions used inline with map/filter.", "similar_to": ["P1"], "embedding": []},
+                    {"id": "P4", "title": "Global Interpreter Lock (GIL)", "summary": "Ensures only one thread executes Python bytecode at a time in CPython.", "similar_to": ["O1", "P1"], "embedding": []},
+                    {"id": "P5", "title": "Context Managers ('with' statement)", "summary": "Simplifying resource management with '__enter__' and '__exit__'.", "similar_to": ["P1", "O5"], "embedding": []},
+                    {"id": "P6", "title": "Metaclasses", "summary": "The 'class of a class' - customizing class creation.", "similar_to": ["P1", "S5"], "embedding": []},
+                    {"id": "P7", "title": "List Comprehensions", "summary": "A concise way to create lists.", "similar_to": ["P3", "P2"], "embedding": []},
+                    {"id": "P8", "title": "Monkey Patching", "summary": "Dynamically modifying a class or module at runtime.", "similar_to": ["P6", "S7"], "embedding": []},
+                    {"id": "P9", "title": "Abstract Base Classes (ABCs)", "summary": "Defining interfaces to enforce structure in subclasses.", "similar_to": ["P6", "S5"], "embedding": []}
+                ]
+            },
+            {
+                "id": 107,
+                "name": "Computer Networks",
+                "cx": 150, "cy": 700,
+                "nodes": [
+                    {"id": "N1", "title": "TCP vs UDP", "summary": "TCP is connection-oriented; UDP is connectionless and fast.", "similar_to": ["N2", "N4"], "embedding": []},
+                    {"id": "N2", "title": "OSI Model Layers", "summary": "Seven layers: Physical to Application.", "similar_to": ["N1", "N3", "N6"], "embedding": []},
+                    {"id": "N3", "title": "IP Addressing (Subnetting)", "summary": "Dividing an IP network into smaller subnetworks.", "similar_to": ["N2", "N4"], "embedding": []},
+                    {"id": "N4", "title": "HTTP Status Codes", "summary": "1xx Informational, 2xx Success, 3xx Redirection, 4xx Client Error, 5xx Server Error.", "similar_to": ["W2", "N1"], "embedding": []},
+                    {"id": "N5", "title": "DNS Resolution", "summary": "Translating domain names into IP addresses.", "similar_to": ["N3", "W2"], "embedding": []},
+                    {"id": "N6", "title": "NAT (Network Address Translation)", "summary": "A method to modify network address information.", "similar_to": ["N3", "N2"], "embedding": []},
+                    {"id": "N7", "title": "Load Balancing", "summary": "Distributing network traffic across a group of servers.", "similar_to": ["F3", "W2"], "embedding": []},
+                    {"id": "N8", "title": "TLS/SSL Handshake", "summary": "The protocol used to establish a secure connection over a network.", "similar_to": ["N4", "S9"], "embedding": []},
+                    {"id": "N9", "title": "BGP (Border Gateway Protocol)", "summary": "The routing protocol used to exchange routing information between autonomous systems.", "similar_to": ["N3", "N6"], "embedding": []}
+                ]
+            },
+            {
+                "id": 108,
+                "name": "Software Engineering",
+                "cx": 400, "cy": 700,
+                "nodes": [
+                    {"id": "S1", "title": "Agile vs Waterfall", "summary": "Iterative and incremental (Agile) vs. sequential design (Waterfall).", "similar_to": ["S2"], "embedding": []},
+                    {"id": "S2", "title": "Design Patterns", "summary": "Reusable solutions to common software design problems (e.g., Factory, Singleton).", "similar_to": ["S1", "P1", "S5"], "embedding": []},
+                    {"id": "S3", "title": "Unit Testing/TDD", "summary": "Writing tests for small, isolated pieces of code.", "similar_to": ["S1", "S4"], "embedding": []},
+                    {"id": "S4", "title": "Version Control (Git)", "summary": "Distributed revision control for tracking changes.", "similar_to": ["S3", "S6"], "embedding": []},
+                    {"id": "S5", "title": "SOLID Principles", "summary": "Design principles for maintainable and scalable object-oriented software.", "similar_to": ["S2", "P6"], "embedding": []},
+                    {"id": "S6", "title": "Code Reviews & Pair Programming", "summary": "Techniques for quality assurance and knowledge transfer.", "similar_to": ["S3", "S1"], "embedding": []},
+                    {"id": "S7", "title": "Refactoring", "summary": "Restructuring existing computer code without changing external behavior.", "similar_to": ["S2", "S5"], "embedding": []},
+                    {"id": "S8", "title": "Microservices Architecture", "summary": "A system structure where the application is built as a collection of smaller, independent services.", "similar_to": ["N7", "R2"], "embedding": []},
+                    {"id": "S9", "title": "Authentication vs. Authorization", "summary": "AuthN (who you are) vs. AuthZ (what you can do).", "similar_to": ["S2", "T1"], "embedding": []}
+                ]
+            },
+            {
+                "id": 109,
+                "name": "Programming Paradigms",
+                "cx": 650, "cy": 700,
+                "nodes": [
+                    {"id": "G1", "title": "Functional Programming (FP)", "summary": "Building software using pure functions, avoiding shared state and mutable data.", "similar_to": ["G2", "P1"], "embedding": []},
+                    {"id": "G2", "title": "Immutability", "summary": "The state of an object cannot be modified after it is created.", "similar_to": ["G1", "W1"], "embedding": []},
+                    {"id": "G3", "title": "Object-Oriented Programming (OOP)", "summary": "Design paradigm based on objects, encapsulation, inheritance, and polymorphism.", "similar_to": ["G4", "S5"], "embedding": []},
+                    {"id": "G4", "title": "Polymorphism", "summary": "The ability of an object to take on many forms (e.g., method overloading/overriding).", "similar_to": ["G3", "S5"], "embedding": []},
+                    {"id": "G5", "title": "First-Class Functions", "summary": "Functions are treated as variables and can be passed as arguments, returned, and stored in data structures.", "similar_to": ["G1", "P3"], "embedding": []},
+                    {"id": "G6", "title": "Pure Functions", "summary": "Functions that return the same result for the same arguments and have no side effects.", "similar_to": ["G1", "S3"], "embedding": []},
+                    {"id": "G7", "title": "Composition over Inheritance", "summary": "A design principle favoring the construction of complex objects by combining simpler ones.", "similar_to": ["G3", "S5"], "embedding": []},
+                    {"id": "G8", "title": "Concurrency Models (Actor Model)", "summary": "A model for concurrent computation where the fundamental unit is the actor.", "similar_to": ["O1", "P4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 110,
+                "name": "Security Fundamentals",
+                "cx": 850, "cy": 400,
+                "nodes": [
+                    {"id": "T1", "title": "Symmetric vs Asymmetric Encryption", "summary": "Symmetric uses one key; Asymmetric (Public/Private key) uses two.", "similar_to": ["T2", "N8", "S9"], "embedding": []},
+                    {"id": "T2", "title": "Hashing (SHA-256)", "summary": "One-way function to produce a fixed-size digest, used for integrity verification.", "similar_to": ["T1", "B2"], "embedding": []},
+                    {"id": "T3", "title": "Cross-Site Scripting (XSS)", "summary": "Injecting malicious scripts into otherwise trusted websites.", "similar_to": ["T4", "W2"], "embedding": []},
+                    {"id": "T4", "title": "SQL Injection", "summary": "Inserting malicious SQL code to retrieve or modify data.", "similar_to": ["T3", "B1"], "embedding": []},
+                    {"id": "T5", "title": "OAuth 2.0/OpenID Connect", "summary": "Protocols for secure delegation of access and identity verification.", "similar_to": ["S9", "N8"], "embedding": []},
+                    {"id": "T6", "title": "TLS/SSL Certificate Management", "summary": "The role of Certificate Authorities (CAs) and chain of trust.", "similar_to": ["N8", "T1"], "embedding": []},
+                    {"id": "T7", "title": "Principle of Least Privilege (PoLP)", "summary": "Granting only the minimal permissions necessary for a task.", "similar_to": ["F6", "O7"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Web Design & Performance (4 Clusters)",
+        "clusters": [
+            {
+                "id": 201,
+                "name": "UX Principles",
+                "cx": 200, "cy": 250,
+                "nodes": [
+                    {"id": "U1", "title": "Gestalt Laws", "summary": "Principles of perception (proximity, similarity) in interface design.", "similar_to": ["U2", "X1", "C4"], "embedding": []},
+                    {"id": "U2", "title": "Fitts' Law", "summary": "Time to acquire a target is a function of its distance and size.", "similar_to": ["U1", "U3"], "embedding": []},
+                    {"id": "U3", "title": "Hicks' Law", "summary": "Time to make a decision increases with the number of choices.", "similar_to": ["U2", "X2"], "embedding": []},
+                    {"id": "U4", "title": "Mental Models", "summary": "User's internal representation of how a system works.", "similar_to": ["U1", "U5"], "embedding": []},
+                    {"id": "U5", "title": "Affordance and Signifiers", "summary": "Visual cues that suggest how an object should be used.", "similar_to": ["U4", "U1"], "embedding": []},
+                    {"id": "U6", "title": "Information Architecture (IA)", "summary": "Organizing, structuring, and labeling content.", "similar_to": ["U4", "W4"], "embedding": []},
+                    {"id": "U7", "title": "Usability Heuristics (Nielsen)", "summary": "Ten general principles for interaction design.", "similar_to": ["U1", "U3"], "embedding": []},
+                    {"id": "U8", "title": "Design Systems", "summary": "A set of standards and reusable components for managing design at scale.", "similar_to": ["C2", "S2"], "embedding": []}
+                ]
+            },
+            {
+                "id": 202,
+                "name": "Modern CSS Layout",
+                "cx": 450, "cy": 250,
+                "nodes": [
+                    {"id": "C1", "title": "CSS Grid vs. Flexbox", "summary": "Grid (2D) for major layouts, Flexbox (1D) for component alignment.", "similar_to": ["C2", "U1"], "embedding": []},
+                    {"id": "C2", "title": "BEM Naming", "summary": "Block-Element-Modifier convention for modular CSS.", "similar_to": ["C1", "C3"], "embedding": []},
+                    {"id": "C3", "title": "CSS Variables", "summary": "Using custom properties for global theme management.", "similar_to": ["C2", "C4", "C5"], "embedding": []},
+                    {"id": "C4", "title": "Container Queries", "summary": "Styling elements based on their container size.", "similar_to": ["C3", "X3"], "embedding": []},
+                    {"id": "C5", "title": "CSS-in-JS (Styled Components)", "summary": "Using JavaScript to style components.", "similar_to": ["C2", "W1"], "embedding": []},
+                    {"id": "C6", "title": "Cascade Layers (@layer)", "summary": "Providing explicit control over the CSS cascade.", "similar_to": ["C3", "C2"], "embedding": []},
+                    {"id": "C7", "title": "Media Queries (Responsive Design)", "summary": "Applying styles based on device characteristics like screen width.", "similar_to": ["C4", "C1"], "embedding": []},
+                    {"id": "C8", "title": "Critical CSS", "summary": "Extracting and inlining the minimum CSS required for the above-the-fold content.", "similar_to": ["W6", "O1"], "embedding": []}
+                ]
+            },
+            {
+                "id": 203,
+                "name": "Accessibility (A11y)",
+                "cx": 200, "cy": 500,
+                "nodes": [
+                    {"id": "X1", "title": "ARIA Roles and Labels", "summary": "Providing semantic meaning to content for assistive technologies.", "similar_to": ["X2", "U3"], "embedding": []},
+                    {"id": "X2", "title": "WCAG Color Contrast", "summary": "Minimum ratio requirements (AA or AAA) for text and background.", "similar_to": ["X1", "U3"], "embedding": []},
+                    {"id": "X3", "title": "Keyboard Navigation", "summary": "Ensuring all interactive elements are reachable via Tab and Enter keys.", "similar_to": ["X1", "C4"], "embedding": []},
+                    {"id": "X4", "title": "Screen Reader Best Practices", "summary": "Techniques for optimizing content for sequential reading.", "similar_to": ["X1", "X5"], "embedding": []},
+                    {"id": "X5", "title": "Alt Text for Images", "summary": "Providing descriptive text for non-text content.", "similar_to": ["X4", "X1"], "embedding": []},
+                    {"id": "X6", "title": "Semantic HTML Tags", "summary": "Using tags like `<header>`, `<main>`, `<footer>` for clearer document structure.", "similar_to": ["X1", "W4"], "embedding": []},
+                    {"id": "X7", "title": "Focus Management", "summary": "Controlling where the keyboard focus lands after interaction.", "similar_to": ["X3", "X1"], "embedding": []},
+                    {"id": "X8", "title": "Motion/Animation Accessibility", "summary": "Respecting 'prefers-reduced-motion' for users sensitive to movement.", "similar_to": ["X1", "C7"], "embedding": []}
+                ]
+            },
+            {
+                "id": 204,
+                "name": "Performance Optimization",
+                "cx": 450, "cy": 500,
+                "nodes": [
+                    {"id": "PZ1", "title": "Core Web Vitals", "summary": "Google's metrics for user experience: LCP, FID, CLS.", "similar_to": ["PZ2", "W6"], "embedding": []},
+                    {"id": "PZ2", "title": "Image Optimization (WebP/AVIF)", "summary": "Using modern image formats and lazy loading for faster delivery.", "similar_to": ["F4", "W6"], "embedding": []},
+                    {"id": "PZ3", "title": "Tree Shaking/Code Splitting", "summary": "Removing unused code from bundles and loading only necessary modules.", "similar_to": ["PZ4", "W5"], "embedding": []},
+                    {"id": "PZ4", "title": "Browser Caching Strategy", "summary": "Using ETag, Last-Modified, and Cache-Control headers.", "similar_to": ["N4", "F4"], "embedding": []},
+                    {"id": "PZ5", "title": "Request Animation Frame (RAF)", "summary": "Scheduling screen updates optimally for smooth animations.", "similar_to": ["W4", "C1"], "embedding": []},
+                    {"id": "PZ6", "title": "HTTP/2 vs HTTP/3", "summary": "Multiplexing streams (HTTP/2) and using UDP (HTTP/3 - QUIC).", "similar_to": ["N4", "N1"], "embedding": []},
+                    {"id": "PZ7", "title": "Preload/Preconnect Hints", "summary": "Giving the browser hints about resources to fetch or connections to establish early.", "similar_to": ["F4", "PZ4"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Machine Learning Foundations (3 Clusters)",
+        "clusters": [
+            {
+                "id": 301,
+                "name": "Core ML Algorithms",
+                "cx": 250, "cy": 250,
+                "nodes": [
+                    {"id": "M1", "title": "Linear Regression (Loss Function)", "summary": "Minimizing Mean Squared Error (MSE) to fit a straight line.", "similar_to": ["M2", "M3", "M7"], "embedding": []},
+                    {"id": "M2", "title": "Gradient Descent", "summary": "Iterative optimization algorithm for finding the minimum of a function.", "similar_to": ["M1", "M4", "L1"], "embedding": []},
+                    {"id": "M3", "title": "K-Means Clustering", "summary": "Unsupervised learning for partitioning data into K clusters.", "similar_to": ["M4", "M5"], "embedding": []},
+                    {"id": "M4", "title": "Bias-Variance Tradeoff", "summary": "Balancing model complexity to minimize total error.", "similar_to": ["M2", "M5", "M8"], "embedding": []},
+                    {"id": "M5", "title": "Decision Trees & Random Forests", "summary": "Ensemble learning method that builds multiple decision trees.", "similar_to": ["M3", "M1"], "embedding": []},
+                    {"id": "M6", "title": "Support Vector Machines (SVM)", "summary": "Finding the hyperplane that best separates classes.", "similar_to": ["M1", "M4"], "embedding": []},
+                    {"id": "M7", "title": "Cross-Validation", "summary": "Technique for evaluating model performance by partitioning data.", "similar_to": ["M4", "M1"], "embedding": []},
+                    {"id": "M8", "title": "Regularization (L1/L2)", "summary": "Adding a penalty term to the loss function to prevent overfitting.", "similar_to": ["M4", "M2"], "embedding": []},
+                    {"id": "M9", "title": "Principal Component Analysis (PCA)", "summary": "Dimensionality reduction technique by finding orthogonal axes of maximum variance.", "similar_to": ["M3", "M4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 302,
+                "name": "Neural Networks & Deep Learning",
+                "cx": 500, "cy": 250,
+                "nodes": [
+                    {"id": "L1", "title": "Backpropagation", "summary": "Algorithm for efficiently calculating the gradient of the loss function.", "similar_to": ["L2", "M2"], "embedding": []},
+                    {"id": "L2", "title": "Activation Functions (ReLU, Sigmoid)", "summary": "Introducing non-linearity into the network's output.", "similar_to": ["L1", "L3"], "embedding": []},
+                    {"id": "L3", "title": "Convolutional Neural Networks (CNNs)", "summary": "Specialized network for image processing using shared weights.", "similar_to": ["L4", "L2", "L6"], "embedding": []},
+                    {"id": "L4", "title": "Recurrent Neural Networks (RNNs/LSTMs)", "summary": "Designed to process sequential data using internal memory.", "similar_to": ["L3", "L1"], "embedding": []},
+                    {"id": "L5", "title": "Transformers (Attention Mechanism)", "summary": "Using self-attention to weigh the importance of different parts of the input sequence.", "similar_to": ["L4", "L3"], "embedding": []},
+                    {"id": "L6", "title": "Transfer Learning", "summary": "Reusing a pre-trained model on a new, related task.", "similar_to": ["L3", "L5"], "embedding": []},
+                    {"id": "L7", "title": "Generative Adversarial Networks (GANs)", "summary": "Two competing neural networks (Generator and Discriminator).", "similar_to": ["L3", "L5"], "embedding": []},
+                    {"id": "L8", "title": "Batch Normalization", "summary": "Technique to normalize the inputs of layers to stabilize training.", "similar_to": ["L1", "L2"], "embedding": []},
+                    {"id": "L9", "title": "Hyperparameter Tuning (Grid Search)", "summary": "Optimizing parameters external to the model, like learning rate or layer count.", "similar_to": ["M2", "M4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 303,
+                "name": "Evaluation & Metrics",
+                "cx": 375, "cy": 500,
+                "nodes": [
+                    {"id": "E1", "title": "Confusion Matrix (Precision/Recall)", "summary": "Table summarizing classification results, focusing on True/False Positives/Negatives.", "similar_to": ["E2", "M7"], "embedding": []},
+                    {"id": "E2", "title": "F1 Score", "summary": "Harmonic mean of precision and recall.", "similar_to": ["E1", "E3"], "embedding": []},
+                    {"id": "E3", "title": "ROC Curve and AUC", "summary": "Area under the Receiver Operating Characteristic curve for binary classifiers.", "similar_to": ["E1", "M7"], "embedding": []},
+                    {"id": "E4", "title": "Clustering Metrics (Silhouette Score)", "summary": "Metric used to evaluate the quality of clusters created by algorithms like K-Means.", "similar_to": ["M3", "E3"], "embedding": []},
+                    {"id": "E5", "title": "Root Mean Square Error (RMSE)", "summary": "Common metric for regression tasks.", "similar_to": ["M1", "E1"], "embedding": []},
+                    {"id": "E6", "title": "Jaccard Index", "summary": "Metric for assessing the similarity between two sets of data points.", "similar_to": ["M3", "E4"], "embedding": []},
+                    {"id": "E7", "title": "P-Value and Hypothesis Testing", "summary": "Determining the significance of experimental results.", "similar_to": ["M1", "M7"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "DevOps & Cloud Concepts (4 Clusters)",
+        "clusters": [
+            {
+                "id": 401,
+                "name": "Containers & Orchestration",
+                "cx": 200, "cy": 200,
+                "nodes": [
+                    {"id": "R1", "title": "Docker Image vs. Container", "summary": "Image is the read-only blueprint; Container is the runtime instance.", "similar_to": ["R2", "R3"], "embedding": []},
+                    {"id": "R2", "title": "Kubernetes Pods & Services", "summary": "Pod is the smallest deployable unit; Service exposes the Pod(s).", "similar_to": ["R1", "R4", "R5"], "embedding": []},
+                    {"id": "R3", "title": "Container Networking", "summary": "Bridge, Host, and Overlay networks in container environments.", "similar_to": ["R1", "N1"], "embedding": []},
+                    {"id": "R4", "title": "Ingress Controller", "summary": "Manages external access to services in a Kubernetes cluster.", "similar_to": ["R2", "N4"], "embedding": []},
+                    {"id": "R5", "title": "Helm Charts", "summary": "Package manager for Kubernetes.", "similar_to": ["R2", "I2"], "embedding": []},
+                    {"id": "R6", "title": "StatefulSets", "summary": "Kubernetes API object used to manage stateful applications.", "similar_to": ["R2", "B7"], "embedding": []},
+                    {"id": "R7", "title": "Serverless Containers (Fargate)", "summary": "Running containers without managing the underlying server infrastructure.", "similar_to": ["F2", "R1"], "embedding": []},
+                    {"id": "R8", "title": "Kubernetes Operator", "summary": "Application-specific controller that extends the Kubernetes API.", "similar_to": ["R2", "I3"], "embedding": []}
+                ]
+            },
+            {
+                "id": 402,
+                "name": "CI/CD & Automation",
+                "cx": 450, "cy": 200,
+                "nodes": [
+                    {"id": "I1", "title": "CI/CD Pipeline Stages", "summary": "Source, Build, Test, Deploy phases of automated delivery.", "similar_to": ["I2", "S3"], "embedding": []},
+                    {"id": "I2", "title": "Infrastructure as Code (IaC)", "summary": "Managing infrastructure through machine-readable definition files (e.g., Terraform).", "similar_to": ["I1", "I3"], "embedding": []},
+                    {"id": "I3", "title": "Idempotence in Automation", "summary": "Ensuring an operation produces the same result regardless of how many times it is run.", "similar_to": ["I2", "B2"], "embedding": []},
+                    {"id": "I4", "title": "Blue/Green Deployment", "summary": "Release technique to minimize downtime by running two identical environments.", "similar_to": ["I1", "R4"], "embedding": []},
+                    {"id": "I5", "title": "Canary Deployments", "summary": "Rolling out a new version to a small subset of users.", "similar_to": ["I4", "I1"], "embedding": []},
+                    {"id": "I6", "title": "Feature Flags/Toggles", "summary": "Allowing features to be turned on or off without deploying new code.", "similar_to": ["I4", "S1"], "embedding": []},
+                    {"id": "I7", "title": "Configuration Management (Ansible)", "summary": "Tools to manage the state of servers in an automated way.", "similar_to": ["I2", "R1"], "embedding": []},
+                    {"id": "I8", "title": "GitOps", "summary": "An operational framework that uses Git as the single source of truth for declarative infrastructure and applications.", "similar_to": ["I2", "S4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 403,
+                "name": "Cloud Computing Fundamentals",
+                "cx": 200, "cy": 500,
+                "nodes": [
+                    {"id": "F1", "title": "IaaS, PaaS, SaaS Models", "summary": "Infrastructure, Platform, and Software as a Service delivery models.", "similar_to": ["F2", "F3"], "embedding": []},
+                    {"id": "F2", "title": "Serverless Functions (FaaS)", "summary": "Running code without provisioning or managing servers (e.g., AWS Lambda).", "similar_to": ["F1", "W2"], "embedding": []},
+                    {"id": "F3", "title": "Horizontal vs. Vertical Scaling", "summary": "Adding more machines (Horizontal) vs. adding more resources to one machine (Vertical).", "similar_to": ["F1", "R2", "N7"], "embedding": []},
+                    {"id": "F4", "title": "Content Delivery Networks (CDN)", "summary": "Geographically distributed network of proxy servers.", "similar_to": ["F2", "N5"], "embedding": []},
+                    {"id": "F5", "title": "CAP Theorem", "summary": "Can only guarantee two of Consistency, Availability, and Partition tolerance.", "similar_to": ["B2", "F3"], "embedding": []},
+                    {"id": "F6", "title": "Cloud Security (Shared Responsibility Model)", "summary": "Defining security tasks between the cloud provider and the customer.", "similar_to": ["F1", "O7"], "embedding": []},
+                    {"id": "F7", "title": "High Availability vs. Fault Tolerance", "summary": "HA (minimizing downtime) vs. FT (ensuring continuity even with failures).", "similar_to": ["F3", "B2"], "embedding": []},
+                    {"id": "F8", "title": "Cloud Regions and Availability Zones", "summary": "Physical locations and isolated data centers within them.", "similar_to": ["F7", "N6"], "embedding": []}
+                ]
+            },
+            {
+                "id": 404,
+                "name": "Monitoring & Logging",
+                "cx": 450, "cy": 500,
+                "nodes": [
+                    {"id": "Lg1", "title": "The Three Pillars of Observability", "summary": "Logs, Metrics, and Traces (Distributed Tracing).", "similar_to": ["Lg2", "Lg3", "I1"], "embedding": []},
+                    {"id": "Lg2", "title": "Prometheus/Time Series Databases (TSDB)", "summary": "System for storing and querying metrics for monitoring systems.", "similar_to": ["Lg1", "F3"], "embedding": []},
+                    {"id": "Lg3", "title": "Structured Logging (JSON)", "summary": "Writing logs in a consistent, machine-readable format for easy searching.", "similar_to": ["Lg1", "R1"], "embedding": []},
+                    {"id": "Lg4", "title": "SLIs, SLOs, and SLAs", "summary": "Service Level Indicators, Objectives, and Agreements.", "similar_to": ["S1", "I1"], "embedding": []},
+                    {"id": "Lg5", "title": "Log Aggregation (ELK Stack/Loki)", "summary": "Centralizing log data from multiple sources for analysis.", "similar_to": ["Lg3", "Lg2"], "embedding": []},
+                    {"id": "Lg6", "title": "Alerting Strategy (Golden Signals)", "summary": "Setting up alerts based on Latency, Traffic, Errors, and Saturation.", "similar_to": ["Lg4", "I5"], "embedding": []},
+                    {"id": "Lg7", "title": "Tracing (OpenTelemetry)", "summary": "Tracking a single request as it flows through multiple microservices.", "similar_to": ["Lg1", "S8"], "embedding": []}
+                ]
+            }
+        ]
+    }
+]

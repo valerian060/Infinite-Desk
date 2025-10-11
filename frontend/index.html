@@ -47,7 +47,6 @@
       border-radius: 16px; 
       border: none; /* Removed border */
       backdrop-filter: blur(10px); /* Enhanced glass effect */
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
     }
     
     #topbar {
@@ -729,7 +728,7 @@
      */
     function forceRepelClusterCenter(alpha) {
         // --- UPDATED: Increased repulsion radius to 70px for greater label clearance ---
-        const minDistanceSq = 70 * 70; // Exclusion radius squared (70 pixels)
+        const minDistanceSq = 10 * 10; // Exclusion radius squared (70 pixels)
         // --------------------------------------------------------------------------
         // Increased strength factor from 0.005 to 0.01 to make the repulsion stronger
         const strength = 0.01 * alpha; 

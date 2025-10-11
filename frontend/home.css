@@ -1,0 +1,490 @@
+/* Infinite Desk - Home Page Styles (DEEP SPACE MODE) */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Changed: Deep Space Background with subtle star-like radial gradient */
+    font-family: 'Inter', sans-serif;
+    background: #000018; 
+    background-image: radial-gradient(circle at top right, rgba(144, 224, 239, 0.05) 0%, rgba(0, 0, 0, 0) 40%),
+                      radial-gradient(circle at bottom left, rgba(205, 180, 219, 0.05) 0%, rgba(0, 0, 0, 0) 40%);
+    color: #e0f2ff; /* Soft futuristic white/blue */
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Neon selection color for a futuristic touch */
+::selection {
+    background: #cdb4db;
+    color: #000018;
+}
+
+/* Animated Background (Nebula/Energy) */
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2; /* Placed behind main body gradient */
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.1;
+    animation: float 20s infinite ease-in-out;
+}
+
+.circle-1 {
+    width: 400px;
+    height: 400px;
+    background: #cdb4db;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 300px;
+    height: 300px;
+    background: #90e0ef;
+    top: 50%;
+    right: 15%;
+    animation-delay: 5s;
+}
+
+.circle-3 {
+    width: 500px;
+    height: 500px;
+    background: #cdb4db;
+    bottom: 10%;
+    left: 50%;
+    animation-delay: 10s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    50% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    75% {
+        transform: translate(20px, 30px) scale(1.05);
+    }
+}
+
+/* Navigation - Holographic HUD/Glass Panel */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    /* Stronger glass/blur effect */
+    background: rgba(10, 10, 30, 0.8); 
+    backdrop-filter: blur(15px);
+    /* Subtle outer glow */
+    box-shadow: 0 0 20px rgba(144, 224, 239, 0.2); 
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #cdb4db, #90e0ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.login-btn {
+    padding: 10px 25px;
+    background: transparent;
+    color: #e0f2ff; 
+    border: 2px solid #cdb4db;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #cdb4db;
+    color: #000018; 
+    transform: translateY(-2px);
+    /* Neon glow effect on hover */
+    box-shadow: 0 0 15px #cdb4db, 0 0 30px rgba(205, 180, 219, 0.5); 
+}
+
+.signup-btn {
+    padding: 10px 25px;
+    background: #90e0ef; /* Swapped to cyan for strong contrast */
+    color: #000018; 
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Initial glow */
+    box-shadow: 0 0 15px rgba(144, 224, 239, 0.5); 
+}
+
+.signup-btn:hover {
+    transform: translateY(-2px);
+    /* Stronger neon glow */
+    box-shadow: 0 0 20px #90e0ef, 0 0 40px rgba(144, 224, 239, 0.8);
+    background: #a3e7f4;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-title {
+    font-size: 80px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #cdb4db, #90e0ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    /* Holographic text effect */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 15px rgba(144, 224, 239, 0.5); 
+    animation: fadeInUp 1s ease-out;
+}
+
+.subtitle {
+    font-size: 28px;
+    color: #90e0ef; /* Cyan for a powerful highlight */
+    margin-bottom: 15px;
+    animation: fadeInUp 1s ease-out 0.2s;
+    animation-fill-mode: both;
+}
+
+.tagline {
+    font-size: 18px;
+    color: #a8a8b8; 
+    max-width: 700px;
+    margin: 0 auto 40px;
+    animation: fadeInUp 1s ease-out 0.4s;
+    animation-fill-mode: both;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    animation: fadeInUp 1s ease-out 0.6s;
+    animation-fill-mode: both;
+}
+
+.cta-btn {
+    padding: 15px 40px;
+    background: linear-gradient(135deg, #90e0ef, #cdb4db);
+    color: #000018; 
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Holographic button glow */
+    box-shadow: 0 0 15px rgba(144, 224, 239, 0.7); 
+}
+
+.cta-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    /* Stronger supernova glow */
+    box-shadow: 0 0 25px #90e0ef, 0 0 50px #cdb4db; 
+}
+
+.cta-btn-secondary {
+    padding: 15px 40px;
+    background: transparent;
+    color: #e0f2ff; 
+    border: 2px solid #90e0ef;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cta-btn-secondary:hover {
+    background: #90e0ef;
+    color: #000018; 
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px #90e0ef;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Features Section - Glass panel over space background */
+.features {
+    padding: 80px 50px;
+    background: rgba(10, 10, 30, 0.6); 
+    backdrop-filter: blur(5px);
+    border-top: 1px solid rgba(144, 224, 239, 0.1);
+}
+
+.features-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #e0f2ff; 
+    margin-bottom: 60px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    /* Interface panel look */
+    background: rgba(15, 15, 40, 0.7); 
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    /* Subtle border glow */
+    border: 1px solid rgba(144, 224, 239, 0.1); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); 
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: #cdb4db;
+    /* Stronger hover glow */
+    box-shadow: 0 0 15px rgba(205, 180, 219, 0.5); 
+}
+
+.feature-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+    /* Gradient icon for impact */
+    background: linear-gradient(45deg, #90e0ef, #cdb4db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.feature-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #e0f2ff; 
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    font-size: 15px;
+    color: #a8a8b8; 
+    line-height: 1.6;
+}
+
+/* Use Cases Section - Deep Space Look */
+.use-cases {
+    padding: 80px 50px;
+    background: #000018; 
+}
+
+.section-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #e0f2ff; 
+    margin-bottom: 60px;
+}
+
+.use-cases-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.use-case {
+    /* Interface element look */
+    background: rgba(10, 10, 30, 0.8); 
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 3px solid #90e0ef;
+    border-bottom: 1px solid rgba(144, 224, 239, 0.1);
+    transition: all 0.3s ease;
+}
+
+.use-case:hover {
+    transform: translateX(5px);
+    border-left-color: #cdb4db;
+    box-shadow: 0 5px 20px rgba(144, 224, 239, 0.2);
+}
+
+.use-case h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #90e0ef; 
+    margin-bottom: 10px;
+}
+
+.use-case p {
+    font-size: 14px;
+    color: #a8a8b8;
+}
+
+/* CTA Section - Nebula Band */
+.cta-section {
+    text-align: center;
+    padding: 100px 50px;
+    background: linear-gradient(135deg, rgba(205, 180, 219, 0.2), rgba(144, 224, 239, 0.2));
+    border-top: 1px dashed rgba(255, 255, 255, 0.1); 
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.cta-section h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #e0f2ff; 
+    margin-bottom: 20px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    color: #a8a8b8; 
+    margin-bottom: 40px;
+}
+
+.cta-btn-large {
+    padding: 18px 50px;
+    background: linear-gradient(135deg, #90e0ef, #cdb4db);
+    color: #000018; 
+    border: none;
+    border-radius: 35px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    /* Supernova button glow */
+    box-shadow: 0 0 15px rgba(144, 224, 239, 0.7);
+}
+
+.cta-btn-large:hover {
+    transform: translateY(-3px) scale(1.05);
+    /* Maximum glow */
+    box-shadow: 0 0 30px #90e0ef, 0 0 60px #cdb4db;
+}
+
+/* Footer - Console/Baseplate */
+.footer {
+    text-align: center;
+    padding: 40px 20px;
+    background: rgba(10, 10, 30, 0.9); 
+    border-top: 2px solid #0a0a1e;
+    color: #777788; 
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.tech-stack {
+    color: #555566; 
+    font-size: 12px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .nav-buttons {
+        gap: 10px;
+    }
+
+    .login-btn, .signup-btn {
+        padding: 8px 18px;
+        font-size: 12px;
+    }
+
+    .main-title {
+        font-size: 48px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .tagline {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .cta-btn, .cta-btn-secondary {
+        width: 100%;
+    }
+
+    .features-title,
+    .section-title,
+    .cta-section h2 {
+        font-size: 32px;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .use-cases-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features,
+    .use-cases,
+    .cta-section {
+        padding: 50px 20px;
+    }
+}
