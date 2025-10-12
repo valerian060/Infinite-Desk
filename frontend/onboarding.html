@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>infinitedesk Explained</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styling and Theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Dark space background */
+            color: #e0e6f1;
+            scroll-behavior: smooth;
+        }
+        
+        /* Starfield Background */
+        .star-bg {
+            background: linear-gradient(180deg, rgba(13, 17, 23, 1) 0%, rgba(5, 7, 10, 1) 100%);
+        }
+        
+        .star {
+            background: #ffffff;
+            border-radius: 50%;
+            position: absolute;
+            opacity: 0;
+            animation: twinkle linear infinite;
+        }
+        
+        /* CSS for a subtle starfield */
+        .star:nth-child(3n) {
+            width: 1px; height: 1px;
+            animation-duration: 10s;
+        }
+        .star:nth-child(3n + 1) {
+            width: 2px; height: 2px;
+            animation-duration: 15s;
+            background: #f0f8ff;
+        }
+        .star:nth-child(3n + 2) {
+            width: 3px; height: 3px;
+            animation-duration: 8s;
+            background: #a0c4ff;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Hero Text Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .active .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- Visualization Styling (D3-like appearance) --- */
+        .visualization-area {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            border: 1px solid #1f2937;
+            background-color: #0f172a;
+            overflow: hidden;
+        }
+        
+        /* Link styling for cross-cluster relationships */
+        .links-svg {
+            pointer-events: none; /* Allows clicks to pass through to elements below */
+        }
+        .graph-link {
+            transition: stroke-width 0.5s ease, opacity 0.5s ease;
+        }
+
+        .node-group {
+            position: absolute;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth easing for movement and fade */
+        }
+        
+        .node-circle {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            position: absolute;
+            border: 2px solid #ffffff;
+            transition: all 0.5s ease;
+            box-shadow: 0 0 5px #00f2ff;
+        }
+        
+        .cluster-label {
+            position: absolute;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #00f2ff;
+            text-shadow: 0 0 5px rgba(0, 242, 255, 0.5);
+            pointer-events: none;
+            transition: all 0.8s ease;
+        }
+
+        /* RAG Dimming Style: when applied to the area, dim all elements inside except those explicitly styled otherwise */
+        #rag-area.dimmed .node-group {
+            opacity: 0.15; /* Increased dimming for nodes */
+            filter: blur(1px);
+        }
+        #rag-area.dimmed .graph-link {
+            opacity: 0.1; /* Dimming for links */
+        }
+        #rag-area.dimmed #rag-cluster-1,
+        #rag-area.dimmed .rag-link-target {
+            opacity: 1; /* Keep target cluster and related links bright */
+            filter: none;
+        }
+        
+        /* Node Creation Animation */
+        #new-node-step {
+            width: 8px; height: 8px;
+            background-color: #fca5a5; /* Red-300 */
+            border: 2px solid #ef4444; /* Red-500 */
+            box-shadow: 0 0 10px #f87171;
+            opacity: 0;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+
+        /* Clustering Animation Styles */
+        #clustering-area .unclustered .node-circle {
+            background-color: #fcd34d; /* Amber */
+            border-color: #f59e0b;
+        }
+        
+        /* Styles applied during clustering steps */
+        #clustering-area .cluster-1 .node-circle {
+            background-color: #6366f1; /* Indigo */
+            border-color: #4f46e5;
+        }
+        
+        #clustering-area .cluster-2 .node-circle {
+            background-color: #10b981; /* Emerald */
+            border-color: #059669;
+        }
+        
+        #clustering-area .cluster-3 .node-circle {
+            background-color: #ef4444; /* Red */
+            border-color: #b91c1c;
+        }
+        
+        #clustering-area.step-2 .node-group {
+            transform: scale(0.8);
+        }
+
+    </style>
+</head>
+<body class="star-bg">
+
+    <!-- Starfield Generation -->
+    <script>
+        
+        // --- Utility Functions for Drawing SVG Links ---
+        function drawLine(svgElement, x1, y1, x2, y2, color, strokeWidth = 1.5, className = '') {
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1 + 8); // Add radius offset
+            line.setAttribute('y1', y1 + 8);
+            line.setAttribute('x2', x2 + 8);
+            line.setAttribute('y2', y2 + 8);
+            line.setAttribute('stroke', color);
+            line.setAttribute('stroke-width', strokeWidth);
+            line.setAttribute('class', `graph-link ${className}`);
+            svgElement.appendChild(line);
+            return line;
+        }
+
+        function clearSVG(svgElementId) {
+            const svg = document.getElementById(svgElementId);
+            if (svg) {
+                svg.innerHTML = '';
+            }
+        }
+
+        // Defines all cross-cluster links for the static/initial views
+        function drawInitialLinks(svgId) {
+            clearSVG(svgId);
+            const svg = document.getElementById(svgId);
+            if (!svg) return;
+
+            // C1 Base: (200, 100) | C2 Base: (750, 150) | C3 Base: (500, 350)
+            
+            // Link 1: UI/UX (245, 110) <-> Server (800, 160) (Indigo Link: common element: network/performance)
+            drawLine(svg, 245, 110, 800, 160, '#4f46e5', 2);
+            
+            // Link 2: UI/UX (210, 75) <-> Monetization (515, 330) (Red Link: common element: user flow/pricing perception)
+            drawLine(svg, 210, 75, 515, 330, '#b91c1c', 2);
+            
+            // Link 3: Server (770, 205) <-> Monetization (540, 365) (Emerald Link: common element: resource consumption/cost optimization)
+            drawLine(svg, 770, 205, 540, 365, '#059669', 2);
+        }
+        
+        // Defines all cross-cluster links for the clustered RAG view
+        function drawRAGLinks() {
+            clearSVG('s5-svg');
+            const svg = document.getElementById('s5-svg');
+            if (!svg) return;
+
+            // Coordinates for RAG/Final clustered view (based on s5 layout)
+            // C1 Base: (250, 150) | C2 Base: (700, 100) | C3 Base: (450, 300)
+            
+            // Link 1 (Targeted for RAG): C1 (265, 175) <-> C2 (710, 80)
+            drawLine(svg, 265, 175, 710, 80, '#4f46e5', 2, 'rag-link-target'); 
+            
+            // Link 2 (Targeted for RAG): C1 (255, 130) <-> C3 (480, 290)
+            drawLine(svg, 255, 130, 480, 290, '#b91c1c', 2, 'rag-link-target');
+            
+            // Link 3 (Irrelevant for this search): C2 (740, 115) <-> C3 (460, 320)
+            drawLine(svg, 740, 115, 460, 320, '#059669', 2, 'rag-link-irrelevant'); 
+        }
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const starBg = document.querySelector('.star-bg');
+            const numStars = 100;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 10}s`;
+                starBg.appendChild(star);
+            }
+            
+            // Initial drawing of links for static sections
+            drawInitialLinks('s2-svg');
+            drawInitialLinks('s3-svg');
+            drawRAGLinks();
+        });
+    </script>
+    
+    <!-- Hero Section -->
+    <section id="s1" class="h-screen flex items-center justify-center p-8 active">
+        <div class="max-w-4xl text-center">
+            <h1 class="text-6xl font-extrabold text-[#00f2ff] tracking-tight mb-4 fade-in">
+                infinitedesk
+            </h1>
+            <p class="text-2xl text-gray-300 mb-8 fade-in" style="transition-delay: 0.5s;">
+                Organize your collective wisdom into a dynamic, visualized knowledge graph.
+            </p>
+            <div class="fade-in" style="transition-delay: 1s;">
+                <a href="#s2" class="bg-[#00f2ff] hover:bg-[#00c9d8] text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                    See How It Works <b>&darr;</b>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Core Concept (Static View) -->
+    <section id="s2" class="min-h-screen pt-20 flex flex-col items-center p-8">
+        <div class="max-w-4xl w-full">
+            <h2 class="text-4xl font-bold text-center mb-12 text-blue-400 fade-in">
+                1. Ideas as Nodes in a Desk
+            </h2>
+            
+            <div class="visualization-area mb-12">
+                <!-- SVG Layer for Links -->
+                <svg id="s2-svg" class="links-svg absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"></svg>
+                
+                <!-- Cluster 1: UI/UX (More nodes) -->
+                <div class="node-group node-group-1" style="transform: translate(200px, 100px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #6366f1;">UI/UX Enhancements</div>
+                    <div class="node-circle" data-x="200" data-y="100" style="transform: translate(0, 0); background-color: #6366f1;"></div>
+                    <div class="node-circle" style="transform: translate(20px, 40px); background-color: #6366f1;"></div>
+                    <div class="node-circle" style="transform: translate(-30px, 30px); background-color: #6366f1;"></div>
+                    <div class="node-circle link-point-1" data-x="210" data-y="75" style="transform: translate(10px, -25px); background-color: #6366f1;"></div> <!-- Linked Node 1 (UI/UX -> Monetization) -->
+                    <div class="node-circle link-point-2" data-x="245" data-y="110" style="transform: translate(45px, 10px); background-color: #6366f1;"></div> <!-- Linked Node 2 (UI/UX -> Server) -->
+                    <div class="node-circle" style="transform: translate(-15px, 50px); background-color: #6366f1;"></div>
+                </div>
+
+                <!-- Cluster 2: Server (More nodes) -->
+                <div class="node-group node-group-2" style="transform: translate(750px, 150px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #10b981;">Server Architecture</div>
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #10b981;"></div>
+                    <div class="node-circle" style="transform: translate(30px, -20px); background-color: #10b981;"></div>
+                    <div class="node-circle" style="transform: translate(-10px, 30px); background-color: #10b981;"></div>
+                    <div class="node-circle link-point-3" data-x="800" data-y="160" style="transform: translate(50px, 10px); background-color: #10b981;"></div> <!-- Linked Node 3 (Server -> UI/UX) -->
+                    <div class="node-circle" style="transform: translate(-40px, -10px); background-color: #10b981;"></div>
+                    <div class="node-circle link-point-4" data-x="770" data-y="205" style="transform: translate(20px, 55px); background-color: #10b981;"></div> <!-- Linked Node 4 (Server -> Monetization) -->
+                    <div class="node-circle" style="transform: translate(-5px, -30px); background-color: #10b981;"></div>
+                </div>
+
+                <!-- Cluster 3: Monetization (New cluster) -->
+                <div class="node-group node-group-3" style="transform: translate(500px, 350px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #ef4444;">Monetization Strategy</div>
+                    <div class="node-circle link-point-5" data-x="515" data-y="330" style="transform: translate(15px, -20px); background-color: #ef4444; border-color: #b91c1c;"></div> <!-- Linked Node 5 (Monetization -> UI/UX) -->
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #ef4444; border-color: #b91c1c;"></div>
+                    <div class="node-circle" style="transform: translate(-30px, 10px); background-color: #ef4444; border-color: #b91c1c;"></div>
+                    <div class="node-circle link-point-6" data-x="540" data-y="365" style="transform: translate(40px, 15px); background-color: #ef4444; border-color: #b91c1c;"></div> <!-- Linked Node 6 (Monetization -> Server) -->
+                </div>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <p class="text-lg text-gray-400 mb-4 fade-in" style="transition-delay: 0.2s;">
+                    Every idea, note, or piece of feedback you add is a <b>Node</b>.
+                </p>
+                <p class="text-lg text-gray-400 mb-4 fade-in" style="transition-delay: 0.4s;">
+                    The system visualizes this data, grouping similar Nodes into <b>Clusters</b> based on their content and context. <b>Links</b> between nodes in different clusters indicate semantic overlap.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Shared Universes -->
+    <section id="s3" class="min-h-screen pt-20 flex flex-col items-center p-8">
+        <div class="max-w-4xl w-full">
+            <h2 class="text-4xl font-bold text-center mb-12 text-green-400 fade-in">
+                2. Shared Universes: Real-Time Collaboration
+            </h2>
+            
+            <div class="flex flex-col md:flex-row gap-8 items-start mb-12">
+                <!-- Left Card: Collective Intelligence -->
+                <div class="w-full md:w-1/2 p-6 bg-gray-800/50 rounded-lg border border-gray-700 fade-in" style="transition-delay: 0.2s;">
+                    <p class="text-xl font-semibold mb-3 flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 text-green-400"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        Collective Intelligence
+                    </p>
+                    <p class="text-gray-400">
+                        Your team works within a single, shared <b>Universe (Desk)</b>. As users contribute ideas, the system instantly processes the new Node's content and context, weaving it into the existing knowledge graph.
+                    </p>
+                </div>
+                
+                <!-- Right Card: Multi-User Convergence -->
+                <div class="w-full md:w-1/2 p-6 bg-gray-800/50 rounded-lg border border-gray-700 fade-in" style="transition-delay: 0.4s;">
+                    <p class="text-xl font-semibold mb-3 flex items-center">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 mr-2 text-green-400"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                        Multi-User Convergence
+                    </p>
+                    <p class="text-gray-400">
+                        Watch as inputs from <b>User Leo (UX)</b> and <b>User Mia (Backend)</b> flow simultaneously and are correctly absorbed by the relevant clusters, demonstrating real-time knowledge convergence.
+                    </p>
+                    <button id="start-node-animation" class="mt-4 bg-green-600 hover:bg-green-500 py-2 px-4 rounded-md text-white font-medium transition duration-300">
+                        Simulate Team Contribution
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Visualization Area for Node Creation Animation -->
+            <div id="creation-area" class="visualization-area">
+                <!-- SVG Layer for Links (Static for now, re-drawn later) -->
+                <svg id="s3-svg" class="links-svg absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"></svg>
+
+                <!-- Cluster 1: UI/UX (Indigo) -->
+                <div class="node-group node-group-1" style="transform: translate(200px, 100px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #6366f1;">UI/UX Enhancements</div>
+                    <div class="node-circle" data-x="200" data-y="100" style="transform: translate(0, 0); background-color: #6366f1;"></div>
+                    <div class="node-circle" style="transform: translate(20px, 40px); background-color: #6366f1;"></div>
+                    <div class="node-circle" style="transform: translate(-30px, 30px); background-color: #6366f1;"></div>
+                    <div class="node-circle link-point-1" data-x="210" data-y="75" style="transform: translate(10px, -25px); background-color: #6366f1;"></div>
+                    <div class="node-circle link-point-2" data-x="245" data-y="110" style="transform: translate(45px, 10px); background-color: #6366f1;"></div>
+                    <div class="node-circle" style="transform: translate(-15px, 50px); background-color: #6366f1;"></div>
+                </div>
+
+                <!-- Cluster 2: Server (Emerald) -->
+                <div class="node-group node-group-2" style="transform: translate(750px, 150px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #10b981;">Server Architecture</div>
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #10b981;"></div>
+                    <div class="node-circle" style="transform: translate(30px, -20px); background-color: #10b981;"></div>
+                    <div class="node-circle" style="transform: translate(-10px, 30px); background-color: #10b981;"></div>
+                    <div class="node-circle link-point-3" data-x="800" data-y="160" style="transform: translate(50px, 10px); background-color: #10b981;"></div>
+                    <div class="node-circle" style="transform: translate(-40px, -10px); background-color: #10b981;"></div>
+                    <div class="node-circle link-point-4" data-x="770" data-y="205" style="transform: translate(20px, 55px); background-color: #10b981;"></div>
+                    <div class="node-circle" style="transform: translate(-5px, -30px); background-color: #10b981;"></div>
+                </div>
+
+                <!-- Cluster 3: Monetization (Red) -->
+                <div class="node-group node-group-3" style="transform: translate(500px, 350px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #ef4444;">Monetization Strategy</div>
+                    <div class="node-circle link-point-5" data-x="515" data-y="330" style="transform: translate(15px, -20px); background-color: #ef4444; border-color: #b91c1c;"></div>
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #ef4444; border-color: #b91c1c;"></div>
+                    <div class="node-circle" style="transform: translate(-30px, 10px); background-color: #ef4444; border-color: #b91c1c;"></div>
+                    <div class="node-circle link-point-6" data-x="540" data-y="365" style="transform: translate(40px, 15px); background-color: #ef4444; border-color: #b91c1c;"></div>
+                </div>
+                
+                <!-- New Node A (User Leo - Blue) to be Animated -->
+                <div id="new-star-A" class="node-circle absolute user-leo" style="top: 360px; left: 20%; transform: translateX(-50%); opacity: 0; background-color: #3b82f6; border-color: #1d4ed8; width: 10px; height: 10px; transition: all 1s ease;"></div>
+                <!-- New Node B (User Mia - Red) to be Animated -->
+                <div id="new-star-B" class="node-circle absolute user-mia" style="top: 360px; left: 80%; transform: translateX(-50%); opacity: 0; background-color: #ef4444; border-color: #b91c1c; width: 10px; height: 10px; transition: all 1s ease;"></div>
+                
+                <!-- Temporary Input Mockup A (Leo/Blue) - ADJUSTED POSITIONING -->
+                <div id="input-mockup-A" class="absolute top-16 left-10 p-4 bg-blue-900/50 rounded-lg shadow-xl border border-blue-600/50" style="opacity: 0; transition: opacity 0.5s;">
+                    <p class="text-sm font-bold text-blue-300 mb-1 flex items-center"><span class="w-3 h-3 rounded-full bg-blue-500 mr-2"></span> User Leo (UX):</p>
+                    <p class="text-sm text-gray-200">"The initial onboarding tutorial needs more visual cues for mobile users."</p>
+                </div>
+                <!-- Temporary Input Mockup B (Mia/Red) - ADJUSTED POSITIONING -->
+                <div id="input-mockup-B" class="absolute top-8 right-10 p-4 bg-red-900/50 rounded-lg shadow-xl border border-red-600/50" style="opacity: 0; transition: opacity 0.5s;">
+                    <p class="text-sm font-bold text-red-300 mb-1 flex items-center"><span class="w-3 h-3 rounded-full bg-red-500 mr-2"></span> User Mia (Backend):</p>
+                    <p class="text-sm text-gray-200">"Investigate new CDN solutions for improved asset loading times globally."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Automatic Clustering -->
+    <section id="s4" class="min-h-screen pt-20 flex flex-col items-center p-8">
+        <div class="max-w-4xl w-full">
+            <h2 class="text-4xl font-bold text-center mb-12 text-purple-400 fade-in">
+                3. AI-Powered Clustering & Mapping
+            </h2>
+            
+            <div id="clustering-area" class="visualization-area mb-12">
+                <!-- SVG Layer for Links (Drawn dynamically by JS) -->
+                <svg id="s4-svg" class="links-svg absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"></svg>
+
+                <!-- Initial state is defined in the HTML so it shows immediately on load -->
+                <!-- Unclustered Initial State -->
+                <div id="cluster-node-1" class="node-group unclustered" data-x="150" data-y="100" style="left: 150px; top: 100px;">
+                    <div class="node-circle" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle link-point-1" style="transform: translate(15px, 25px);"></div>
+                    <div class="node-circle link-point-3" style="transform: translate(30px, 5px);"></div>
+                </div>
+                <div id="cluster-node-2" class="node-group unclustered" data-x="450" data-y="50" style="left: 450px; top: 50px;">
+                    <div class="node-circle link-point-2" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(-10px, 20px);"></div>
+                </div>
+                <div id="cluster-node-3" class="node-group unclustered" data-x="750" data-y="100" style="left: 750px; top: 100px;">
+                    <div class="node-circle" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(-20px, 15px);"></div>
+                    <div class="node-circle link-point-4" style="transform: translate(15px, -10px);"></div>
+                    <div class="node-circle" style="transform: translate(-5px, 40px);"></div>
+                </div>
+                <div id="cluster-node-4" class="node-group unclustered" data-x="300" data-y="300" style="left: 300px; top: 300px;">
+                    <div class="node-circle link-point-6" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(10px, -20px);"></div>
+                </div>
+                <div id="cluster-node-5" class="node-group unclustered" data-x="650" data-y="300" style="left: 650px; top: 300px;">
+                    <div class="node-circle link-point-5" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(-25px, 0);"></div>
+                    <div class="node-circle" style="transform: translate(10px, 30px);"></div>
+                </div>
+                
+                <div id="clustering-info" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-bold text-gray-400 transition-opacity duration-500 opacity-100">
+                    Unclustered Ideas (Pending Analysis)
+                </div>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <p class="text-lg text-gray-400 mb-4 fade-in" style="transition-delay: 0.2s;">
+                    The core of our platform is a powerful <b>Machine Learning (ML)</b> pipeline. We use specialized models to convert every Node's text into a semantic <b>embedding</b> (a numerical representation of its meaning).
+                </p>
+                <p class="text-lg text-gray-400 mb-4 fade-in" style="transition-delay: 0.4s;">
+                    Then, advanced algorithms analyze the density of these embeddings, automatically finding and labeling coherent groups of similar ideas, forming clean, meaningful <b>Clusters</b>.
+                </p>
+                <p class="text-lg text-gray-400 fade-in" style="transition-delay: 0.6s;">
+                    When you click <b>Recluster</b>, the Nodes that belong together gravitate toward each other, forming coherent, named <b>Clusters</b> based on this analysis.
+                </p>
+                <button id="start-cluster-animation" class="mt-4 bg-purple-600 hover:bg-purple-500 py-2 px-4 rounded-md text-white font-medium transition duration-300">
+                    Simulate Reclustering
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Retrieval-Augmented Generation (RAG) -->
+    <section id="s5" class="min-h-screen pt-20 flex flex-col items-center p-8">
+        <div class="max-w-4xl w-full">
+            <h2 class="text-4xl font-bold text-center mb-12 text-yellow-400 fade-in">
+                4. RAG: Search, Focus, and Enrich
+            </h2>
+            
+            <div id="rag-area" class="visualization-area mb-12">
+                <!-- SVG Layer for Links (Drawn initially) -->
+                <svg id="s5-svg" class="links-svg absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"></svg>
+
+                <!-- Cluster 1: Player Experience Issues (Target for Search - Indigo) -->
+                <div id="rag-cluster-1" class="node-group rag-cluster-target" style="transform: translate(250px, 150px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #6366f1;">Player Experience Issues</div>
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #6366f1;"></div>
+                    <div class="node-circle link-point-1" data-x="265" data-y="175" style="transform: translate(15px, 25px); background-color: #6366f1;"></div> <!-- Linked Node 1 -->
+                    <div class="node-circle" style="transform: translate(-30px, 10px); background-color: #6366f1;"></div>
+                    <div class="node-circle link-point-2" data-x="255" data-y="130" style="transform: translate(5px, -20px); background-color: #6366f1;"></div> <!-- Linked Node 2 -->
+                </div>
+                <!-- Cluster 2: Technical Stability (Dims - Emerald) -->
+                <div id="rag-cluster-2" class="node-group rag-cluster-dim" style="transform: translate(700px, 100px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #10b981;">Technical Stability</div>
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #10b981;"></div>
+                    <div class="node-circle link-point-3" data-x="710" data-y="80" style="transform: translate(10px, -20px); background-color: #10b981;"></div> <!-- Linked Node 3 -->
+                    <div class="node-circle" style="transform: translate(-10px, 30px); background-color: #10b981;"></div>
+                    <div class="node-circle link-point-4" data-x="740" data-y="115" style="transform: translate(40px, 15px); background-color: #10b981;"></div> <!-- Linked Node 4 -->
+                </div>
+                <!-- Cluster 3: Monetization Strategy (Dims - Red) -->
+                <div id="rag-cluster-3" class="node-group rag-cluster-dim" style="transform: translate(450px, 300px);">
+                    <div class="cluster-label" style="transform: translate(-50%, -40px); color: #ef4444;">Monetization Strategy</div>
+                    <div class="node-circle link-point-5" data-x="480" data-y="290" style="transform: translate(30px, -10px); background-color: #ef4444; border-color: #b91c1c;"></div> <!-- Linked Node 5 -->
+                    <div class="node-circle" style="transform: translate(0, 0); background-color: #ef4444; border-color: #b91c1c;"></div>
+                    <div class="node-circle link-point-6" data-x="460" data-y="320" style="transform: translate(10px, 20px); background-color: #ef4444; border-color: #b91c1c;"></div> <!-- Linked Node 6 -->
+                </div>
+                
+                <div id="rag-query-box" class="absolute top-10 left-1/2 -translate-x-1/2 p-4 bg-yellow-900/50 rounded-lg shadow-xl border border-yellow-600/50" style="opacity: 0; transition: opacity 0.5s;">
+                    <p class="text-sm font-bold text-yellow-300 mb-1">Search Query:</p>
+                    <p class="text-lg text-white">"What are the top UI/UX pain points?"</p>
+                </div>
+
+                <div id="rag-enrich-box" class="absolute bottom-10 left-1/2 -translate-x-1/2 p-4 bg-indigo-900/50 rounded-lg shadow-xl border border-indigo-600/50" style="opacity: 0; transition: opacity 0.5s; max-width: 80%;">
+                    <p class="text-sm font-bold text-indigo-300 mb-1">AI Enrichment:</p>
+                    <p class="text-sm text-white">"Summary: Need to simplify the combat-feedback loop to improve early player retention, according to 4/5 recent user notes."</p>
+                </div>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <p class="text-lg text-gray-400 mb-4 fade-in" style="transition-delay: 0.2s;">
+                    Searching your knowledge graph activates <b>Retrieval-Augmented Generation (RAG)</b>. When you search, the system first retrieves the most semantically relevant <b>Nodes (stars)</b> from the graph.
+                </p>
+                <p class="text-lg text-gray-400 mb-4 fade-in" style="transition-delay: 0.4s;">
+                    The irrelevant nodes dim—like distant stars fading—and only the relevant context (including the active cluster and its related links) is kept bright. This <b>filtered context</b> is then passed to a powerful LLM to <b>enrich</b> the result, generating a grounded summary.
+                </p>
+                <p class="text-lg text-gray-400 fade-in" style="transition-delay: 0.6s;">
+                    This process ensures AI responses are always <b>grounded</b> in your team's real data.
+                </p>
+                <button id="start-rag-animation" class="mt-4 bg-yellow-600 hover:bg-yellow-500 py-2 px-4 rounded-md text-white font-medium transition duration-300">
+                    Simulate Contextual Search
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Conclusion -->
+    <section id="s6" class="h-screen flex items-center justify-center p-8">
+        <div class="max-w-4xl text-center">
+            <h2 class="text-4xl font-extrabold text-white mb-4 fade-in">
+                The Result: A Living Knowledge Map
+            </h2>
+            <p class="text-xl text-gray-400 mb-8 fade-in" style="transition-delay: 0.5s;">
+                Instantly visualize relationships, identify gaps, and understand the shape of your team's collective intelligence using <b>infinitedesk</b>.
+            </p>
+            <div class="fade-in" style="transition-delay: 1s;">
+                <p class="text-3xl font-extrabold text-[#00f2ff] mb-6">
+                    Start exploring your universe of ideas.
+                </p>
+                <a href="index.html" class="bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">
+                    Get Started Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for Scroll and Button Animations -->
+    <script>
+        
+        // --- Scroll-based Animation Trigger ---
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Node Creation Simulation (S3) ---
+        document.getElementById('start-node-animation').addEventListener('click', () => {
+            const starA = document.getElementById('new-star-A'); // Leo (Blue) -> UI/UX (Indigo)
+            const mockupA = document.getElementById('input-mockup-A');
+            const targetGroupA = document.querySelector('#creation-area .node-group-1'); // UI/UX (Indigo)
+            
+            const starB = document.getElementById('new-star-B'); // Mia (Red) -> Server (Emerald)
+            const mockupB = document.getElementById('input-mockup-B');
+            const targetGroupB = document.querySelector('#creation-area .node-group-2'); // Server (Emerald)
+
+            // Reset any previous state
+            starA.style.opacity = '0'; starA.style.top = '360px'; starA.style.left = '20%'; 
+            starB.style.opacity = '0'; starB.style.top = '360px'; starB.style.left = '80%'; 
+            mockupA.style.opacity = '0'; mockupB.style.opacity = '0';
+
+            // Sequence 1: Inputs appear simultaneously
+            mockupA.style.opacity = '1';
+            mockupB.style.opacity = '1';
+            
+            setTimeout(() => {
+                // Sequence 2: Inputs fade, Nodes begin movement simultaneously
+                mockupA.style.opacity = '0';
+                mockupB.style.opacity = '0';
+                
+                starA.style.opacity = '1';
+                starB.style.opacity = '1';
+
+                // Leo (A) targets Cluster 1 (UI/UX)
+                starA.style.top = '140px'; 
+                starA.style.left = '220px'; 
+                starA.style.width = '16px';
+                starA.style.height = '16px';
+
+                // Mia (B) targets Cluster 2 (Server)
+                starB.style.top = '170px'; 
+                starB.style.left = '770px'; 
+                starB.style.width = '16px';
+                starB.style.height = '16px';
+                
+                setTimeout(() => {
+                    // Sequence 3: Nodes Settle into Clusters
+                    
+                    // Settle A (Blue) into Cluster 1 (UI/UX)
+                    const newDotA = document.createElement('div');
+                    newDotA.className = 'node-circle';
+                    newDotA.style.cssText = `
+                        transform: translate(20px, 40px); /* Custom offset for new node */
+                        background-color: #3b82f6; 
+                        border-color: #1d4ed8;
+                        box-shadow: 0 0 5px #3b82f6;
+                    `;
+                    targetGroupA.appendChild(newDotA);
+                    starA.style.opacity = '0';
+                    
+                    // Settle B (Red) into Cluster 2 (Server)
+                    const newDotB = document.createElement('div');
+                    newDotB.className = 'node-circle';
+                    newDotB.style.cssText = `
+                        transform: translate(20px, 20px); /* Custom offset for new node */
+                        background-color: #ef4444; 
+                        border-color: #b91c1c;
+                        box-shadow: 0 0 5px #ef4444;
+                    `;
+                    targetGroupB.appendChild(newDotB);
+                    starB.style.opacity = '0';
+
+                }, 1000); // Wait for nodes to fly to targets
+            }, 1500); // Wait for inputs to be read
+        });
+
+        // --- CLUSTERING SIMULATION TEMPLATES AND UTILS (S4) ---
+        
+        // Final state HTML after clustering is complete
+        const finalClusteringAreaHTML = `
+            <svg id="s4-svg" class="links-svg absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"></svg>
+            <div class="node-group cluster-1" style="transform: translate(200px, 150px);">
+                <div class="cluster-label" style="transform: translate(-50%, -40px); color: #6366f1;">Player Experience Issues</div>
+                <div class="node-circle" style="transform: translate(0, 0);"></div>
+                <div class="node-circle link-point-1" style="transform: translate(15px, 25px);"></div> 
+                <div class="node-circle link-point-2" style="transform: translate(5px, -20px);"></div>
+                <div class="node-circle link-point-3" style="transform: translate(30px, -5px);"></div>
+                <div class="node-circle" style="transform: translate(-30px, 10px);"></div>
+            </div>
+            <div class="node-group cluster-2" style="transform: translate(700px, 100px);">
+                <div class="cluster-label" style="transform: translate(-50%, -40px); color: #10b981;">Technical Stability</div>
+                <div class="node-circle" style="transform: translate(0, 0);"></div>
+                <div class="node-circle link-point-4" style="transform: translate(10px, -20px);"></div>
+                <div class="node-circle" style="transform: translate(-10px, 30px);"></div>
+                <div class="node-circle" style="transform: translate(-25px, 0);"></div>
+                <div class="node-circle" style="transform: translate(15px, 40px);"></div>
+            </div>
+            <div class="node-group cluster-3" style="transform: translate(450px, 300px);">
+                <div class="cluster-label" style="transform: translate(-50%, -40px); color: #ef4444;">Monetization Strategy</div>
+                <div class="node-circle" style="transform: translate(0, 0);"></div>
+                <div class="node-circle link-point-5" style="transform: translate(30px, -10px);"></div>
+                <div class="node-circle link-point-6" style="transform: translate(10px, 20px);"></div>
+                <div class="node-circle" style="transform: translate(-20px, 15px);"></div>
+            </div>
+            <div id="clustering-success" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-bold text-green-400 opacity-0 transition-opacity duration-500" style="transition-delay: 0.5s;">
+                Clusters Formed!
+            </div>
+        `;
+
+        // Function to reset the area to its initial unclustered state
+        const resetClusteringArea = (area) => {
+             area.innerHTML = `
+                <svg id="s4-svg" class="links-svg absolute top-0 left-0 w-full h-full" xmlns="http://www.w3.org/2000/svg"></svg>
+                <div id="cluster-node-1" class="node-group unclustered" data-x="150" data-y="100" style="left: 150px; top: 100px;">
+                    <div class="node-circle" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle link-point-1" style="transform: translate(15px, 25px);"></div>
+                    <div class="node-circle link-point-3" style="transform: translate(30px, 5px);"></div>
+                </div>
+                <div id="cluster-node-2" class="node-group unclustered" data-x="450" data-y="50" style="left: 450px; top: 50px;">
+                    <div class="node-circle link-point-2" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(-10px, 20px);"></div>
+                </div>
+                <div id="cluster-node-3" class="node-group unclustered" data-x="750" data-y="100" style="left: 750px; top: 100px;">
+                    <div class="node-circle" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(-20px, 15px);"></div>
+                    <div class="node-circle link-point-4" style="transform: translate(15px, -10px);"></div>
+                    <div class="node-circle" style="transform: translate(-5px, 40px);"></div>
+                </div>
+                <div id="cluster-node-4" class="node-group unclustered" data-x="300" data-y="300" style="left: 300px; top: 300px;">
+                    <div class="node-circle link-point-6" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(10px, -20px);"></div>
+                </div>
+                <div id="cluster-node-5" class="node-group unclustered" data-x="650" data-y="300" style="left: 650px; top: 300px;">
+                    <div class="node-circle link-point-5" style="transform: translate(0, 0);"></div>
+                    <div class="node-circle" style="transform: translate(-25px, 0);"></div>
+                    <div class="node-circle" style="transform: translate(10px, 30px);"></div>
+                </div>
+                
+                <div id="clustering-info" class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-xl font-bold text-gray-400 transition-opacity duration-500 opacity-100">
+                    Unclustered Ideas (Pending Analysis)
+                </div>
+             `;
+             area.classList.remove('step-2', 'step-3');
+             drawClusteringLinks('s4-svg', 'initial'); // Draw unclustered links
+             return document.getElementById('clustering-info');
+        }
+
+        function drawClusteringLinks(svgId, state) {
+            clearSVG(svgId);
+            const svg = document.getElementById(svgId);
+            if (!svg) return;
+
+            const links = [
+                // Link 1: UI/UX (cluster-node-1) <-> Technical (cluster-node-3)
+                { id1: '#cluster-node-1 .link-point-3', id2: '#cluster-node-3 .link-point-4', color: '#4f46e5', initialOffset1: [30, 5], initialOffset2: [15, -10], finalColor: '#4f46e5'},
+                // Link 2: Technical (cluster-node-2) <-> Monetization (cluster-node-5)
+                { id1: '#cluster-node-2 .link-point-2', id2: '#cluster-node-5 .link-point-5', color: '#059669', initialOffset1: [0, 0], initialOffset2: [0, 0], finalColor: '#059669'},
+                // Link 3: UI/UX (cluster-node-1) <-> Monetization (cluster-node-4)
+                { id1: '#cluster-node-1 .link-point-1', id2: '#cluster-node-4 .link-point-6', color: '#b91c1c', initialOffset1: [15, 25], initialOffset2: [0, 0], finalColor: '#b91c1c'},
+            ];
+            
+            links.forEach(link => {
+                const el1 = document.querySelector(link.id1);
+                const el2 = document.querySelector(link.id2);
+                
+                if (state === 'initial' && el1 && el2) {
+                    const group1 = el1.closest('.node-group');
+                    const group2 = el2.closest('.node-group');
+                    const x1 = parseInt(group1.dataset.x) + link.initialOffset1[0];
+                    const y1 = parseInt(group1.dataset.y) + link.initialOffset1[1];
+                    const x2 = parseInt(group2.dataset.x) + link.initialOffset2[0];
+                    const y2 = parseInt(group2.dataset.y) + link.initialOffset2[1];
+                    drawLine(svg, x1, y1, x2, y2, link.color, 1, 'clustering-link');
+                } else if (state === 'final') {
+                    // Coordinates based on finalClusteringAreaHTML structure
+                    const finalCoords = {
+                        '#cluster-node-1 .link-point-3': [230, 145], // UI/UX -> Server
+                        '#cluster-node-3 .link-point-4': [710, 80], // Technical -> UI/UX
+                        
+                        '#cluster-node-2 .link-point-2': [700, 100], // Technical -> Monetization (this one is a bit abstract, using base coords)
+                        '#cluster-node-5 .link-point-5': [480, 290], // Monetization (480, 290)
+                        
+                        '#cluster-node-1 .link-point-1': [215, 175], // UI/UX (215, 175)
+                        '#cluster-node-4 .link-point-6': [460, 320]  // Monetization (460, 320)
+                    };
+
+
+                    const p1 = finalCoords[link.id1] || [0, 0];
+                    const p2 = finalCoords[link.id2] || [0, 0];
+
+                    if(p1[0] !== 0 || p2[0] !== 0) {
+                        drawLine(svg, p1[0], p1[1], p2[0], p2[1], link.finalColor, 2, 'clustering-link-final');
+                    }
+                }
+            });
+        }
+
+        // --- Clustering Simulation (S4) ---
+        document.getElementById('start-cluster-animation').addEventListener('click', () => {
+            const area = document.getElementById('clustering-area');
+            let info = document.getElementById('clustering-info'); 
+            
+            if (!info || area.innerHTML.includes('Clusters Formed!')) {
+                 info = resetClusteringArea(area);
+                 // Re-fetch info element after reset
+                 info = document.getElementById('clustering-info');
+            }
+            clearSVG('s4-svg'); // Clear initial links before animation
+            
+            // Mapped nodes to their final positions/clusters
+            const mapNodes = [
+                // Node ID, Target Cluster Class, Target X, Target Y
+                { id: 'cluster-node-1', targetCluster: 'cluster-1', targetX: 200, targetY: 150 }, // UI/UX
+                { id: 'cluster-node-2', targetCluster: 'cluster-2', targetX: 700, targetY: 100 }, // Technical
+                { id: 'cluster-node-3', targetCluster: 'cluster-2', targetX: 750, targetY: 150 }, // Technical
+                { id: 'cluster-node-4', targetCluster: 'cluster-3', targetX: 450, targetY: 300 }, // Monetization
+                { id: 'cluster-node-5', targetCluster: 'cluster-1', targetX: 250, targetY: 200 }, // UI/UX
+            ];
+
+            // Step 1: Hide Info
+            info.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Step 2: Recolor and Apply Initial Force (Small movement)
+                area.classList.add('step-2');
+                info.textContent = "AI Analysis Complete: Nodes Recolor";
+                info.style.opacity = '1';
+
+                mapNodes.forEach(item => {
+                    const el = document.getElementById(item.id);
+                    if (el) {
+                        el.classList.remove('unclustered');
+                        el.classList.add(item.targetCluster);
+                        // Apply a subtle movement
+                        el.style.left = `${item.targetX - 50}px`; 
+                        el.style.top = `${item.targetY - 50}px`;
+                    }
+                });
+
+                setTimeout(() => {
+                    // Step 3: Gravitation (Large movement)
+                    area.classList.remove('step-2');
+                    info.textContent = "Gravitating to Form Clusters";
+
+                    mapNodes.forEach(item => {
+                        const el = document.getElementById(item.id);
+                        if (el) {
+                            // Apply the final cluster position based on targetX/Y
+                            el.style.left = `${item.targetX}px`;
+                            el.style.top = `${item.targetY}px`;
+                            el.style.transform = 'translate(0, 0)';
+                        }
+                    });
+
+                    // Add Cluster Labels (Final step)
+                    setTimeout(() => {
+                        // Replace area with final clustered state HTML
+                        area.innerHTML = finalClusteringAreaHTML;
+                        drawClusteringLinks('s4-svg', 'final'); // Draw final clustered links
+                        // Fade in the final success message
+                        const successEl = document.getElementById('clustering-success');
+                        if (successEl) successEl.style.opacity = '1';
+                    }, 1500); // Wait for movement to finish
+                }, 1000); // Wait for recoloring view
+            }, 500); // Wait for info fade-out
+        });
+        
+        // --- RAG Simulation (S5) ---
+        document.getElementById('start-rag-animation').addEventListener('click', () => {
+            const area = document.getElementById('rag-area');
+            const queryBox = document.getElementById('rag-query-box');
+            const enrichBox = document.getElementById('rag-enrich-box');
+
+            // Reset state
+            area.classList.remove('dimmed');
+            queryBox.style.opacity = '0';
+            enrichBox.style.opacity = '0';
+            drawRAGLinks(); // Ensure links are drawn correctly
+
+            // Step 1: Query appears
+            setTimeout(() => {
+                queryBox.style.opacity = '1';
+            }, 100);
+
+            // Step 2: Dim irrelevant clusters and links
+            setTimeout(() => {
+                queryBox.style.opacity = '0';
+                area.classList.add('dimmed'); // Apply global dimming
+            }, 1000);
+
+            // Step 3: LLM generates enrichment
+            setTimeout(() => {
+                enrichBox.style.opacity = '1';
+            }, 2000);
+
+            // Step 4: Reset after showing enrichment
+            setTimeout(() => {
+                area.classList.remove('dimmed');
+                enrichBox.style.opacity = '0';
+            }, 5000);
+        });
+
+    </script>
+
+</body>
+</html>

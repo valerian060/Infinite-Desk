@@ -49,15 +49,10 @@ class QueryResult(BaseModel): # NEW: Model for Semantic Query results
 # ==============================================================
 
 
-app = FastAPI(title="Knowledge Galaxy ML API")
-model = None  # placeholder
-
-@app.on_event("startup")
-async def load_model():
-    global model
-    print("Loading embedding model... (this may take a few seconds)")
-    model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-    print("Model loaded ✅")
+print("Loading embedding model... (this may take a few seconds)")
+# Note: You need the 'sentence-transformers' library installed for this to work
+model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+print("Model loaded ✅")
 
 
 # ==============================================================
@@ -216,6 +211,7 @@ def get_assigned_cluster_id(collection: CollectionData, node: NodeData) -> Optio
     
     # Predict the cluster ID
     pred_cluster = knn.predict([node.embedding])[0]
+    print(f"DEBUG: Node '{node.title}' assigned to cluster {pred_cluster}")
     return int(pred_cluster)
 
 
@@ -266,7 +262,7 @@ async def recluster(collection_id: int):
 
     # 3️⃣ Run HDBSCAN (tuned for fewer outliers)
     clusterer = hdbscan.HDBSCAN(
-        min_cluster_size=2,#max(1, int(np.sqrt(len(X)))),
+        min_cluster_size=3,#max(1, int(np.sqrt(len(X)))),
         min_samples=None,  # auto
         metric="euclidean",
         cluster_selection_epsilon=0.05,  # merge nearby clusters
@@ -318,6 +314,8 @@ async def recluster(collection_id: int):
         name=f"Reclustered: {original_collection.name}",
         clusters=new_cluster_list
     )
+    #remove for demo
+    update_collection_in_db(new_collection)
     return new_collection.model_dump()
 
 
@@ -388,6 +386,7 @@ async def add_node(data: Dict[str, Any]):
 
     # 2. Assign to Cluster using internal utility
     assigned_cluster_id = get_assigned_cluster_id(collection, new_node)
+    print(f"DEBUG: New node '{new_node.title}' assigned to cluster ID {assigned_cluster_id}")
     
     # 3. Find cluster reference
     # Note: Clusters with id -1 (outliers) might not be present if the user hasn't reclustered yet.

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowledge Galaxy Explorer</title>
+    <title>infinitedesk</title>
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- D3.js for data visualization -->
@@ -36,7 +36,7 @@
              stroke-width: 4px;
         }
         
-        /* NEW: Styles for drag actions */
+        /* Styles for drag actions */
         .node.deleting circle {
             fill: #ef4444; /* red-500 */
             stroke: #f87171; /* red-400 */
@@ -114,7 +114,7 @@
             background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         }
         
-        /* NEW: Visual cues for drag actions */
+        /* Visual cues for drag actions */
         #delete-zone, #merge-zone {
             position: fixed;
             top: 0;
@@ -157,7 +157,7 @@
     <!-- Main SVG for D3 visualization -->
     <svg id="galaxy-graph" class="w-full h-full"></svg>
     
-    <!-- NEW: Drop zones for visual feedback -->
+    <!-- Drop zones for visual feedback -->
     <div id="delete-zone">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
     </div>
@@ -167,7 +167,7 @@
 
 
     <!-- UI Panels -->
-    <!-- UPDATED: Top-left controls -->
+    <!-- Top-left controls -->
     <div class="absolute top-0 left-0 p-4 z-10">
         <div class="bg-black/40 backdrop-blur-md rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
             <select id="collection-selector" class="bg-transparent text-white border-none rounded-md p-2 w-full md:w-48 focus:outline-none focus:ring-2 focus:ring-cyan-400 appearance-none">
@@ -182,9 +182,13 @@
         </div>
     </div>
 
-    <!-- UPDATED: Bottom-left controls -->
-    <div class="absolute bottom-0 left-0 p-4 z-10">
-        <div class="bg-black/40 backdrop-blur-md rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+    <!-- Bottom-CENTER controls -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+        <div class="bg-black/40 backdrop-blur-md rounded-lg shadow-lg border border-white/10 flex items-center gap-2 p-2">
+             <!-- Share Link Button (Placeholder) -->
+            <button id="share-link-btn" title="Share Galaxy" class="bg-transparent hover:bg-sky-500/40 text-white p-2 rounded-md transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+            </button>
             <button id="recluster-btn" title="Recluster Collection" class="bg-transparent hover:bg-cyan-500/40 text-white p-2 rounded-md transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-git-merge"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M6 21V9a9 9 0 0 1 9 9"/></svg>
             </button>
@@ -240,6 +244,47 @@
         </div>
     </div>
 
+    <!-- Share Modal (NEW) -->
+    <div id="share-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-2xl w-full max-w-md z-50 hidden">
+        <h2 class="text-2xl font-bold mb-4 text-cyan-300">Share your universe</h2>
+        <p class="font-medium text-gray-300 mb-4">Who can access this collection?</p>
+        
+        <div class="space-y-3">
+            <!-- View Permission -->
+            <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 transition">
+                <label class="flex items-center space-x-3 cursor-pointer">
+                    <input type="radio" name="access-type" value="view" checked class="form-radio text-cyan-500 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                    <span class="text-white font-semibold">View Only (Public Link)</span>
+                </label>
+                <p class="text-xs text-gray-400 mt-1 ml-6">Anyone with the link can view the visualization.</p>
+            </div>
+            
+            <!-- Edit Permission (Mock) -->
+            <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 transition">
+                <label class="flex items-center space-x-3 cursor-pointer">
+                    <input type="radio" name="access-type" value="edit" class="form-radio text-cyan-500 bg-gray-700 border-gray-600 focus:ring-cyan-500">
+                    <span class="text-white font-semibold">Collaborative Edit (Requires Auth)</span>
+                </label>
+                <p class="text-xs text-gray-400 mt-1 ml-6">Only authenticated collaborators can view and edit.</p>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <label for="share-link-output" class="block text-sm font-medium text-gray-300 mb-1">Shareable Link:</label>
+            <div class="flex">
+                <input type="text" id="share-link-output" readonly value="https://example.com/galaxy/ID_mock" 
+                       class="flex-grow bg-gray-700/70 text-gray-300 p-2 rounded-l-xl border border-r-0 border-gray-600 text-sm truncate"
+                       title="Generated Share Link">
+                <button id="copy-link-btn" class="bg-cyan-600 hover:bg-cyan-500 text-white p-2 rounded-r-xl transition flex-shrink-0" title="Copy Link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="flex justify-end mt-6">
+            <button id="close-share-modal" class="bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded-md transition">Done</button>
+        </div>
+    </div>
+
 
     <!-- Loader -->
     <div id="loader-overlay" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
@@ -273,6 +318,7 @@
             const searchInput = document.getElementById('search-input');
             const searchBtn = document.getElementById('search-btn');
             const addNodeBtn = document.getElementById('add-node-btn');
+            const shareLinkBtn = document.getElementById('share-link-btn'); // NEW REF
             const loaderOverlay = document.getElementById('loader-overlay');
             const loaderText = document.getElementById('loader-text');
             const deleteZone = document.getElementById('delete-zone');
@@ -288,6 +334,12 @@
             const confirmRenameClusterBtn = document.getElementById('confirm-rename-cluster');
             const searchResultsModal = document.getElementById('search-results-modal');
             const closeSearchResultsBtn = document.getElementById('close-search-results');
+            
+            // NEW Share Modal Refs
+            const shareModal = document.getElementById('share-modal');
+            const closeShareModalBtn = document.getElementById('close-share-modal');
+            const shareLinkOutput = document.getElementById('share-link-output');
+            const copyLinkBtn = document.getElementById('copy-link-btn');
 
 
             // --- STATE ---
@@ -299,7 +351,7 @@
             let mergeTargetNode = null;
 
             // --- D3 SETUP ---
-            // UPDATED: Simulation with collision and adjusted forces
+            // Simulation with collision and adjusted forces
             const simulation = d3.forceSimulation()
                 .force("link", d3.forceLink().id(d => d.id).distance(60).strength(0.1))
                 .force("charge", d3.forceManyBody().strength(-150))
@@ -333,6 +385,9 @@
                     
                     if (!response.ok) {
                         const errorData = await response.json();
+                        // IMPORTANT: Replacing alert() with custom message output
+                        console.error('API Error:', errorData.detail || `HTTP error! status: ${response.status}`);
+                        showCustomMessage(errorData.detail || `HTTP error! status: ${response.status}`, 'error');
                         throw new Error(errorData.detail || `HTTP error! status: ${response.status}`);
                     }
                     const contentType = response.headers.get("content-type");
@@ -344,12 +399,46 @@
 
                 } catch (error) {
                     console.error('API Call Error:', error);
-                    alert(`Error: ${error.message}`);
                     return null;
                 } finally {
                      if (showLoader) hideLoader();
                 }
             }
+            
+            // Custom Message Box function (REPLACING alert)
+            // UPDATED: Added glassy, sleek styling with backdrop blur
+            function showCustomMessage(message, type = 'info') {
+                const modal = document.createElement('div');
+                
+                let bgColorClass = 'bg-blue-600/50 border-blue-400/30'; // Info: Blue/Cyan
+                if (type === 'error') {
+                    bgColorClass = 'bg-red-600/50 border-red-400/30'; // Error: Red
+                } else if (type === 'success') {
+                    bgColorClass = 'bg-green-600/50 border-green-400/30'; // Success: Green
+                }
+                
+                modal.className = `fixed top-4 left-1/2 transform -translate-x-1/2 z-[9999] 
+                                   p-4 rounded-xl shadow-2xl text-white font-medium 
+                                   backdrop-blur-lg border ${bgColorClass} 
+                                   transition-opacity duration-300 ease-out opacity-0`;
+                
+                modal.textContent = message;
+                document.body.appendChild(modal);
+                
+                // Animate in
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modal.classList.add('opacity-100');
+                }, 10);
+                
+                // Animate out and remove
+                setTimeout(() => {
+                    modal.classList.remove('opacity-100');
+                    modal.classList.add('opacity-0');
+                    setTimeout(() => modal.remove(), 300); // Wait for transition to finish
+                }, 4000);
+            }
+
 
             // --- UI FUNCTIONS ---
             function showLoaderWithMessage(message) {
@@ -366,7 +455,7 @@
             }
 
             function hideAllModals() {
-                [addNodeModal, renameClusterModal, searchResultsModal].forEach(m => m.classList.add('hidden'));
+                [addNodeModal, renameClusterModal, searchResultsModal, shareModal].forEach(m => m.classList.add('hidden')); // Added shareModal
                 modalBackdrop.classList.add('hidden');
             }
             
@@ -476,7 +565,7 @@
                     .join("line")
                     .attr("class", "link");
 
-                const clusterData = collectionData.clusters.map(c => ({
+                const clusterData = currentCollection.clusters.map(c => ({
                     id: c.id,
                     name: c.name,
                     nodes: c.nodes
@@ -517,7 +606,7 @@
                 label.attr("x", d => clusterCentroids[d.id]?.x)
                      .attr("y", d => clusterCentroids[d.id]?.y);
 
-                // UPDATED: Stronger custom force to center nodes around their cluster
+                // Stronger custom force to center nodes around their cluster
                 const clusterStrength = 0.1; 
                 currentNodes.forEach(n => {
                     const centroid = clusterCentroids[n.clusterId];
@@ -528,7 +617,7 @@
                 });
             }
 
-            // UPDATED: Drag handler with delete/merge logic
+            // Drag handler with delete/merge logic
             function drag(simulation) {
                 function dragstarted(event, d) {
                     if (!event.active) simulation.alphaTarget(0.3).restart();
@@ -557,6 +646,7 @@
                     d3.selectAll('.node').each(function(other_d) {
                         if (d.id === other_d.id) return;
                         const dist = Math.sqrt((d.fx - other_d.x)**2 + (d.fy - other_d.y)**2);
+                        // Check if within a small radius AND nodes are from different clusters
                         if (dist < 20 && d.clusterId !== other_d.clusterId) {
                             mergeTargetNode = other_d;
                         }
@@ -584,12 +674,12 @@
 
                     if (finalX > width * DELETE_THRESHOLD) {
                         d.fx = null; d.fy = null;
-                        if (confirm(`Are you sure you want to delete "${d.title}"?`)) {
+                        if (window.confirm(`Are you sure you want to delete "${d.title}"?`)) { // Using window.confirm temporarily, should be custom modal
                             await deleteNode(d.id);
                         }
                     } else if (mergeTargetNode) {
                          d.fx = null; d.fy = null;
-                         if (confirm(`Merge "${currentCollection.clusters.find(c=>c.id === d.clusterId).name}" into "${currentCollection.clusters.find(c=>c.id === mergeTargetNode.clusterId).name}"?`)) {
+                         if (window.confirm(`Merge "${currentCollection.clusters.find(c=>c.id === d.clusterId).name}" into "${currentCollection.clusters.find(c=>c.id === mergeTargetNode.clusterId).name}"?`)) { // Using window.confirm temporarily
                              await performMergeClusters(d.clusterId, mergeTargetNode.clusterId);
                          }
                     } else {
@@ -626,7 +716,7 @@
                     <button id="delete-node-btn" data-node-id="${d.id}" class="w-full bg-red-600/70 hover:bg-red-500/80 text-white font-bold py-2 px-4 rounded transition">Delete Star</button>
                 `;
                 document.getElementById('delete-node-btn').onclick = () => {
-                    if(confirm(`Are you sure you want to delete "${d.title}"?`)){
+                    if(window.confirm(`Are you sure you want to delete "${d.title}"?`)){ // Using window.confirm temporarily
                         deleteNode(d.id);
                     }
                 };
@@ -659,6 +749,7 @@
             async function deleteNode(nodeId) {
                 const result = await apiCall(`/api/collections/${currentCollection.id}/nodes/${nodeId}`, 'DELETE', null, true, 'Deleting star...');
                 if(result !== null) {
+                    showCustomMessage('Star successfully deleted.', 'success');
                     closeInfoPanel();
                     loadCollection(currentCollection.id, false); // No loader on refresh
                 }
@@ -672,6 +763,7 @@
                 };
                 const result = await apiCall('/api/clusters/merge', 'POST', payload, true, 'Merging galaxies...');
                 if(result){
+                    showCustomMessage('Galaxies successfully merged.', 'success');
                     loadCollection(currentCollection.id);
                 }
             }
@@ -680,6 +772,7 @@
                 const collectionId = collectionSelector.value;
                 const newCollectionData = await apiCall(`/api/ai/recluster/${collectionId}`, 'POST', null, true, 'Reclustering universe...');
                 if (newCollectionData) {
+                    showCustomMessage('Reclustering complete!', 'success');
                     updateGraph(newCollectionData);
                 }
             }
@@ -727,12 +820,13 @@
                  const title = document.getElementById('new-node-title').value;
                  const summary = document.getElementById('new-node-summary').value;
                  if(!title || !summary) {
-                     alert('Title and Summary are required.');
+                     showCustomMessage('Title and Summary are required.', 'error');
                      return;
                  }
                  const newNodeData = { title, summary, collection_id: parseInt(currentCollection.id) };
                  const result = await apiCall(`/api/nodes`, 'POST', newNodeData, true, 'Creating new star...');
                  if(result){
+                     showCustomMessage('New star created!', 'success');
                      hideAllModals();
                      loadCollection(currentCollection.id);
                  }
@@ -741,7 +835,10 @@
              async function performRenameCluster() {
                 const newName = document.getElementById('rename-cluster-input').value;
                 const clusterId = document.getElementById('rename-cluster-id-hidden').value;
-                if(!newName){ alert('New name cannot be empty.'); return; }
+                if(!newName){ 
+                    showCustomMessage('New name cannot be empty.', 'error'); 
+                    return; 
+                }
                 const payload = {
                     collection_id: parseInt(currentCollection.id),
                     cluster_id: parseInt(clusterId),
@@ -749,11 +846,60 @@
                 };
                 const result = await apiCall('/api/clusters/rename', 'POST', payload, true, 'Renaming galaxy...');
                 if(result){
+                    showCustomMessage(`Galaxy renamed to "${newName}".`, 'success');
                     hideAllModals();
                     closeInfoPanel();
                     loadCollection(currentCollection.id);
                 }
              }
+             
+            // NEW: Function to handle the Share button click and display the modal
+            function handleShareClick() {
+                if (!currentCollection) {
+                    showCustomMessage("Please select a collection first.", 'info');
+                    return;
+                }
+
+                // Mock URL based on current collection ID and selected access level
+                const updateShareLink = () => {
+                    const accessType = document.querySelector('input[name="access-type"]:checked').value;
+                    let mockUrl = `https://galaxy.app/explore/${currentCollection.id}`;
+                    if (accessType === 'edit') {
+                        mockUrl += `?access=edit&token=mock-auth`;
+                    } else {
+                        mockUrl += `?access=view`;
+                    }
+                    shareLinkOutput.value = mockUrl;
+                };
+
+                // Initial setup
+                updateShareLink();
+                
+                // Add listeners to radio buttons (if not already added)
+                document.querySelectorAll('input[name="access-type"]').forEach(radio => {
+                    radio.onchange = updateShareLink;
+                });
+                
+                showModal(shareModal);
+            }
+            
+            // NEW: Function to copy the link to the clipboard
+            function copyShareLink() {
+                const shareText = shareLinkOutput.value;
+                try {
+                    // Fallback using deprecated method for canvas/iframe compatibility
+                    const input = document.createElement('textarea');
+                    input.value = shareText;
+                    document.body.appendChild(input);
+                    input.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(input);
+                    showCustomMessage("Share link copied to clipboard!", 'success');
+                } catch (e) {
+                     showCustomMessage("Error: Could not access clipboard.", 'error');
+                }
+            }
+
 
             // --- INITIALIZATION ---
             async function loadCollection(id, showLoader = true) {
@@ -791,6 +937,11 @@
             searchInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') performSearch();
             });
+            
+            // Share Modal Listeners
+            shareLinkBtn.addEventListener('click', handleShareClick); // Replaced old placeholder with new function
+            closeShareModalBtn.addEventListener('click', hideAllModals);
+            copyLinkBtn.addEventListener('click', copyShareLink);
 
             closePanelBtn.addEventListener('click', closeInfoPanel);
             
@@ -811,5 +962,3 @@
 
 </body>
 </html>
-
-
