@@ -48,10 +48,16 @@ class QueryResult(BaseModel): # NEW: Model for Semantic Query results
 # 🧠 ML Setup
 # ==============================================================
 
-print("Loading embedding model... (this may take a few seconds)")
-# Note: You need the 'sentence-transformers' library installed for this to work
-model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
-print("Model loaded ✅")
+
+app = FastAPI(title="Knowledge Galaxy ML API")
+model = None  # placeholder
+
+@app.on_event("startup")
+async def load_model():
+    global model
+    print("Loading embedding model... (this may take a few seconds)")
+    model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
+    print("Model loaded ✅")
 
 
 # ==============================================================
