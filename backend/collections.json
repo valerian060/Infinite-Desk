@@ -1,0 +1,1825 @@
+[
+    {
+"id": 7,
+"name": "40-Node CS/Legal Clustering Demo Set",
+"clusters": [
+{
+"id": 101,
+"name": "Initial Unclustered Pool (40 Nodes)",
+"cx": 500.0,
+"cy": 500.0,
+"nodes": [
+{
+"id": "S_01",
+"title": "Microservices Communication Patterns and Latency Analysis",
+"summary": "A deep dive into synchronous (REST, gRPC) vs. asynchronous (Kafka, RabbitMQ) communication in distributed systems, evaluating trade-offs for scaling and fault tolerance.",
+"similar_to": ["S_02"],
+"embedding": [],
+"x": 480.0,
+"y": 480.0,
+"collection_id": 7
+},
+{
+"id": "S_02",
+"title": "Implementing the Saga Pattern for Distributed Transaction Management",
+"summary": "Exploration of how to maintain data consistency across multiple services without two-phase commit, using orchestrator and choreographer-based Sagas.",
+"similar_to": ["S_03"],
+"embedding": [],
+"x": 485.0,
+"y": 485.0,
+"collection_id": 7
+},
+{
+"id": "S_03",
+"title": "Architectural Review of Event Sourcing and CQRS in Financial Systems",
+"summary": "Analysis of the Command Query Responsibility Segregation (CQRS) and Event Sourcing patterns for building high-performance, auditable applications.",
+"similar_to": ["S_04"],
+"embedding": [],
+"x": 490.0,
+"y": 490.0,
+"collection_id": 7
+},
+{
+"id": "S_04",
+"title": "Optimizing Database Sharding Strategies for Global Web Applications",
+"summary": "A review of different sharding keys (e.g., geographical, range, list) to horizontally partition data for massive scale and reduce single-point-of-failure risks.",
+"similar_to": ["S_05"],
+"embedding": [],
+"x": 495.0,
+"y": 495.0,
+"collection_id": 7
+},
+{
+"id": "S_05",
+"title": "Domain-Driven Design (DDD) Bounded Contexts in Large Enterprises",
+"summary": "Guidance on defining clear boundaries and language within complex business domains to facilitate independent development of microservices.",
+"similar_to": ["S_06"],
+"embedding": [],
+"x": 500.0,
+"y": 500.0,
+"collection_id": 7
+},
+{
+"id": "S_06",
+"title": "Design Patterns: Factory Method vs. Abstract Factory in Modern OOP",
+"summary": "A comparative study of creational design patterns in Java/C#, focusing on when to use each for object creation decoupling and code extensibility.",
+"similar_to": ["S_07"],
+"embedding": [],
+"x": 505.0,
+"y": 505.0,
+"collection_id": 7
+},
+{
+"id": "S_07",
+"title": "Trade-offs Between Monolithic, Modular Monolith, and Microservice Architectures",
+"summary": "Decision framework for choosing an application structure based on team size, business complexity, deployment frequency, and maintenance overhead.",
+"similar_to": ["S_08"],
+"embedding": [],
+"x": 510.0,
+"y": 510.0,
+"collection_id": 7
+},
+{
+"id": "S_08",
+"title": "Infrastructure as Code (IaC) using Terraform for Multi-Cloud Deployments",
+"summary": "Best practices for defining, provisioning, and managing cloud infrastructure (AWS, Azure, GCP) using declarative configuration files.",
+"similar_to": ["C_34"],
+"embedding": [],
+"x": 515.0,
+"y": 515.0,
+"collection_id": 7
+},
+{
+"id": "S_09",
+"title": "Container Orchestration with Kubernetes: Scaling and Self-Healing",
+"summary": "Exploration of core Kubernetes concepts including Pods, Services, Deployments, and Helm charts for automating application scaling and failure recovery.",
+"similar_to": ["S_10"],
+"embedding": [],
+"x": 520.0,
+"y": 520.0,
+"collection_id": 7
+},
+{
+"id": "S_10",
+"title": "Implementing API Gateways and Backends for Frontends (BFF) Patterns",
+"summary": "Guidance on using API Gateways for request routing, security, and throttling, and the BFF pattern to optimize API calls for specific client applications.",
+"similar_to": ["S_01"],
+"embedding": [],
+"x": 525.0,
+"y": 525.0,
+"collection_id": 7
+},
+{
+"id": "M_11",
+"title": "Transfer Learning and Fine-Tuning Large Language Models (LLMs) for Specific Tasks",
+"summary": "Methodology for adapting pre-trained models like BERT or GPT to downstream tasks using minimal labeled data, focusing on parameter-efficient techniques.",
+"similar_to": ["M_12"],
+"embedding": [],
+"x": 480.0,
+"y": 520.0,
+"collection_id": 7
+},
+{
+"id": "M_12",
+"title": "Architectures and Training of Vision Transformers (ViT) in Image Recognition",
+"summary": "Analysis of the self-attention mechanism applied to computer vision tasks, comparing the performance and computational cost against traditional CNNs.",
+"similar_to": ["M_13"],
+"embedding": [],
+"x": 485.0,
+"y": 525.0,
+"collection_id": 7
+},
+{
+"id": "M_13",
+"title": "Deep Reinforcement Learning (DRL) for Dynamic Resource Allocation",
+"summary": "Applying DRL agents (DQN, PPO) to optimize complex scheduling and resource management problems in cloud computing environments.",
+"similar_to": ["M_14"],
+"embedding": [],
+"x": 490.0,
+"y": 530.0,
+"collection_id": 7
+},
+{
+"id": "M_14",
+"title": "Addressing Bias and Fairness in Predictive Policing AI Systems",
+"summary": "Techniques for auditing machine learning models for disparate impact across demographic groups and methods for algorithmic bias mitigation.",
+"similar_to": ["M_15"],
+"embedding": [],
+"x": 495.0,
+"y": 535.0,
+"collection_id": 7
+},
+{
+"id": "M_15",
+"title": "Unsupervised Anomaly Detection using Autoencoders in Time-Series Data",
+"summary": "Using deep learning reconstruction errors in sequential data (e.g., sensor readings) to identify novel or malicious events in industrial systems.",
+"similar_to": ["M_16"],
+"embedding": [],
+"x": 500.0,
+"y": 540.0,
+"collection_id": 7
+},
+{
+"id": "M_16",
+"title": "Techniques for Explainable AI (XAI): SHAP and LIME in Model Interpretation",
+"summary": "Methods for providing post-hoc explanations for black-box model predictions, essential for regulatory compliance and user trust in AI systems.",
+"similar_to": ["M_17"],
+"embedding": [],
+"x": 505.0,
+"y": 545.0,
+"collection_id": 7
+},
+{
+"id": "M_17",
+"title": "Generative Adversarial Networks (GANs) for Synthetic Data Augmentation",
+"summary": "Training GANs to create realistic, privacy-preserving synthetic data, improving model robustness in domains with limited real-world datasets.",
+"similar_to": ["M_18"],
+"embedding": [],
+"x": 510.0,
+"y": 550.0,
+"collection_id": 7
+},
+{
+"id": "M_18",
+"title": "Natural Language Processing (NLP) for Legal Document Summarization",
+"summary": "Using transformer-based models (e.g., T5) for abstractive and extractive summarization of court documents, focusing on key facts and rulings.",
+"similar_to": ["L_23"],
+"embedding": [],
+"x": 515.0,
+"y": 555.0,
+"collection_id": 7
+},
+{
+"id": "M_19",
+"title": "Federated Learning for Privacy-Preserving Collaborative Model Training",
+"summary": "A distributed ML approach where local models are trained on decentralized datasets (e.g., mobile devices) and only weight updates are shared to a central server.",
+"similar_to": ["M_20"],
+"embedding": [],
+"x": 520.0,
+"y": 560.0,
+"collection_id": 7
+},
+{
+"id": "M_20",
+"title": "Model Serving and Deployment: MLOps Pipelines with Kubeflow",
+"summary": "Implementing end-to-end Machine Learning Operations (MLOps) pipelines, covering versioning, testing, deployment, and monitoring of production models.",
+"similar_to": ["M_11"],
+"embedding": [],
+"x": 525.0,
+"y": 565.0,
+"collection_id": 7
+},
+{
+"id": "L_21",
+"title": "E-Discovery Protocols for Federal Litigation and Production of ESI",
+"summary": "Guidelines for the defensible preservation, collection, review, and production of Electronically Stored Information (ESI) under the Federal Rules of Civil Procedure (FRCP).",
+"similar_to": ["L_22"],
+"embedding": [],
+"x": 520.0,
+"y": 480.0,
+"collection_id": 7
+},
+{
+"id": "L_22",
+"title": "Judicial Data Analytics: Predicting Case Outcomes using Machine Learning",
+"summary": "The application of classification algorithms to docket entries and judicial opinions to forecast litigation results, analyzing ethical implications and accuracy bounds.",
+"similar_to": ["M_14"],
+"embedding": [],
+"x": 525.0,
+"y": 485.0,
+"collection_id": 7
+},
+{
+"id": "L_23",
+"title": "The Role of Predictive Coding in Reducing Document Review Costs",
+"summary": "A review of Technology Assisted Review (TAR) methods, specifically predictive coding, and its acceptance in judicial proceedings for efficiency and cost control.",
+"similar_to": ["L_24"],
+"embedding": [],
+"x": 530.0,
+"y": 490.0,
+"collection_id": 7
+},
+{
+"id": "L_24",
+"title": "Ethical Considerations for AI Deployment in Sentencing and Parole Decisions",
+"summary": "An examination of algorithmic accountability and due process concerns when using risk assessment tools (like COMPAS) in the criminal justice system.",
+"similar_to": ["L_25"],
+"embedding": [],
+"x": 535.0,
+"y": 495.0,
+"collection_id": 7
+},
+{
+"id": "L_25",
+"title": "Data Privacy and GDPR Compliance for Cross-Border Data Transfers",
+"summary": "Analysis of the legal requirements for transferring personal data outside the EU, focusing on Standard Contractual Clauses (SCCs) and Schrems II implications.",
+"similar_to": ["L_26"],
+"embedding": [],
+"x": 540.0,
+"y": 500.0,
+"collection_id": 7
+},
+{
+"id": "L_26",
+"title": "Intellectual Property Protection for Machine Learning Models and Datasets",
+"summary": "Exploring the application of copyright, patent, and trade secret law to protect trained AI models, training data, and derived outputs.",
+"similar_to": ["L_27"],
+"embedding": [],
+"x": 545.0,
+"y": 505.0,
+"collection_id": 7
+},
+{
+"id": "L_27",
+"title": "The Use of Blockchain Technology for Secure and Immutable Chain of Custody",
+"summary": "Investigating the application of distributed ledger technology (DLT) to securely timestamp and verify electronic evidence in legal matters.",
+"similar_to": ["L_28"],
+"embedding": [],
+"x": 550.0,
+"y": 510.0,
+"collection_id": 7
+},
+{
+"id": "L_28",
+"title": "Comparative Analysis of International Consumer Privacy Laws (CCPA, HIPAA, PIPEDA)",
+"summary": "Reviewing major global data privacy frameworks and their differing definitions of personally identifiable information (PII) and consumer rights.",
+"similar_to": ["L_29"],
+"embedding": [],
+"x": 555.0,
+"y": 515.0,
+"collection_id": 7
+},
+{
+"id": "L_29",
+"title": "Legal Framework for Software Licensing and Open Source Compliance",
+"summary": "Understanding the implications of GPL, MIT, and Apache licenses on commercial software development and avoiding license violations.",
+"similar_to": ["L_30"],
+"embedding": [],
+"x": 560.0,
+"y": 520.0,
+"collection_id": 7
+},
+{
+"id": "L_30",
+"title": "Designing Court Automation Systems for Efficiency and Access to Justice",
+"summary": "Study on integrating digital case management and automated scheduling tools to streamline court processes and improve public access.",
+"similar_to": ["L_21"],
+"embedding": [],
+"x": 565.0,
+"y": 525.0,
+"collection_id": 7
+},
+{
+"id": "C_31",
+"title": "Zero Trust Architecture Implementation in Enterprise Networks",
+"summary": "Strategy for shifting network security from perimeter-based defense to a model where every user, device, and application must be verified regardless of location.",
+"similar_to": ["C_32"],
+"embedding": [],
+"x": 520.0,
+"y": 540.0,
+"collection_id": 7
+},
+{
+"id": "C_32",
+"title": "Advanced Persistent Threat (APT) Detection and Response Strategies",
+"summary": "Techniques for identifying sophisticated, long-term targeted attacks (APTs), focusing on network forensics and behavioral anomaly detection.",
+"similar_to": ["C_33"],
+"embedding": [],
+"x": 525.0,
+"y": 545.0,
+"collection_id": 7
+},
+{
+"id": "C_33",
+"title": "Comparative Analysis of Modern Cryptographic Hashing Algorithms (SHA-3, Blake2)",
+"summary": "Reviewing the security, speed, and design principles of contemporary hashing functions used for data integrity and password storage.",
+"similar_to": ["C_34"],
+"embedding": [],
+"x": 530.0,
+"y": 550.0,
+"collection_id": 7
+},
+{
+"id": "C_34",
+"title": "Secure Development Lifecycle (SDL) Integration in DevOps Pipelines",
+"summary": "Embedding security practices (SAST, DAST, threat modeling) early and continuously into CI/CD workflows to prevent vulnerabilities from reaching production.",
+"similar_to": ["C_35"],
+"embedding": [],
+"x": 535.0,
+"y": 555.0,
+"collection_id": 7
+},
+{
+"id": "C_35",
+"title": "Exploiting and Mitigating Common Web Application Vulnerabilities (OWASP Top 10)",
+"summary": "Hands-on guide to common flaws like Injection, Broken Access Control, and Insecure Deserialization, and effective defensive coding strategies.",
+"similar_to": ["C_36"],
+"embedding": [],
+"x": 540.0,
+"y": 560.0,
+"collection_id": 7
+},
+{
+"id": "C_36",
+"title": "Network Segmentation and Micro-segmentation for Lateral Movement Prevention",
+"summary": "Designing network policies to strictly limit traffic flow between workloads, reducing the blast radius of a successful perimeter breach.",
+"similar_to": ["S_01"],
+"embedding": [],
+"x": 545.0,
+"y": 565.0,
+"collection_id": 7
+},
+{
+"id": "C_37",
+"title": "Post-Quantum Cryptography: Lattice-Based Algorithms and Standardization Efforts",
+"summary": "Review of new cryptographic primitives (e.g., Dilithium, Kyber) designed to withstand attacks from large-scale quantum computers.",
+"similar_to": ["C_38"],
+"embedding": [],
+"x": 550.0,
+"y": 570.0,
+"collection_id": 7
+},
+{
+"id": "C_38",
+"title": "Threat Modeling Using the STRIDE Methodology in Agile Development",
+"summary": "A structured approach to identifying and mitigating security threats (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege) early in the design phase.",
+"similar_to": ["C_39"],
+"embedding": [],
+"x": 555.0,
+"y": 575.0,
+"collection_id": 7
+},
+{
+"id": "C_39",
+"title": "Penetration Testing Techniques for Cloud Environments (AWS, Azure)",
+"summary": "Specialized methodologies and tools for assessing security posture in cloud-native applications, focusing on IAM misconfigurations and serverless flaws.",
+"similar_to": ["C_40"],
+"embedding": [],
+"x": 560.0,
+"y": 580.0,
+"collection_id": 7
+},
+{
+"id": "C_40",
+"title": "Digital Forensics and Incident Response (DFIR) in Ransomware Attacks",
+"summary": "Protocol for collecting volatile evidence, preserving system images, and analyzing malware artifacts during a critical security incident.",
+"similar_to": ["C_31"],
+"embedding": [],
+"x": 565.0,
+"y": 585.0,
+"collection_id": 7
+}
+]
+}
+]
+},
+    {
+"id": 7,
+"name": "30-Node High Cohesion Demo Set",
+"clusters": [
+{
+"id": 101,
+"name": "Initial Unclustered Pool (30 Nodes)",
+"cx": 500.0,
+"cy": 500.0,
+"nodes": [
+{
+"id": "A_01",
+"title": "Modeling the Accretion Disk Dynamics of Supermassive Black Holes",
+"summary": "A theoretical study analyzing the hydrodynamic stability and radiation signature of accretion disks around rapidly spinning Kerr black holes using general relativity equations.",
+"similar_to": [],
+"embedding": [],
+"x": 490.5,
+"y": 510.2,
+"collection_id": 7
+},
+{
+"id": "A_02",
+"title": "Gravitational Wave Signatures from Binary Black Hole Mergers",
+"summary": "Detailed analysis of the ringdown phase of a black hole merger observed by LIGO/Virgo, focusing on the calculation of the final spin parameter.",
+"similar_to": [],
+"embedding": [],
+"x": 488.1,
+"y": 512.8,
+"collection_id": 7
+},
+{
+"id": "A_03",
+"title": "Observational Evidence for Quasar Accretion Disk Turbulence",
+"summary": "High-resolution spectral study using the Event Horizon Telescope to detect and characterize magnetic turbulence in the innermost regions of active galactic nuclei (AGN).",
+"similar_to": [],
+"embedding": [],
+"x": 492.3,
+"y": 508.5,
+"collection_id": 7
+},
+{
+"id": "A_04",
+"title": "Simulation of Photon Orbits near the Ergosphere of a Spinning Black Hole",
+"summary": "Numerical relativity simulation detailing the paths and energy transfer of photons trapped near the outer event horizon of a rapidly rotating black hole.",
+"similar_to": [],
+"embedding": [],
+"x": 494.6,
+"y": 505.4,
+"collection_id": 7
+},
+{
+"id": "A_05",
+"title": "Astrophysical Jets and Their Magnetic Confinement in Black Hole Systems",
+"summary": "MHD simulation exploring the launch mechanism and collimation of relativistic jets powered by the Blandford-Znajek process from a black hole's magnetic field.",
+"similar_to": [],
+"embedding": [],
+"x": 486.0,
+"y": 502.1,
+"collection_id": 7
+},
+{
+"id": "A_06",
+"title": "Tidal Disruption Events (TDEs) and Relativistic Flaring",
+"summary": "Analysis of the electromagnetic flare emitted when a star passes within the Roche limit of a black hole, focusing on the light curve evolution.",
+"similar_to": [],
+"embedding": [],
+"x": 489.2,
+"y": 515.0,
+"collection_id": 7
+},
+{
+"id": "A_07",
+"title": "Entropy Generation in Black Hole Horizons via Quantum Field Theory",
+"summary": "Theoretical exploration of the Bekenstein-Hawking entropy calculation and its connection to quantum entanglement across the event horizon.",
+"similar_to": [],
+"embedding": [],
+"x": 491.7,
+"y": 503.9,
+"collection_id": 7
+},
+{
+"id": "A_08",
+"title": "Constraints on Black Hole Spin from X-ray Reflection Spectroscopy",
+"summary": "Measuring the inner radius of the accretion disk using broadened iron K-alpha lines in X-ray spectra to infer the angular momentum of the central black hole.",
+"similar_to": [],
+"embedding": [],
+"x": 493.5,
+"y": 507.0,
+"collection_id": 7
+},
+{
+"id": "A_09",
+"title": "The Role of Magnetic Fields in Driving Accretion onto Stellar-Mass Black Holes",
+"summary": "Investigating the stability and efficiency of accretion flows in stellar-mass systems, specifically focusing on magnetically arrested disks (MAD).",
+"similar_to": [],
+"embedding": [],
+"x": 487.4,
+"y": 509.8,
+"collection_id": 7
+},
+{
+"id": "A_10",
+"title": "Post-Newtonian Approximations for Inspiraling Binary Black Holes",
+"summary": "Calculating the orbital evolution and energy loss for inspiraling binary systems using approximations to Einstein's field equations before the final merger.",
+"similar_to": [],
+"embedding": [],
+"x": 495.9,
+"y": 511.5,
+"collection_id": 7
+},
+{
+"id": "M_11",
+"title": "Mechanisms of Efflux Pump Activation in Multi-Drug Resistant E. coli Strains",
+"summary": "An experimental investigation into the genetic and molecular triggers that lead to the overexpression of efflux pumps, conferring broad-spectrum antibiotic resistance in common clinical pathogens.",
+"similar_to": [],
+"embedding": [],
+"x": 500.0,
+"y": 500.0,
+"collection_id": 7
+},
+{
+"id": "M_12",
+"title": "Quorum Sensing Inhibition as a Novel Strategy to Prevent Biofilm Formation",
+"summary": "Studies the use of small-molecule inhibitors to disrupt bacterial communication (quorum sensing) pathways, effectively preventing the formation of protective, infection-causing biofilms.",
+"similar_to": [],
+"embedding": [],
+"x": 502.8,
+"y": 497.6,
+"collection_id": 7
+},
+{
+"id": "M_13",
+"title": "Genetic Basis of Carbapenem Resistance in Klebsiella pneumoniae Isolates",
+"summary": "Sequencing and analysis of plasmids carrying the blaKPC gene to understand its rapid transfer and dissemination among Gram-negative bacteria in hospital environments.",
+"similar_to": [],
+"embedding": [],
+"x": 498.5,
+"y": 501.9,
+"collection_id": 7
+},
+{
+"id": "M_14",
+"title": "The Role of Outer Membrane Vesicles in Inter-Bacterial Antibiotic Resistance Transfer",
+"summary": "Investigating how bacteria utilize nanovesicles to package and deliver resistance-conferring DNA and proteins to neighboring cells in a polymicrobial community.",
+"similar_to": [],
+"embedding": [],
+"x": 501.2,
+"y": 503.5,
+"collection_id": 7
+},
+{
+"id": "M_15",
+"title": "CRISPR-Cas System as a Tool for Targeted Eradication of Resistance Plasmids",
+"summary": "Exploring the use of engineered bacteriophages carrying CRISPR payloads to specifically cleave and eliminate antibiotic resistance genes from bacterial hosts.",
+"similar_to": [],
+"embedding": [],
+"x": 496.3,
+"y": 495.1,
+"collection_id": 7
+},
+{
+"id": "M_16",
+"title": "Transcriptional Regulation of the AcrAB-TolC Efflux System in Salmonella",
+"summary": "Detailed study of the local and global transcription factors (e.g., MarA, RamA) that control the expression levels of the major multi-drug efflux pump in Salmonella Typhimurium.",
+"similar_to": [],
+"embedding": [],
+"x": 504.9,
+"y": 499.0,
+"collection_id": 7
+},
+{
+"id": "M_17",
+"title": "Impact of Sub-Inhibitory Antibiotic Concentrations on Biofilm Architecture",
+"summary": "Microscopy and quantitative analysis showing how low doses of antibiotics paradoxically enhance extracellular polymeric substance (EPS) production and matrix rigidity.",
+"similar_to": [],
+"embedding": [],
+"x": 499.3,
+"y": 504.7,
+"collection_id": 7
+},
+{
+"id": "M_18",
+"title": "High-Throughput Screening for Novel Efflux Pump Inhibitors (EPIs)",
+"summary": "A large-scale chemical library screen to identify compounds that can restore the efficacy of common antibiotics by blocking the function of efflux pumps.",
+"similar_to": [],
+"embedding": [],
+"x": 503.7,
+"y": 496.2,
+"collection_id": 7
+},
+{
+"id": "M_19",
+"title": "Phenotypic Heterogeneity and Persistence in Antibiotic-Treated Bacterial Cultures",
+"summary": "Investigating the non-genetic phenomenon of persister cells and their role in tolerance to high antibiotic doses, focusing on metabolic dormancy.",
+"similar_to": [],
+"embedding": [],
+"x": 497.1,
+"y": 493.8,
+"collection_id": 7
+},
+{
+"id": "M_20",
+"title": "Molecular Dynamics Simulation of Beta-Lactamase Active Site Mutations",
+"summary": "Using computational modeling to predict how specific amino acid substitutions alter the catalytic efficiency and substrate specificity of key antibiotic-degrading enzymes.",
+"similar_to": [],
+"embedding": [],
+"x": 501.5,
+"y": 505.9,
+"collection_id": 7
+},
+{
+"id": "L_21",
+"title": "Phonological Shift Patterns in Proto-Indo-European Root Morphemes",
+"summary": "Examines the systematic sound changes and lexical diffusion across Romance and Germanic language families tracing back to a common ancestor, focusing on specific root morphemes.",
+"similar_to": [],
+"embedding": [],
+"x": 510.1,
+"y": 485.8,
+"collection_id": 7
+},
+{
+"id": "L_22",
+"title": "Comparative Reconstruction of the Proto-Nostratic Vocabulary",
+"summary": "A deep linguistic effort to hypothesize a macrofamily (Nostratic) linking Indo-European, Uralic, and Altaic languages, relying heavily on comparative phonology and limited semantic change.",
+"similar_to": [],
+"embedding": [],
+"x": 512.5,
+"y": 488.2,
+"collection_id": 7
+},
+{
+"id": "L_23",
+"title": "The Mechanism of Grimm's Law: Voicing and Aspiration in Germanic",
+"summary": "A detailed historical linguistic analysis of the First Consonant Shift, describing the systematic transformation of Proto-Indo-European stops into Germanic fricatives and stops.",
+"similar_to": [],
+"embedding": [],
+"x": 508.0,
+"y": 483.5,
+"collection_id": 7
+},
+{
+"id": "L_24",
+"title": "Verner's Law and Its Interaction with Stress and Accent Placement",
+"summary": "Investigating the conditions under which Proto-Germanic voiceless fricatives became voiced stops, showing the influence of the original position of the Proto-Indo-European accent.",
+"similar_to": [],
+"embedding": [],
+"x": 514.9,
+"y": 490.6,
+"collection_id": 7
+},
+{
+"id": "L_25",
+"title": "Reconstructing Laryngeal Consonants in Indo-European Root Forms",
+"summary": "Analysis of the laryngeal theory proposed by Saussure, using vowel quality variations (ablaut) in Greek and Hittite to infer the presence and effect of lost laryngeal phonemes.",
+"similar_to": [],
+"embedding": [],
+"x": 506.4,
+"y": 480.9,
+"collection_id": 7
+},
+{
+"id": "L_26",
+"title": "The Evolution of Case Systems from PIE to Classical Latin",
+"summary": "Tracking the morphological simplification and syncretism of the eight Proto-Indo-European noun cases as they developed into the six primary cases found in Latin grammar.",
+"similar_to": [],
+"embedding": [],
+"x": 511.8,
+"y": 484.7,
+"collection_id": 7
+},
+{
+"id": "L_27",
+"title": "The Role of Lexical Diffusion in the Spread of Sound Changes",
+"summary": "A study on how sound changes typically affect words gradually, moving from one semantic or phonetic group to another, rather than occurring instantly across the entire lexicon.",
+"similar_to": [],
+"embedding": [],
+"x": 509.5,
+"y": 487.3,
+"collection_id": 7
+},
+{
+"id": "L_28",
+"title": "The Glottalic Theory: An Alternative Reconstruction of PIE Stops",
+"summary": "Examining a controversial proposal that suggests the Proto-Indo-European stop system should be reconstructed using ejective and glottalized stops rather than the traditional plain voiced stops.",
+"similar_to": [],
+"embedding": [],
+"x": 513.2,
+"y": 486.1,
+"collection_id": 7
+},
+{
+"id": "L_29",
+"title": "Substrate Influence on Phonological Inventory in the Proto-Slavic Era",
+"summary": "Investigating how contact with pre-Slavic languages (substrates) might have contributed non-Indo-European features, particularly nasal vowels, to the emerging Slavic phonological system.",
+"similar_to": [],
+"embedding": [],
+"x": 507.8,
+"y": 482.4,
+"collection_id": 7
+},
+{
+"id": "L_30",
+"title": "Diachronic Analysis of Vowel Harmony in Finno-Ugric Languages",
+"summary": "Although not PIE, this provides a highly technical comparative phonology topic, focusing on the historical development and relaxation of vowel harmony constraints in languages like Finnish and Hungarian.",
+"similar_to": [],
+"embedding": [],
+"x": 515.7,
+"y": 492.0,
+"collection_id": 7
+}
+]
+}
+]
+},
+    {
+        "id": 1,
+        "name": "CS Core Knowledge (10 Clusters - Major Expansion)",
+        "clusters": [
+            {
+                "id": 101,
+                "name": "Algorithms & Complexity",
+                "cx": 150, "cy": 100,
+                "nodes": [
+                    {"id": "A1", "title": "Big O Notation", "summary": "Formal notation for expressing the worst-case complexity of an algorithm.", "similar_to": ["A2", "D1", "A6"], "embedding": []},
+                    {"id": "A2", "title": "Merge Sort", "summary": "A stable, $O(n \\log n)$ divide-and-conquer sorting algorithm.", "similar_to": ["A1", "A3", "A8"], "embedding": []},
+                    {"id": "A3", "title": "Dijkstra's Algorithm", "summary": "Finds the shortest paths in a graph, $O((V+E)\\log V)$.", "similar_to": ["A2", "D3", "A7"], "embedding": []},
+                    {"id": "A4", "title": "Dynamic Programming (DP)", "summary": "Solving complex problems by storing subproblem results.", "similar_to": ["A1", "D2", "A9"], "embedding": []},
+                    {"id": "A5", "title": "NP-Completeness", "summary": "Class of decision problems for which verification is polynomial time.", "similar_to": ["A1", "A6", "A10"], "embedding": []},
+                    {"id": "A6", "title": "Greedy Algorithms", "summary": "Making locally optimal choices to find a global optimum.", "similar_to": ["A1", "A5", "A3"], "embedding": []},
+                    {"id": "A7", "title": "A* Search", "summary": "An informed search algorithm that uses heuristics.", "similar_to": ["A3", "D3"], "embedding": []},
+                    {"id": "A8", "title": "Quick Sort", "summary": "An in-place, unstable sorting algorithm with $O(n \\log n)$ average complexity.", "similar_to": ["A2", "D1"], "embedding": []},
+                    {"id": "A9", "title": "Backtracking", "summary": "A general algorithm for finding solutions incrementally.", "similar_to": ["A4", "D3"], "embedding": []},
+                    {"id": "A10", "title": "Amortized Analysis", "summary": "A method for analyzing a sequence of operations to find the average time per operation.", "similar_to": ["A1", "A5"], "embedding": []}
+                ]
+            },
+            {
+                "id": 102,
+                "name": "Data Structures",
+                "cx": 400, "cy": 100,
+                "nodes": [
+                    {"id": "D1", "title": "Hash Map Collisions", "summary": "Separate chaining vs. open addressing in Hash Maps.", "similar_to": ["A1", "D2", "D6"], "embedding": []},
+                    {"id": "D2", "title": "Linked List vs Array", "summary": "Trade-offs: $O(1)$ insertion vs. $O(1)$ random access.", "similar_to": ["D1", "D3", "D8"], "embedding": []},
+                    {"id": "D3", "title": "Tree Traversal (BFS/DFS)", "summary": "In-order, pre-order, post-order, and level-order traversals.", "similar_to": ["A3", "D2", "D5"], "embedding": []},
+                    {"id": "D4", "title": "AVL Trees", "summary": "Self-balancing binary search tree where balance factor is $\\pm 1$ or $0$.", "similar_to": ["D3", "A2", "D6"], "embedding": []},
+                    {"id": "D5", "title": "Trie (Prefix Tree)", "summary": "A tree structure for efficient string retrieval.", "similar_to": ["D3", "A6"], "embedding": []},
+                    {"id": "D6", "title": "Min/Max Heap", "summary": "A complete binary tree that maintains the heap property.", "similar_to": ["D4", "A2"], "embedding": []},
+                    {"id": "D7", "title": "Disjoint Set Union (DSU)", "summary": "Data structure that tracks a set of elements partitioned into disjoint subsets.", "similar_to": ["A3", "D2"], "embedding": []},
+                    {"id": "D8", "title": "Segment Trees", "summary": "A tree data structure for storing intervals or segments.", "similar_to": ["D3", "D4"], "embedding": []},
+                    {"id": "D9", "title": "Skip List", "summary": "A probabilistic alternative to balanced trees that uses multiple levels of linked lists.", "similar_to": ["D2", "D1"], "embedding": []}
+                ]
+            },
+            {
+                "id": 103,
+                "name": "Operating Systems",
+                "cx": 650, "cy": 100,
+                "nodes": [
+                    {"id": "O1", "title": "Threading vs. Process", "summary": "Parallelism (processes) vs. concurrency (threads).", "similar_to": ["O2", "P4"], "embedding": []},
+                    {"id": "O2", "title": "Deadlocks Conditions", "summary": "Mutual exclusion, Hold and wait, No preemption, Circular wait.", "similar_to": ["O1", "O3", "O6"], "embedding": []},
+                    {"id": "O3", "title": "Virtual Memory/Paging", "summary": "Mapping virtual addresses to physical memory pages.", "similar_to": ["O2", "O4"], "embedding": []},
+                    {"id": "O4", "title": "Process Scheduling", "summary": "Algorithms like Round Robin, FCFS, and shortest job first.", "similar_to": ["O1", "O2"], "embedding": []},
+                    {"id": "O5", "title": "File Systems (i-nodes)", "summary": "Data structure storing file metadata.", "similar_to": ["O3"], "embedding": []},
+                    {"id": "O6", "title": "Semaphores & Mutexes", "summary": "Synchronization primitives to control shared resource access.", "similar_to": ["O2", "O1"], "embedding": []},
+                    {"id": "O7", "title": "Kernel Mode vs. User Mode", "summary": "Dual mode of operation to protect the OS.", "similar_to": ["O3", "O4"], "embedding": []},
+                    {"id": "O8", "title": "Thrashing", "summary": "A state where a computer's virtual memory subsystem is in a constant state of paging.", "similar_to": ["O3", "O4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 104,
+                "name": "Web Development (Frontend)",
+                "cx": 150, "cy": 400,
+                "nodes": [
+                    {"id": "W1", "title": "React Hooks", "summary": "useState, useEffect, useContext - managing state and side effects.", "similar_to": ["W2", "P1", "W4"], "embedding": []},
+                    {"id": "W2", "title": "REST API Principles", "summary": "Uniform interface, statelessness, cacheability.", "similar_to": ["W1", "B1", "N4"], "embedding": []},
+                    {"id": "W3", "title": "Tailwind CSS Utility-First", "summary": "Composing interfaces from small utility classes.", "similar_to": ["W1", "C1"], "embedding": []},
+                    {"id": "W4", "title": "Component Lifecycles", "summary": "Mounting, updating, and unmounting phases.", "similar_to": ["W1", "W2"], "embedding": []},
+                    {"id": "W5", "title": "Virtual DOM vs Real DOM", "summary": "Efficient diffing algorithm for minimizing direct DOM manipulation.", "similar_to": ["W1", "W4"], "embedding": []},
+                    {"id": "W6", "title": "Server-Side Rendering (SSR)", "summary": "Rendering an initial page view on the server.", "similar_to": ["W4", "W5"], "embedding": []},
+                    {"id": "W7", "title": "WebSockets", "summary": "A protocol providing full-duplex communication over a single TCP connection.", "similar_to": ["W2", "N1"], "embedding": []},
+                    {"id": "W8", "title": "Shadow DOM", "summary": "Encapsulated DOM subtree used to manage web component styling.", "similar_to": ["W5", "C1"], "embedding": []},
+                    {"id": "W9", "title": "State Management (Redux/Zustand)", "summary": "Patterns for managing global application state outside of component state.", "similar_to": ["W1", "W4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 105,
+                "name": "Databases & SQL",
+                "cx": 400, "cy": 400,
+                "nodes": [
+                    {"id": "B1", "title": "Normalization (3NF)", "summary": "Reducing redundancy and improving data integrity.", "similar_to": ["B2", "W2"], "embedding": []},
+                    {"id": "B2", "title": "ACID Properties", "summary": "Atomicity, Consistency, Isolation, Durability in transactions.", "similar_to": ["B1", "B4", "F5"], "embedding": []},
+                    {"id": "B3", "title": "SQL Join Types", "summary": "INNER, LEFT, RIGHT, FULL joins and their uses.", "similar_to": ["B1", "B6"], "embedding": []},
+                    {"id": "B4", "title": "Indexing (B-Tree)", "summary": "Creating indexes to speed up data retrieval operations.", "similar_to": ["B1", "D1", "B7"], "embedding": []},
+                    {"id": "B5", "title": "NoSQL Types (KV, Document, Graph)", "summary": "Understanding different non-relational database models.", "similar_to": ["B1", "B2"], "embedding": []},
+                    {"id": "B6", "title": "Transaction Isolation Levels", "summary": "Defining how transactions interact (e.g., Read Committed, Serializable).", "similar_to": ["B2", "B3"], "embedding": []},
+                    {"id": "B7", "title": "Database Sharding/Partitioning", "summary": "Distributing a single logical database across multiple servers.", "similar_to": ["B4", "F3"], "embedding": []},
+                    {"id": "B8", "title": "Denormalization", "summary": "Intentionally introducing redundancy to improve read performance.", "similar_to": ["B1", "B4"], "embedding": []},
+                    {"id": "B9", "title": "Two-Phase Commit (2PC)", "summary": "Protocol to achieve atomicity in a distributed transaction.", "similar_to": ["B2", "F5"], "embedding": []}
+                ]
+            },
+            {
+                "id": 106,
+                "name": "Python/Fundamentals",
+                "cx": 650, "cy": 400,
+                "nodes": [
+                    {"id": "P1", "title": "Python Decorators", "summary": "Using '@' syntax to wrap functions and modify behavior.", "similar_to": ["P2", "W1", "P6"], "embedding": []},
+                    {"id": "P2", "title": "Generators vs. Lists", "summary": "Memory efficiency and lazy evaluation using the 'yield' keyword.", "similar_to": ["P1", "D1"], "embedding": []},
+                    {"id": "P3", "title": "Lambda Functions", "summary": "Small, anonymous functions used inline with map/filter.", "similar_to": ["P1"], "embedding": []},
+                    {"id": "P4", "title": "Global Interpreter Lock (GIL)", "summary": "Ensures only one thread executes Python bytecode at a time in CPython.", "similar_to": ["O1", "P1"], "embedding": []},
+                    {"id": "P5", "title": "Context Managers ('with' statement)", "summary": "Simplifying resource management with '__enter__' and '__exit__'.", "similar_to": ["P1", "O5"], "embedding": []},
+                    {"id": "P6", "title": "Metaclasses", "summary": "The 'class of a class' - customizing class creation.", "similar_to": ["P1", "S5"], "embedding": []},
+                    {"id": "P7", "title": "List Comprehensions", "summary": "A concise way to create lists.", "similar_to": ["P3", "P2"], "embedding": []},
+                    {"id": "P8", "title": "Monkey Patching", "summary": "Dynamically modifying a class or module at runtime.", "similar_to": ["P6", "S7"], "embedding": []},
+                    {"id": "P9", "title": "Abstract Base Classes (ABCs)", "summary": "Defining interfaces to enforce structure in subclasses.", "similar_to": ["P6", "S5"], "embedding": []}
+                ]
+            },
+            {
+                "id": 107,
+                "name": "Computer Networks",
+                "cx": 150, "cy": 700,
+                "nodes": [
+                    {"id": "N1", "title": "TCP vs UDP", "summary": "TCP is connection-oriented; UDP is connectionless and fast.", "similar_to": ["N2", "N4"], "embedding": []},
+                    {"id": "N2", "title": "OSI Model Layers", "summary": "Seven layers: Physical to Application.", "similar_to": ["N1", "N3", "N6"], "embedding": []},
+                    {"id": "N3", "title": "IP Addressing (Subnetting)", "summary": "Dividing an IP network into smaller subnetworks.", "similar_to": ["N2", "N4"], "embedding": []},
+                    {"id": "N4", "title": "HTTP Status Codes", "summary": "1xx Informational, 2xx Success, 3xx Redirection, 4xx Client Error, 5xx Server Error.", "similar_to": ["W2", "N1"], "embedding": []},
+                    {"id": "N5", "title": "DNS Resolution", "summary": "Translating domain names into IP addresses.", "similar_to": ["N3", "W2"], "embedding": []},
+                    {"id": "N6", "title": "NAT (Network Address Translation)", "summary": "A method to modify network address information.", "similar_to": ["N3", "N2"], "embedding": []},
+                    {"id": "N7", "title": "Load Balancing", "summary": "Distributing network traffic across a group of servers.", "similar_to": ["F3", "W2"], "embedding": []},
+                    {"id": "N8", "title": "TLS/SSL Handshake", "summary": "The protocol used to establish a secure connection over a network.", "similar_to": ["N4", "S9"], "embedding": []},
+                    {"id": "N9", "title": "BGP (Border Gateway Protocol)", "summary": "The routing protocol used to exchange routing information between autonomous systems.", "similar_to": ["N3", "N6"], "embedding": []}
+                ]
+            },
+            {
+                "id": 108,
+                "name": "Software Engineering",
+                "cx": 400, "cy": 700,
+                "nodes": [
+                    {"id": "S1", "title": "Agile vs Waterfall", "summary": "Iterative and incremental (Agile) vs. sequential design (Waterfall).", "similar_to": ["S2"], "embedding": []},
+                    {"id": "S2", "title": "Design Patterns", "summary": "Reusable solutions to common software design problems (e.g., Factory, Singleton).", "similar_to": ["S1", "P1", "S5"], "embedding": []},
+                    {"id": "S3", "title": "Unit Testing/TDD", "summary": "Writing tests for small, isolated pieces of code.", "similar_to": ["S1", "S4"], "embedding": []},
+                    {"id": "S4", "title": "Version Control (Git)", "summary": "Distributed revision control for tracking changes.", "similar_to": ["S3", "S6"], "embedding": []},
+                    {"id": "S5", "title": "SOLID Principles", "summary": "Design principles for maintainable and scalable object-oriented software.", "similar_to": ["S2", "P6"], "embedding": []},
+                    {"id": "S6", "title": "Code Reviews & Pair Programming", "summary": "Techniques for quality assurance and knowledge transfer.", "similar_to": ["S3", "S1"], "embedding": []},
+                    {"id": "S7", "title": "Refactoring", "summary": "Restructuring existing computer code without changing external behavior.", "similar_to": ["S2", "S5"], "embedding": []},
+                    {"id": "S8", "title": "Microservices Architecture", "summary": "A system structure where the application is built as a collection of smaller, independent services.", "similar_to": ["N7", "R2"], "embedding": []},
+                    {"id": "S9", "title": "Authentication vs. Authorization", "summary": "AuthN (who you are) vs. AuthZ (what you can do).", "similar_to": ["S2", "T1"], "embedding": []}
+                ]
+            },
+            {
+                "id": 109,
+                "name": "Programming Paradigms",
+                "cx": 650, "cy": 700,
+                "nodes": [
+                    {"id": "G1", "title": "Functional Programming (FP)", "summary": "Building software using pure functions, avoiding shared state and mutable data.", "similar_to": ["G2", "P1"], "embedding": []},
+                    {"id": "G2", "title": "Immutability", "summary": "The state of an object cannot be modified after it is created.", "similar_to": ["G1", "W1"], "embedding": []},
+                    {"id": "G3", "title": "Object-Oriented Programming (OOP)", "summary": "Design paradigm based on objects, encapsulation, inheritance, and polymorphism.", "similar_to": ["G4", "S5"], "embedding": []},
+                    {"id": "G4", "title": "Polymorphism", "summary": "The ability of an object to take on many forms (e.g., method overloading/overriding).", "similar_to": ["G3", "S5"], "embedding": []},
+                    {"id": "G5", "title": "First-Class Functions", "summary": "Functions are treated as variables and can be passed as arguments, returned, and stored in data structures.", "similar_to": ["G1", "P3"], "embedding": []},
+                    {"id": "G6", "title": "Pure Functions", "summary": "Functions that return the same result for the same arguments and have no side effects.", "similar_to": ["G1", "S3"], "embedding": []},
+                    {"id": "G7", "title": "Composition over Inheritance", "summary": "A design principle favoring the construction of complex objects by combining simpler ones.", "similar_to": ["G3", "S5"], "embedding": []},
+                    {"id": "G8", "title": "Concurrency Models (Actor Model)", "summary": "A model for concurrent computation where the fundamental unit is the actor.", "similar_to": ["O1", "P4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 110,
+                "name": "Security Fundamentals",
+                "cx": 850, "cy": 400,
+                "nodes": [
+                    {"id": "T1", "title": "Symmetric vs Asymmetric Encryption", "summary": "Symmetric uses one key; Asymmetric (Public/Private key) uses two.", "similar_to": ["T2", "N8", "S9"], "embedding": []},
+                    {"id": "T2", "title": "Hashing (SHA-256)", "summary": "One-way function to produce a fixed-size digest, used for integrity verification.", "similar_to": ["T1", "B2"], "embedding": []},
+                    {"id": "T3", "title": "Cross-Site Scripting (XSS)", "summary": "Injecting malicious scripts into otherwise trusted websites.", "similar_to": ["T4", "W2"], "embedding": []},
+                    {"id": "T4", "title": "SQL Injection", "summary": "Inserting malicious SQL code to retrieve or modify data.", "similar_to": ["T3", "B1"], "embedding": []},
+                    {"id": "T5", "title": "OAuth 2.0/OpenID Connect", "summary": "Protocols for secure delegation of access and identity verification.", "similar_to": ["S9", "N8"], "embedding": []},
+                    {"id": "T6", "title": "TLS/SSL Certificate Management", "summary": "The role of Certificate Authorities (CAs) and chain of trust.", "similar_to": ["N8", "T1"], "embedding": []},
+                    {"id": "T7", "title": "Principle of Least Privilege (PoLP)", "summary": "Granting only the minimal permissions necessary for a task.", "similar_to": ["F6", "O7"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Web Design & Performance (4 Clusters)",
+        "clusters": [
+            {
+                "id": 201,
+                "name": "UX Principles",
+                "cx": 200, "cy": 250,
+                "nodes": [
+                    {"id": "U1", "title": "Gestalt Laws", "summary": "Principles of perception (proximity, similarity) in interface design.", "similar_to": ["U2", "X1", "C4"], "embedding": []},
+                    {"id": "U2", "title": "Fitts' Law", "summary": "Time to acquire a target is a function of its distance and size.", "similar_to": ["U1", "U3"], "embedding": []},
+                    {"id": "U3", "title": "Hicks' Law", "summary": "Time to make a decision increases with the number of choices.", "similar_to": ["U2", "X2"], "embedding": []},
+                    {"id": "U4", "title": "Mental Models", "summary": "User's internal representation of how a system works.", "similar_to": ["U1", "U5"], "embedding": []},
+                    {"id": "U5", "title": "Affordance and Signifiers", "summary": "Visual cues that suggest how an object should be used.", "similar_to": ["U4", "U1"], "embedding": []},
+                    {"id": "U6", "title": "Information Architecture (IA)", "summary": "Organizing, structuring, and labeling content.", "similar_to": ["U4", "W4"], "embedding": []},
+                    {"id": "U7", "title": "Usability Heuristics (Nielsen)", "summary": "Ten general principles for interaction design.", "similar_to": ["U1", "U3"], "embedding": []},
+                    {"id": "U8", "title": "Design Systems", "summary": "A set of standards and reusable components for managing design at scale.", "similar_to": ["C2", "S2"], "embedding": []}
+                ]
+            },
+            {
+                "id": 202,
+                "name": "Modern CSS Layout",
+                "cx": 450, "cy": 250,
+                "nodes": [
+                    {"id": "C1", "title": "CSS Grid vs. Flexbox", "summary": "Grid (2D) for major layouts, Flexbox (1D) for component alignment.", "similar_to": ["C2", "U1"], "embedding": []},
+                    {"id": "C2", "title": "BEM Naming", "summary": "Block-Element-Modifier convention for modular CSS.", "similar_to": ["C1", "C3"], "embedding": []},
+                    {"id": "C3", "title": "CSS Variables", "summary": "Using custom properties for global theme management.", "similar_to": ["C2", "C4", "C5"], "embedding": []},
+                    {"id": "C4", "title": "Container Queries", "summary": "Styling elements based on their container size.", "similar_to": ["C3", "X3"], "embedding": []},
+                    {"id": "C5", "title": "CSS-in-JS (Styled Components)", "summary": "Using JavaScript to style components.", "similar_to": ["C2", "W1"], "embedding": []},
+                    {"id": "C6", "title": "Cascade Layers (@layer)", "summary": "Providing explicit control over the CSS cascade.", "similar_to": ["C3", "C2"], "embedding": []},
+                    {"id": "C7", "title": "Media Queries (Responsive Design)", "summary": "Applying styles based on device characteristics like screen width.", "similar_to": ["C4", "C1"], "embedding": []},
+                    {"id": "C8", "title": "Critical CSS", "summary": "Extracting and inlining the minimum CSS required for the above-the-fold content.", "similar_to": ["W6", "O1"], "embedding": []}
+                ]
+            },
+            {
+                "id": 203,
+                "name": "Accessibility (A11y)",
+                "cx": 200, "cy": 500,
+                "nodes": [
+                    {"id": "X1", "title": "ARIA Roles and Labels", "summary": "Providing semantic meaning to content for assistive technologies.", "similar_to": ["X2", "U3"], "embedding": []},
+                    {"id": "X2", "title": "WCAG Color Contrast", "summary": "Minimum ratio requirements (AA or AAA) for text and background.", "similar_to": ["X1", "U3"], "embedding": []},
+                    {"id": "X3", "title": "Keyboard Navigation", "summary": "Ensuring all interactive elements are reachable via Tab and Enter keys.", "similar_to": ["X1", "C4"], "embedding": []},
+                    {"id": "X4", "title": "Screen Reader Best Practices", "summary": "Techniques for optimizing content for sequential reading.", "similar_to": ["X1", "X5"], "embedding": []},
+                    {"id": "X5", "title": "Alt Text for Images", "summary": "Providing descriptive text for non-text content.", "similar_to": ["X4", "X1"], "embedding": []},
+                    {"id": "X6", "title": "Semantic HTML Tags", "summary": "Using tags like `<header>`, `<main>`, `<footer>` for clearer document structure.", "similar_to": ["X1", "W4"], "embedding": []},
+                    {"id": "X7", "title": "Focus Management", "summary": "Controlling where the keyboard focus lands after interaction.", "similar_to": ["X3", "X1"], "embedding": []},
+                    {"id": "X8", "title": "Motion/Animation Accessibility", "summary": "Respecting 'prefers-reduced-motion' for users sensitive to movement.", "similar_to": ["X1", "C7"], "embedding": []}
+                ]
+            },
+            {
+                "id": 204,
+                "name": "Performance Optimization",
+                "cx": 450, "cy": 500,
+                "nodes": [
+                    {"id": "PZ1", "title": "Core Web Vitals", "summary": "Google's metrics for user experience: LCP, FID, CLS.", "similar_to": ["PZ2", "W6"], "embedding": []},
+                    {"id": "PZ2", "title": "Image Optimization (WebP/AVIF)", "summary": "Using modern image formats and lazy loading for faster delivery.", "similar_to": ["F4", "W6"], "embedding": []},
+                    {"id": "PZ3", "title": "Tree Shaking/Code Splitting", "summary": "Removing unused code from bundles and loading only necessary modules.", "similar_to": ["PZ4", "W5"], "embedding": []},
+                    {"id": "PZ4", "title": "Browser Caching Strategy", "summary": "Using ETag, Last-Modified, and Cache-Control headers.", "similar_to": ["N4", "F4"], "embedding": []},
+                    {"id": "PZ5", "title": "Request Animation Frame (RAF)", "summary": "Scheduling screen updates optimally for smooth animations.", "similar_to": ["W4", "C1"], "embedding": []},
+                    {"id": "PZ6", "title": "HTTP/2 vs HTTP/3", "summary": "Multiplexing streams (HTTP/2) and using UDP (HTTP/3 - QUIC).", "similar_to": ["N4", "N1"], "embedding": []},
+                    {"id": "PZ7", "title": "Preload/Preconnect Hints", "summary": "Giving the browser hints about resources to fetch or connections to establish early.", "similar_to": ["F4", "PZ4"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Machine Learning Foundations (3 Clusters)",
+        "clusters": [
+            {
+                "id": 301,
+                "name": "Core ML Algorithms",
+                "cx": 250, "cy": 250,
+                "nodes": [
+                    {"id": "M1", "title": "Linear Regression (Loss Function)", "summary": "Minimizing Mean Squared Error (MSE) to fit a straight line.", "similar_to": ["M2", "M3", "M7"], "embedding": []},
+                    {"id": "M2", "title": "Gradient Descent", "summary": "Iterative optimization algorithm for finding the minimum of a function.", "similar_to": ["M1", "M4", "L1"], "embedding": []},
+                    {"id": "M3", "title": "K-Means Clustering", "summary": "Unsupervised learning for partitioning data into K clusters.", "similar_to": ["M4", "M5"], "embedding": []},
+                    {"id": "M4", "title": "Bias-Variance Tradeoff", "summary": "Balancing model complexity to minimize total error.", "similar_to": ["M2", "M5", "M8"], "embedding": []},
+                    {"id": "M5", "title": "Decision Trees & Random Forests", "summary": "Ensemble learning method that builds multiple decision trees.", "similar_to": ["M3", "M1"], "embedding": []},
+                    {"id": "M6", "title": "Support Vector Machines (SVM)", "summary": "Finding the hyperplane that best separates classes.", "similar_to": ["M1", "M4"], "embedding": []},
+                    {"id": "M7", "title": "Cross-Validation", "summary": "Technique for evaluating model performance by partitioning data.", "similar_to": ["M4", "M1"], "embedding": []},
+                    {"id": "M8", "title": "Regularization (L1/L2)", "summary": "Adding a penalty term to the loss function to prevent overfitting.", "similar_to": ["M4", "M2"], "embedding": []},
+                    {"id": "M9", "title": "Principal Component Analysis (PCA)", "summary": "Dimensionality reduction technique by finding orthogonal axes of maximum variance.", "similar_to": ["M3", "M4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 302,
+                "name": "Neural Networks & Deep Learning",
+                "cx": 500, "cy": 250,
+                "nodes": [
+                    {"id": "L1", "title": "Backpropagation", "summary": "Algorithm for efficiently calculating the gradient of the loss function.", "similar_to": ["L2", "M2"], "embedding": []},
+                    {"id": "L2", "title": "Activation Functions (ReLU, Sigmoid)", "summary": "Introducing non-linearity into the network's output.", "similar_to": ["L1", "L3"], "embedding": []},
+                    {"id": "L3", "title": "Convolutional Neural Networks (CNNs)", "summary": "Specialized network for image processing using shared weights.", "similar_to": ["L4", "L2", "L6"], "embedding": []},
+                    {"id": "L4", "title": "Recurrent Neural Networks (RNNs/LSTMs)", "summary": "Designed to process sequential data using internal memory.", "similar_to": ["L3", "L1"], "embedding": []},
+                    {"id": "L5", "title": "Transformers (Attention Mechanism)", "summary": "Using self-attention to weigh the importance of different parts of the input sequence.", "similar_to": ["L4", "L3"], "embedding": []},
+                    {"id": "L6", "title": "Transfer Learning", "summary": "Reusing a pre-trained model on a new, related task.", "similar_to": ["L3", "L5"], "embedding": []},
+                    {"id": "L7", "title": "Generative Adversarial Networks (GANs)", "summary": "Two competing neural networks (Generator and Discriminator).", "similar_to": ["L3", "L5"], "embedding": []},
+                    {"id": "L8", "title": "Batch Normalization", "summary": "Technique to normalize the inputs of layers to stabilize training.", "similar_to": ["L1", "L2"], "embedding": []},
+                    {"id": "L9", "title": "Hyperparameter Tuning (Grid Search)", "summary": "Optimizing parameters external to the model, like learning rate or layer count.", "similar_to": ["M2", "M4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 303,
+                "name": "Evaluation & Metrics",
+                "cx": 375, "cy": 500,
+                "nodes": [
+                    {"id": "E1", "title": "Confusion Matrix (Precision/Recall)", "summary": "Table summarizing classification results, focusing on True/False Positives/Negatives.", "similar_to": ["E2", "M7"], "embedding": []},
+                    {"id": "E2", "title": "F1 Score", "summary": "Harmonic mean of precision and recall.", "similar_to": ["E1", "E3"], "embedding": []},
+                    {"id": "E3", "title": "ROC Curve and AUC", "summary": "Area under the Receiver Operating Characteristic curve for binary classifiers.", "similar_to": ["E1", "M7"], "embedding": []},
+                    {"id": "E4", "title": "Clustering Metrics (Silhouette Score)", "summary": "Metric used to evaluate the quality of clusters created by algorithms like K-Means.", "similar_to": ["M3", "E3"], "embedding": []},
+                    {"id": "E5", "title": "Root Mean Square Error (RMSE)", "summary": "Common metric for regression tasks.", "similar_to": ["M1", "E1"], "embedding": []},
+                    {"id": "E6", "title": "Jaccard Index", "summary": "Metric for assessing the similarity between two sets of data points.", "similar_to": ["M3", "E4"], "embedding": []},
+                    {"id": "E7", "title": "P-Value and Hypothesis Testing", "summary": "Determining the significance of experimental results.", "similar_to": ["M1", "M7"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "DevOps & Cloud Concepts (4 Clusters)",
+        "clusters": [
+            {
+                "id": 401,
+                "name": "Containers & Orchestration",
+                "cx": 200, "cy": 200,
+                "nodes": [
+                    {"id": "R1", "title": "Docker Image vs. Container", "summary": "Image is the read-only blueprint; Container is the runtime instance.", "similar_to": ["R2", "R3"], "embedding": []},
+                    {"id": "R2", "title": "Kubernetes Pods & Services", "summary": "Pod is the smallest deployable unit; Service exposes the Pod(s).", "similar_to": ["R1", "R4", "R5"], "embedding": []},
+                    {"id": "R3", "title": "Container Networking", "summary": "Bridge, Host, and Overlay networks in container environments.", "similar_to": ["R1", "N1"], "embedding": []},
+                    {"id": "R4", "title": "Ingress Controller", "summary": "Manages external access to services in a Kubernetes cluster.", "similar_to": ["R2", "N4"], "embedding": []},
+                    {"id": "R5", "title": "Helm Charts", "summary": "Package manager for Kubernetes.", "similar_to": ["R2", "I2"], "embedding": []},
+                    {"id": "R6", "title": "StatefulSets", "summary": "Kubernetes API object used to manage stateful applications.", "similar_to": ["R2", "B7"], "embedding": []},
+                    {"id": "R7", "title": "Serverless Containers (Fargate)", "summary": "Running containers without managing the underlying server infrastructure.", "similar_to": ["F2", "R1"], "embedding": []},
+                    {"id": "R8", "title": "Kubernetes Operator", "summary": "Application-specific controller that extends the Kubernetes API.", "similar_to": ["R2", "I3"], "embedding": []}
+                ]
+            },
+            {
+                "id": 402,
+                "name": "CI/CD & Automation",
+                "cx": 450, "cy": 200,
+                "nodes": [
+                    {"id": "I1", "title": "CI/CD Pipeline Stages", "summary": "Source, Build, Test, Deploy phases of automated delivery.", "similar_to": ["I2", "S3"], "embedding": []},
+                    {"id": "I2", "title": "Infrastructure as Code (IaC)", "summary": "Managing infrastructure through machine-readable definition files (e.g., Terraform).", "similar_to": ["I1", "I3"], "embedding": []},
+                    {"id": "I3", "title": "Idempotence in Automation", "summary": "Ensuring an operation produces the same result regardless of how many times it is run.", "similar_to": ["I2", "B2"], "embedding": []},
+                    {"id": "I4", "title": "Blue/Green Deployment", "summary": "Release technique to minimize downtime by running two identical environments.", "similar_to": ["I1", "R4"], "embedding": []},
+                    {"id": "I5", "title": "Canary Deployments", "summary": "Rolling out a new version to a small subset of users.", "similar_to": ["I4", "I1"], "embedding": []},
+                    {"id": "I6", "title": "Feature Flags/Toggles", "summary": "Allowing features to be turned on or off without deploying new code.", "similar_to": ["I4", "S1"], "embedding": []},
+                    {"id": "I7", "title": "Configuration Management (Ansible)", "summary": "Tools to manage the state of servers in an automated way.", "similar_to": ["I2", "R1"], "embedding": []},
+                    {"id": "I8", "title": "GitOps", "summary": "An operational framework that uses Git as the single source of truth for declarative infrastructure and applications.", "similar_to": ["I2", "S4"], "embedding": []}
+                ]
+            },
+            {
+                "id": 403,
+                "name": "Cloud Computing Fundamentals",
+                "cx": 200, "cy": 500,
+                "nodes": [
+                    {"id": "F1", "title": "IaaS, PaaS, SaaS Models", "summary": "Infrastructure, Platform, and Software as a Service delivery models.", "similar_to": ["F2", "F3"], "embedding": []},
+                    {"id": "F2", "title": "Serverless Functions (FaaS)", "summary": "Running code without provisioning or managing servers (e.g., AWS Lambda).", "similar_to": ["F1", "W2"], "embedding": []},
+                    {"id": "F3", "title": "Horizontal vs. Vertical Scaling", "summary": "Adding more machines (Horizontal) vs. adding more resources to one machine (Vertical).", "similar_to": ["F1", "R2", "N7"], "embedding": []},
+                    {"id": "F4", "title": "Content Delivery Networks (CDN)", "summary": "Geographically distributed network of proxy servers.", "similar_to": ["F2", "N5"], "embedding": []},
+                    {"id": "F5", "title": "CAP Theorem", "summary": "Can only guarantee two of Consistency, Availability, and Partition tolerance.", "similar_to": ["B2", "F3"], "embedding": []},
+                    {"id": "F6", "title": "Cloud Security (Shared Responsibility Model)", "summary": "Defining security tasks between the cloud provider and the customer.", "similar_to": ["F1", "O7"], "embedding": []},
+                    {"id": "F7", "title": "High Availability vs. Fault Tolerance", "summary": "HA (minimizing downtime) vs. FT (ensuring continuity even with failures).", "similar_to": ["F3", "B2"], "embedding": []},
+                    {"id": "F8", "title": "Cloud Regions and Availability Zones", "summary": "Physical locations and isolated data centers within them.", "similar_to": ["F7", "N6"], "embedding": []}
+                ]
+            },
+            {
+                "id": 404,
+                "name": "Monitoring & Logging",
+                "cx": 450, "cy": 500,
+                "nodes": [
+                    {"id": "Lg1", "title": "The Three Pillars of Observability", "summary": "Logs, Metrics, and Traces (Distributed Tracing).", "similar_to": ["Lg2", "Lg3", "I1"], "embedding": []},
+                    {"id": "Lg2", "title": "Prometheus/Time Series Databases (TSDB)", "summary": "System for storing and querying metrics for monitoring systems.", "similar_to": ["Lg1", "F3"], "embedding": []},
+                    {"id": "Lg3", "title": "Structured Logging (JSON)", "summary": "Writing logs in a consistent, machine-readable format for easy searching.", "similar_to": ["Lg1", "R1"], "embedding": []},
+                    {"id": "Lg4", "title": "SLIs, SLOs, and SLAs", "summary": "Service Level Indicators, Objectives, and Agreements.", "similar_to": ["S1", "I1"], "embedding": []},
+                    {"id": "Lg5", "title": "Log Aggregation (ELK Stack/Loki)", "summary": "Centralizing log data from multiple sources for analysis.", "similar_to": ["Lg3", "Lg2"], "embedding": []},
+                    {"id": "Lg6", "title": "Alerting Strategy (Golden Signals)", "summary": "Setting up alerts based on Latency, Traffic, Errors, and Saturation.", "similar_to": ["Lg4", "I5"], "embedding": []},
+                    {"id": "Lg7", "title": "Tracing (OpenTelemetry)", "summary": "Tracking a single request as it flows through multiple microservices.", "similar_to": ["Lg1", "S8"], "embedding": []}
+                ]
+            }
+        ]
+    },
+    {
+    "id": 5,
+    "name": "Phantom Protocol Game Launch Reviews (20 Clusters)",
+    "clusters": [
+        {
+            "id": 501,
+            "name": "Gameplay Mechanics",
+            "cx": 150, "cy": 150,
+            "nodes": [
+                {"id": "GPM1", "title": "Combat Feels Fluid", "summary": "The combat system is fast-paced and highly responsive, a major high point.", "similar_to": ["GPM2", "GPM4"], "embedding": []},
+                {"id": "GPM2", "title": "Stealth System Flaws", "summary": "Guards seem to detect you randomly, making the stealth mechanic unreliable.", "similar_to": ["GPM1", "PFS4"], "embedding": []},
+                {"id": "GPM3", "title": "Deep Crafting Loop", "summary": "The resource gathering and item crafting system is surprisingly addictive.", "similar_to": ["GPM5", "ENM1"], "embedding": []},
+                {"id": "GPM4", "title": "Puzzles are Repetitive", "summary": "The environmental puzzles use the same few solutions too often.", "similar_to": ["GPM2", "WLD3"], "embedding": []},
+                {"id": "GPM5", "title": "Innovation in Travel", "summary": "The unique traversal method (grapple hook) is the best part of the game.", "similar_to": ["GPM3", "WLD2"], "embedding": []},
+                {"id": "GPM6", "title": "Tutorial is Too Long", "summary": "It took nearly two hours to finish the mandatory tutorial segment.", "similar_to": ["TUT1", "GPM4"], "embedding": []},
+                {"id": "GPM7", "title": "Satisfying Hit Feedback", "summary": "Every successful attack gives great visual and audio confirmation.", "similar_to": ["AUD1", "GPM1"], "embedding": []},
+                {"id": "GPM8", "title": "Camera Struggles in Tight Spaces", "summary": "The camera system is hard to manage when indoors or in corridors.", "similar_to": ["GPM2", "PFS3"], "embedding": []},
+                {"id": "GPM9", "title": "No New Game Plus", "summary": "Disappointed there's no way to carry progress into a second playthrough.", "similar_to": ["ENM3", "GPM5"], "embedding": []},
+                {"id": "GPM10", "title": "Mini-Games Are Unnecessary", "summary": "The lock-picking and hacking mini-games are dull padding.", "similar_to": ["GPM4", "GPM6"], "embedding": []}
+            ]
+        },
+        {
+            "id": 502,
+            "name": "Story & Lore",
+            "cx": 400, "cy": 150,
+            "nodes": [
+                {"id": "STL1", "title": "Twist Ending is Predictable", "summary": "I saw the final plot twist coming from the mid-point of the game.", "similar_to": ["STL2", "STL4"], "embedding": []},
+                {"id": "STL2", "title": "Excellent World-Building", "summary": "The history and lore of the factions are incredibly detailed and well-written.", "similar_to": ["STL3", "WLD1"], "embedding": []},
+                {"id": "STL3", "title": "Main Character is Flat", "summary": "The protagonist lacked depth and motivation throughout the narrative.", "similar_to": ["VOA1", "STL1"], "embedding": []},
+                {"id": "STL4", "title": "Side Quests Tell Better Stories", "summary": "The optional missions had more heart and better dialogue than the main questline.", "similar_to": ["STL2", "VOA3"], "embedding": []},
+                {"id": "STL5", "title": "Compelling Antagonist", "summary": "The villain's philosophy and voice acting are the highlights of the story.", "similar_to": ["VOA2", "STL2"], "embedding": []},
+                {"id": "STL6", "title": "Too Much Reading (Codex)", "summary": "Having to read hundreds of database entries to understand the plot is poor design.", "similar_to": ["STL1", "WLD4"], "embedding": []},
+                {"id": "STL7", "title": "Unfinished Story Arc", "summary": "One major character disappears halfway through with no resolution.", "similar_to": ["STL1", "CMT2"], "embedding": []},
+                {"id": "STL8", "title": "Meaningful Player Choices", "summary": "The moral choices I made genuinely impacted the final hours.", "similar_to": ["STL4", "GPM3"], "embedding": []},
+                {"id": "STL9", "title": "Nostalgia Baiting", "summary": "The heavy reliance on lore from the original game feels lazy.", "similar_to": ["HYR1", "STL6"], "embedding": []},
+                {"id": "STL10", "title": "Pacing is Off", "summary": "The first 10 hours are slow; the last 5 hours are a rushed blur.", "similar_to": ["STL7", "GPM6"], "embedding": []}
+            ]
+        },
+        {
+            "id": 503,
+            "name": "Graphics & Art Style",
+            "cx": 650, "cy": 150,
+            "nodes": [
+                {"id": "GRS1", "title": "Stunning Visual Fidelity", "summary": "Easily one of the best-looking games of the generation, especially the lighting.", "similar_to": ["GRS2", "GRS5"], "embedding": []},
+                {"id": "GRS2", "title": "Uninspired Character Models", "summary": "NPC faces are dull and lack expressiveness, contrasting the beautiful environments.", "similar_to": ["GRS1", "CHR1"], "embedding": []},
+                {"id": "GRS3", "title": "Fantastic Art Direction", "summary": "The unique cyberpunk aesthetic is consistent and striking.", "similar_to": ["GRS4", "GRS1"], "embedding": []},
+                {"id": "GRS4", "title": "Texture Pop-in is Distracting", "summary": "Textures loading late when driving or turning quickly breaks immersion.", "similar_to": ["PFS1", "GRS2"], "embedding": []},
+                {"id": "GRS5", "title": "Particle Effects Overdone", "summary": "Combat gets messy with too many bright, screen-filling particle effects.", "similar_to": ["GPM7", "GRS3"], "embedding": []},
+                {"id": "GRS6", "title": "Water Rendering is Sub-Par", "summary": "The water physics and reflections look like they're from a game 5 years ago.", "similar_to": ["GRS4", "PFS3"], "embedding": []},
+                {"id": "GRS7", "title": "HDR Implementation is Poor", "summary": "The game looks washed out on my HDR monitor until I disabled it.", "similar_to": ["GRS1", "PFS5"], "embedding": []},
+                {"id": "GRS8", "title": "Creative Weapon Designs", "summary": "The visual design of the weaponry is detailed and imaginative.", "similar_to": ["GPM1", "GRS3"], "embedding": []},
+                {"id": "GRS9", "title": "Too Much Bloom/Lens Flare", "summary": "Constant bloom effects make it hard to see in bright areas.", "similar_to": ["GRS5", "GRS4"], "embedding": []},
+                {"id": "GRS10", "title": "Consistent Tone", "summary": "The dark, neon-drenched mood is perfectly captured by the visuals.", "similar_to": ["GRS3", "AUD4"], "embedding": []}
+            ]
+        },
+        {
+            "id": 504,
+            "name": "Performance & Bugs",
+            "cx": 900, "cy": 150,
+            "nodes": [
+                {"id": "PFS1", "title": "Console Framerate is Unstable", "summary": "The game frequently drops below 30 FPS on the base console models.", "similar_to": ["PFS2", "GRS4"], "embedding": []},
+                {"id": "PFS2", "title": "Game-Breaking Quest Bug", "summary": "A specific main quest marker vanished, halting my progress entirely.", "similar_to": ["PFS3", "CMT1"], "embedding": []},
+                {"id": "PFS3", "title": "Frequent Crashes to Desktop (PC)", "summary": "I get a CTD every hour or so, even with updated drivers.", "similar_to": ["PFS1", "PFS4"], "embedding": []},
+                {"id": "PFS4", "title": "NPC Glitches and T-Posing", "summary": "Saw several NPCs stuck in T-pose or clipping through walls.", "similar_to": ["GPM2", "PFS3"], "embedding": []},
+                {"id": "PFS5", "title": "Excessive Loading Times", "summary": "Fast travel takes over a minute, even on an SSD.", "similar_to": ["PFS1", "PFS6"], "embedding": []},
+                {"id": "PFS6", "title": "Day One Patch Was Huge", "summary": "A mandatory 80GB patch was required before I could even start.", "similar_to": ["PFS5", "CMT2"], "embedding": []},
+                {"id": "PFS7", "title": "Screen Tearing Issues", "summary": "V-Sync doesn't seem to work, leading to noticeable screen tearing.", "similar_to": ["PFS1", "PFS3"], "embedding": []},
+                {"id": "PFS8", "title": "Memory Leak on High Settings", "summary": "After 3 hours, my RAM usage spikes and performance tanks.", "similar_to": ["PFS3", "PFS5"], "embedding": []},
+                {"id": "PFS9", "title": "Small Hotfixes Are Good", "summary": "The developer has been quick to push small patches addressing minor bugs.", "similar_to": ["CMT3", "PFS2"], "embedding": []},
+                {"id": "PFS10", "title": "Stuttering During Cutscenes", "summary": "The frame pacing in pre-rendered scenes is noticeably uneven.", "similar_to": ["PFS1", "VOA4"], "embedding": []}
+            ]
+        },
+        {
+            "id": 505,
+            "name": "Audio & Soundtrack",
+            "cx": 1150, "cy": 150,
+            "nodes": [
+                {"id": "AUD1", "title": "Masterful Original Score", "summary": "The orchestral soundtrack elevates every major moment.", "similar_to": ["AUD2", "AUD4"], "embedding": []},
+                {"id": "AUD2", "title": "Boring Ambient Noise", "summary": "The city sounds are generic and repetitive, lacking life.", "similar_to": ["AUD1", "WLD4"], "embedding": []},
+                {"id": "AUD3", "title": "Sound Mixing is Uneven", "summary": "Dialogue is often too quiet compared to music and explosions.", "similar_to": ["VOA4", "AUD4"], "embedding": []},
+                {"id": "AUD4", "title": "Punchy Sound Effects", "summary": "The weapon fire and explosions sound satisfyingly visceral.", "similar_to": ["GPM7", "AUD1"], "embedding": []},
+                {"id": "AUD5", "title": "No Custom Soundtrack Option", "summary": "Wish I could integrate my own music easily.", "similar_to": ["AUD2", "ACS1"], "embedding": []},
+                {"id": "AUD6", "title": "Dynamic Music System", "summary": "The soundtrack shifts seamlessly during combat and exploration.", "similar_to": ["AUD1", "GPM1"], "embedding": []},
+                {"id": "AUD7", "title": "Bad Spatial Audio", "summary": "Can't tell where enemies are coming from with 3D audio enabled.", "similar_to": ["AUD3", "PFS3"], "embedding": []},
+                {"id": "AUD8", "title": "The Main Theme is an Earworm", "summary": "The track played during the title screen is phenomenal.", "similar_to": ["AUD1", "AUD6"], "embedding": []},
+                {"id": "AUD9", "title": "Lack of Music Variety", "summary": "Heard the same 4 combat tracks for the whole 50-hour game.", "similar_to": ["AUD2", "ENM2"], "embedding": []},
+                {"id": "AUD10", "title": "Weapon Sound Design is Generic", "summary": "All the plasma rifles sound exactly the same.", "similar_to": ["AUD4", "GPM4"], "embedding": []}
+            ]
+        },
+        {
+            "id": 506,
+            "name": "Multiplayer Experience",
+            "cx": 150, "cy": 400,
+            "nodes": [
+                {"id": "MPL1", "title": "Robust Co-op Implementation", "summary": "Seamless drop-in/drop-out co-op makes the campaign better.", "similar_to": ["MPL2", "MPL5"], "embedding": []},
+                {"id": "MPL2", "title": "Dedicated Servers Needed", "summary": "Peer-to-peer hosting leads to lag and host advantage.", "similar_to": ["MPL1", "PFS1"], "embedding": []},
+                {"id": "MPL3", "title": "PvP Mode is Unbalanced", "summary": "One specific weapon dominates the entire player-vs-player meta.", "similar_to": ["MPL4", "GPM1"], "embedding": []},
+                {"id": "MPL4", "title": "Fun Social Hub", "summary": "The central hub world is great for meeting other players and trading.", "similar_to": ["MPL5", "CHR3"], "embedding": []},
+                {"id": "MPL5", "title": "No Cross-Play", "summary": "It's a huge letdown that PC and console players can't play together.", "similar_to": ["MPL1", "PLT1"], "embedding": []},
+                {"id": "MPL6", "title": "Toxicity is a Problem", "summary": "The lack of moderation in the voice chat is awful.", "similar_to": ["COM1", "MPL3"], "embedding": []},
+                {"id": "MPL7", "title": "Excellent Matchmaking Speed", "summary": "I find a full lobby instantly, every time.", "similar_to": ["MPL1", "MPL5"], "embedding": []},
+                {"id": "MPL8", "title": "Only Two Maps at Launch", "summary": "The variety of multiplayer arenas is shockingly limited.", "similar_to": ["ENM2", "MPL3"], "embedding": []},
+                {"id": "MPL9", "title": "Desync Issues", "summary": "Rubber-banding and teleporting enemies make competitive play impossible.", "similar_to": ["PFS3", "MPL2"], "embedding": []},
+                {"id": "MPL10", "title": "PvE Raid Content is Great", "summary": "The endgame 8-player raids are the best content in the game.", "similar_to": ["ENM1", "MPL1"], "embedding": []}
+            ]
+        },
+        {
+            "id": 507,
+            "name": "Endgame Content",
+            "cx": 400, "cy": 400,
+            "nodes": [
+                {"id": "ENM1", "title": "Satisfying Loot Grind", "summary": "The loop of running dungeons for better gear is highly addictive.", "similar_to": ["ENM2", "MPL10"], "embedding": []},
+                {"id": "ENM2", "title": "Lack of True Post-Game Missions", "summary": "After the credits roll, there's nothing new to do but chase collectables.", "similar_to": ["ENM3", "GPM9"], "embedding": []},
+                {"id": "ENM3", "title": "Future Content Road Map", "summary": "The developer promised three major expansions, which is reassuring.", "similar_to": ["CMT2", "ENM2"], "embedding": []},
+                {"id": "ENM4", "title": "Challenging Difficulty Modes", "summary": "The 'Nightmare' difficulty is truly punishing and requires a new build.", "similar_to": ["GPM1", "ENM1"], "embedding": []},
+                {"id": "ENM5", "title": "Daily/Weekly Dailies are Tedious", "summary": "The required login activities are just filler to keep time metrics high.", "similar_to": ["MCT2", "ENM2"], "embedding": []},
+                {"id": "ENM6", "title": "PvP Rankings are a Mess", "summary": "The competitive ladder system is broken and easy to exploit.", "similar_to": ["MPL3", "PFS2"], "embedding": []},
+                {"id": "ENM7", "title": "Gated Content by Level", "summary": "You can't access key endgame zones until you reach max level, which takes forever.", "similar_to": ["GPM6", "ENM5"], "embedding": []},
+                {"id": "ENM8", "title": "Incentive for Replaying", "summary": "Different ending conditions based on player choices motivate re-runs.", "similar_to": ["STL8", "ENM3"], "embedding": []},
+                {"id": "ENM9", "title": "No Public Test Realm (PTR)", "summary": "Balance changes are released directly to the live server with no testing.", "similar_to": ["CMT3", "MPL3"], "embedding": []},
+                {"id": "ENM10", "title": "Great Seasonal Events", "summary": "The promised seasonal events look engaging and diverse.", "similar_to": ["ENM3", "MCT3"], "embedding": []}
+            ]
+        },
+        {
+            "id": 508,
+            "name": "Monetization & Microtransactions",
+            "cx": 650, "cy": 400,
+            "nodes": [
+                {"id": "MCT1", "title": "Cosmetics Only (Good)", "summary": "All paid items are purely cosmetic and offer no power advantage.", "similar_to": ["MCT3", "OVR1"], "embedding": []},
+                {"id": "MCT2", "title": "Battle Pass is a Waste", "summary": "The premium battle pass offers very little content for the price.", "similar_to": ["ENM5", "OVR2"], "embedding": []},
+                {"id": "MCT3", "title": "Fair Pricing for Items", "summary": "Individual cosmetic prices are reasonable compared to other AAA titles.", "similar_to": ["MCT1", "OVR1"], "embedding": []},
+                {"id": "MCT4", "title": "FOMO Tactics", "summary": "They rotate limited-time items in the store, pressuring purchases.", "similar_to": ["MCT2", "MCT5"], "embedding": []},
+                {"id": "MCT5", "title": "Loot Boxes are Present", "summary": "The existence of randomized loot boxes is a huge ethical concern.", "similar_to": ["MCT4", "MCT2"], "embedding": []},
+                {"id": "MCT6", "title": "Boosters Are Pay-to-Win", "summary": "The XP and currency boosters ruin the integrity of the multiplayer progression.", "similar_to": ["MCT5", "MPL3"], "embedding": []},
+                {"id": "MCT7", "title": "Free Currency is Generous", "summary": "I earned enough premium currency through normal play to buy an item.", "similar_to": ["MCT1", "OVR1"], "embedding": []},
+                {"id": "MCT8", "title": "Premium Currency is Confusing", "summary": "You have to buy 1500 credits to purchase a 1200 credit item, forcing leftovers.", "similar_to": ["MCT4", "MCT2"], "embedding": []},
+                {"id": "MCT9", "title": "Paid Expeditions", "summary": "The new high-level dungeons require a separate purchase to access.", "similar_to": ["ENM7", "OVR2"], "embedding": []},
+                {"id": "MCT10", "title": "Lack of F2P Option", "summary": "The game should have been free-to-play with this monetization model.", "similar_to": ["OVR2", "MCT6"], "embedding": []}
+            ]
+        },
+        {
+            "id": 509,
+            "name": "Character Customization",
+            "cx": 900, "cy": 400,
+            "nodes": [
+                {"id": "CHR1", "title": "Incredibly Deep Character Creator", "summary": "Spent an hour just on my character's face and background story.", "similar_to": ["CHR2", "CHR3"], "embedding": []},
+                {"id": "CHR2", "title": "Limited Hair/Beard Options", "summary": "The selection for hairstyles is sparse and disappointing.", "similar_to": ["CHR1", "GRS2"], "embedding": []},
+                {"id": "CHR3", "title": "Gear Looks Generic", "summary": "All the armor sets look like slight variations of the same grey jacket.", "similar_to": ["CHR4", "MCT2"], "embedding": []},
+                {"id": "CHR4", "title": "Lack of Body Diversity", "summary": "Only two body types available, neither of which is truly diverse.", "similar_to": ["CHR2", "ACS2"], "embedding": []},
+                {"id": "CHR5", "title": "Excellent Layering System", "summary": "The ability to layer multiple cosmetic items creates unique looks.", "similar_to": ["CHR3", "MCT1"], "embedding": []},
+                {"id": "CHR6", "title": "Poor Interface for Transmog", "summary": "The UI for changing item appearances is confusing and clunky.", "similar_to": ["UIX1", "CHR3"], "embedding": []},
+                {"id": "CHR7", "title": "Color Palette is Restrictive", "summary": "You can only use pre-set color schemes for armor.", "similar_to": ["CHR3", "CHR2"], "embedding": []},
+                {"id": "CHR8", "title": "Gender Non-Conforming Options", "summary": "Appreciate the option to choose pronouns and voice independent of body type.", "similar_to": ["CHR1", "ACS4"], "embedding": []},
+                {"id": "CHR9", "title": "Pet/Companion Customization", "summary": "My robot companion can be customized in surprising detail.", "similar_to": ["CHR1", "GPM3"], "embedding": []},
+                {"id": "CHR10", "title": "Paid Customization Slot", "summary": "You have to pay premium currency to save a second character preset.", "similar_to": ["MCT2", "CHR2"], "embedding": []}
+            ]
+        },
+        {
+            "id": 510,
+            "name": "Accessibility Features",
+            "cx": 1150, "cy": 400,
+            "nodes": [
+                {"id": "ACS1", "title": "Excellent Subtitle Controls", "summary": "Fully customizable font size, color, and background opacity for subtitles.", "similar_to": ["ACS2", "AUD3"], "embedding": []},
+                {"id": "ACS2", "title": "Colorblind Modes Are Effective", "summary": "The Deuteranopia and Protanopia filters work flawlessly.", "similar_to": ["ACS1", "UIX3"], "embedding": []},
+                {"id": "ACS3", "title": "Quick-Time Events Cannot Be Skipped", "summary": "For a modern game, forcing QTEs with no skip option is unacceptable.", "similar_to": ["ACS4", "GPM6"], "embedding": []},
+                {"id": "ACS4", "title": "Full Controller Remapping", "summary": "Can remap every single button on the controller, which is great.", "similar_to": ["ACS3", "PLT2"], "embedding": []},
+                {"id": "ACS5", "title": "Text-to-Speech in Menus", "summary": "The screen reader option for navigating menus is a thoughtful addition.", "similar_to": ["ACS1", "UIX1"], "embedding": []},
+                {"id": "ACS6", "title": "Motion Sickness Mitigation", "summary": "Includes field-of-view (FOV) sliders and motion blur toggles.", "similar_to": ["PFS7", "GRS9"], "embedding": []},
+                {"id": "ACS7", "title": "Toggle vs. Hold Input", "summary": "Option to toggle actions like running or aiming instead of holding the button.", "similar_to": ["ACS4", "GPM1"], "embedding": []},
+                {"id": "ACS8", "title": "Mini-Map Lacks Directions", "summary": "The mini-map provides no compass direction, making navigation difficult.", "similar_to": ["UIX4", "WLD4"], "embedding": []},
+                {"id": "ACS9", "title": "No Language Support for Voice", "summary": "Only English voice acting, despite having 10 languages for subtitles.", "similar_to": ["VOA5", "AUD5"], "embedding": []},
+                {"id": "ACS10", "title": "Difficulty Fine-Tuning", "summary": "Can adjust enemy health and player damage independently of the main difficulty.", "similar_to": ["ENM4", "GPM1"], "embedding": []}
+            ]
+        },
+        {
+            "id": 511,
+            "name": "Combat System Depth",
+            "cx": 150, "cy": 650,
+            "nodes": [
+                {"id": "CSD1", "title": "Lack of Enemy Variety", "summary": "Fought the same 5 enemy types throughout the entire game.", "similar_to": ["ENM2", "CSD2"], "embedding": []},
+                {"id": "CSD2", "title": "Great Boss Fight Design", "summary": "The major bosses have unique mechanics and are memorable.", "similar_to": ["CSD3", "GPM1"], "embedding": []},
+                {"id": "CSD3", "title": "Deep Skill Tree", "summary": "The character build depth rivals older RPGs.", "similar_to": ["GPM3", "CHR1"], "embedding": []},
+                {"id": "CSD4", "title": "Stagger Mechanic is Unclear", "summary": "Can't tell when enemies are vulnerable to a finishing move.", "similar_to": ["GPM2", "UIX2"], "embedding": []},
+                {"id": "CSD5", "title": "Overpowered Melee Builds", "summary": "Melee damage is vastly superior to ranged, ruining build diversity.", "similar_to": ["MPL3", "CSD3"], "embedding": []},
+                {"id": "CSD6", "title": "Resource Management is Key", "summary": "Running out of ammo/energy requires tactical retreat, which I love.", "similar_to": ["GPM1", "ENM4"], "embedding": []},
+                {"id": "CSD7", "title": "Too Many Status Effects", "summary": "Having 15 different types of elemental damage is excessive.", "similar_to": ["CSD1", "GPM4"], "embedding": []},
+                {"id": "CSD8", "title": "Friendly Fire in Co-op", "summary": "Accidentally killing teammates in co-op is hilarious and adds stakes.", "similar_to": ["MPL1", "GPM1"], "embedding": []},
+                {"id": "CSD9", "title": "Poor AI Pathfinding", "summary": "Enemies get stuck behind objects constantly, making fights trivial.", "similar_to": ["PFS4", "GPM2"], "embedding": []},
+                {"id": "CSD10", "title": "Weapon Recoil is Too High", "summary": "It's almost impossible to hit targets at medium-long range.", "similar_to": ["GPM2", "CSD5"], "embedding": []}
+            ]
+        },
+        {
+            "id": 512,
+            "name": "World Design & Exploration",
+            "cx": 400, "cy": 650,
+            "nodes": [
+                {"id": "WLD1", "title": "Incredible Verticality", "summary": "The city is layered and encourages climbing, not just running around.", "similar_to": ["WLD2", "GPM5"], "embedding": []},
+                {"id": "WLD2", "title": "Open World Feels Empty", "summary": "The vast map is beautiful but lacks interesting activities between objectives.", "similar_to": ["WLD3", "ENM2"], "embedding": []},
+                {"id": "WLD3", "title": "Great Environmental Storytelling", "summary": "Abandoned areas tell a vivid story without needing dialogue.", "similar_to": ["STL2", "GRS3"], "embedding": []},
+                {"id": "WLD4", "title": "Fast Travel is Necessary", "summary": "The world is too big and repetitive to traverse on foot every time.", "similar_to": ["PFS5", "WLD2"], "embedding": []},
+                {"id": "WLD5", "title": "No Day/Night Cycle", "summary": "The world is permanently stuck in a depressing, perpetual twilight.", "similar_to": ["GRS4", "WLD4"], "embedding": []},
+                {"id": "WLD6", "title": "Meaningful Collectables", "summary": "Finding secrets actually unlocks unique gear/lore, not just filler.", "similar_to": ["STL4", "GPM3"], "embedding": []},
+                {"id": "WLD7", "title": "Same Old Biomes", "summary": "Cyberpunk city, industrial zone, desert—it's all been done before.", "similar_to": ["WLD2", "GRS2"], "embedding": []},
+                {"id": "WLD8", "title": "Dynamic World Events", "summary": "Random events like police chases or corporate raids make the world feel alive.", "similar_to": ["WLD1", "MPL7"], "embedding": []},
+                {"id": "WLD9", "title": "Map Icon Overload", "summary": "The map is cluttered with hundreds of identical, confusing icons.", "similar_to": ["UIX4", "WLD4"], "embedding": []},
+                {"id": "WLD10", "title": "Exploration Rewards", "summary": "Hidden pathways and optional jumps lead to the best secrets.", "similar_to": ["GPM5", "WLD6"], "embedding": []}
+            ]
+        },
+        {
+            "id": 513,
+            "name": "User Interface (UI)",
+            "cx": 650, "cy": 650,
+            "nodes": [
+                {"id": "UIX1", "title": "Clunky Inventory Management", "summary": "Sorting gear and managing items is a painful, slow process.", "similar_to": ["UIX2", "CHR6"], "embedding": []},
+                {"id": "UIX2", "title": "Confusing Menus", "summary": "It's hard to tell where the skill tree ends and the settings menu begins.", "similar_to": ["UIX1", "UIX3"], "embedding": []},
+                {"id": "UIX3", "title": "Sleek HUD Design", "summary": "The Heads-Up Display is minimalist and only shows what is necessary.", "similar_to": ["UIX4", "ACS2"], "embedding": []},
+                {"id": "UIX4", "title": "Unreadable Small Text", "summary": "The font size in tooltips is microscopic, especially on a TV.", "similar_to": ["UIX1", "ACS1"], "embedding": []},
+                {"id": "UIX5", "title": "Lack of Hotbar Slots", "summary": "Can only equip 4 items, making mid-combat healing tedious.", "similar_to": ["GPM2", "CSD6"], "embedding": []},
+                {"id": "UIX6", "title": "No Custom Reticle Option", "summary": "The default crosshair is hard to see against certain backgrounds.", "similar_to": ["UIX3", "ACS2"], "embedding": []},
+                {"id": "UIX7", "title": "Quick-Swap Gear Presets", "summary": "I love the ability to switch between my stealth and combat builds instantly.", "similar_to": ["CHR5", "GPM1"], "embedding": []},
+                {"id": "UIX8", "title": "Misleading Tooltips", "summary": "Item descriptions often use jargon that isn't explained elsewhere.", "similar_to": ["STL6", "UIX2"], "embedding": []},
+                {"id": "UIX9", "title": "Controller Navigation is Laggy", "summary": "Moving through menus with a joystick is slow and delayed.", "similar_to": ["PFS1", "UIX1"], "embedding": []},
+                {"id": "UIX10", "title": "Mission Tracker is Obscure", "summary": "The on-screen quest marker is vague and points to general areas.", "similar_to": ["WLD9", "UIX4"], "embedding": []}
+            ]
+        },
+        {
+            "id": 514,
+            "name": "Voice Acting Quality",
+            "cx": 900, "cy": 650,
+            "nodes": [
+                {"id": "VOA1", "title": "Lead Actor is Phenomenal", "summary": "The main character's voice actor brought real weight to the flat script.", "similar_to": ["VOA2", "STL3"], "embedding": []},
+                {"id": "VOA2", "title": "NPC Voices Are Repetitive", "summary": "Heard the same two street vendors saying the same lines 50 times.", "similar_to": ["VOA3", "AUD2"], "embedding": []},
+                {"id": "VOA3", "title": "Great Supporting Cast", "summary": "The companion characters are all distinct and well-acted.", "similar_to": ["VOA1", "STL4"], "embedding": []},
+                {"id": "VOA4", "title": "Emotionless Delivery", "summary": "Actors sound like they are just reading lines for their paycheck.", "similar_to": ["VOA2", "STL3"], "embedding": []},
+                {"id": "VOA5", "title": "Lack of Lip Sync", "summary": "Characters' mouths move out of time with the spoken words.", "similar_to": ["GRS2", "PFS4"], "embedding": []},
+                {"id": "VOA6", "title": "Regional Accent Variety", "summary": "Appreciate the diverse range of accents from different in-game regions.", "similar_to": ["WLD1", "STL2"], "embedding": []},
+                {"id": "VOA7", "title": "Antagonist's Monologue", "summary": "The final speech from the villain was the best piece of acting in the game.", "similar_to": ["STL5", "VOA1"], "embedding": []},
+                {"id": "VOA8", "title": "Subtle Sound Design", "summary": "The voice processing (e.g., through radios/helmets) is very well done.", "similar_to": ["AUD7", "VOA5"], "embedding": []},
+                {"id": "VOA9", "title": "Sound Levels Too Low", "summary": "Even with audio settings cranked, some whispers are inaudible.", "similar_to": ["AUD3", "ACS1"], "embedding": []},
+                {"id": "VOA10", "title": "Too Much Forced Banter", "summary": "Companions constantly talk over each other during key moments.", "similar_to": ["AUD3", "STL10"], "embedding": []}
+            ]
+        },
+        {
+            "id": 515,
+            "name": "Initial Hype vs Reality",
+            "cx": 1150, "cy": 650,
+            "nodes": [
+                {"id": "HYR1", "title": "Exceeded All Expectations", "summary": "The game delivered on every pre-launch promise and more.", "similar_to": ["HYR2", "OVR1"], "embedding": []},
+                {"id": "HYR2", "title": "Major Visual Downgrade", "summary": "The final product looks significantly worse than the 2023 reveal trailer.", "similar_to": ["GRS4", "PFS1"], "embedding": []},
+                {"id": "HYR3", "title": "The Scaling is Wrong", "summary": "The game was marketed as massive, but the core campaign is surprisingly short.", "similar_to": ["STL10", "ENM2"], "embedding": []},
+                {"id": "HYR4", "title": "Misleading Multiplayer Demo", "summary": "The competitive demo was great, but the live game is full of balance issues.", "similar_to": ["MPL3", "PFS2"], "embedding": []},
+                {"id": "HYR5", "title": "Developer Was Honest", "summary": "They managed expectations and were transparent about delays.", "similar_to": ["CMT3", "HYR1"], "embedding": []},
+                {"id": "HYR6", "title": "Missing Key Features", "summary": "The promised 'faction wars' system is nowhere to be found at launch.", "similar_to": ["CMT2", "ENM2"], "embedding": []},
+                {"id": "HYR7", "title": "Review Embargo Timing", "summary": "The review scores being released hours before launch felt suspicious.", "similar_to": ["PFS2", "CMT1"], "embedding": []},
+                {"id": "HYR8", "title": "It's Just Another Live Service", "summary": "My fear that it would be a microtransaction shell was confirmed.", "similar_to": ["MCT5", "MCT10"], "embedding": []},
+                {"id": "HYR9", "title": "Unexpected Single-Player Depth", "summary": "I thought it was a multiplayer game, but the solo campaign is excellent.", "similar_to": ["STL2", "OVR1"], "embedding": []},
+                {"id": "HYR10", "title": "Launch Trailer Lied", "summary": "Scenes from the launch trailer don't appear in the actual game.", "similar_to": ["HYR6", "GRS4"], "embedding": []}
+            ]
+        },
+        {
+            "id": 516,
+            "name": "Developer Communication",
+            "cx": 150, "cy": 900,
+            "nodes": [
+                {"id": "CMT1", "title": "Total Radio Silence Post-Launch", "summary": "They haven't acknowledged the major bugs at all since launch.", "similar_to": ["CMT2", "PFS2"], "embedding": []},
+                {"id": "CMT2", "title": "Clear Road Map Provided", "summary": "They published a detailed plan for the next 12 months of content.", "similar_to": ["ENM3", "HYR5"], "embedding": []},
+                {"id": "CMT3", "title": "Quick Bug Fixes", "summary": "The community manager is active on social media and pushes hotfixes daily.", "similar_to": ["PFS9", "CMT4"], "embedding": []},
+                {"id": "CMT4", "title": "Dev Q&A Sessions", "summary": "The developers regularly host video Q&A sessions to address concerns.", "similar_to": ["CMT3", "HYR5"], "embedding": []},
+                {"id": "CMT5", "title": "Ignored Alpha Tester Feedback", "summary": "Many issues pointed out in the alpha are still in the final build.", "similar_to": ["PFS3", "GPM2"], "embedding": []},
+                {"id": "CMT6", "title": "Patch Notes Are Too Vague", "summary": "The notes just say 'Fixed various exploits' with no detail.", "similar_to": ["UIX8", "CMT1"], "embedding": []},
+                {"id": "CMT7", "title": "No Public Bug Tracker", "summary": "It's hard to know if the team is even aware of specific issues.", "similar_to": ["CMT1", "PFS2"], "embedding": []},
+                {"id": "CMT8", "title": "Overly Defensive Responses", "summary": "The dev team gets aggressive when criticized on their forums.", "similar_to": ["MPL6", "COM1"], "embedding": []},
+                {"id": "CMT9", "title": "Community Vote for Features", "summary": "They let the community decide the next feature to be added.", "similar_to": ["CMT4", "ENM3"], "embedding": []},
+                {"id": "CMT10", "title": "Silence on Cross-Play", "summary": "They refuse to comment on the lack of cross-platform support.", "similar_to": ["MPL5", "PLT1"], "embedding": []}
+            ]
+        },
+        {
+            "id": 517,
+            "name": "Platform Specific Issues",
+            "cx": 400, "cy": 900,
+            "nodes": [
+                {"id": "PLT1", "title": "PC Controls are Superior", "summary": "Keyboard and mouse feel much better than the console controller layout.", "similar_to": ["PLT2", "MPL5"], "embedding": []},
+                {"id": "PLT2", "title": "Locked FPS on Console", "summary": "The console version is capped at 30 FPS, even on the latest hardware.", "similar_to": ["PFS1", "PFS7"], "embedding": []},
+                {"id": "PLT3", "title": "Exclusive Console Content", "summary": "One faction mission is locked only to PS5 players, which is frustrating.", "similar_to": ["MCT5", "MPL5"], "embedding": []},
+                {"id": "PLT4", "title": "Poor Steam Deck Optimization", "summary": "The game is officially 'Unsupported' and runs terribly on the Steam Deck.", "similar_to": ["PFS1", "PFS3"], "embedding": []},
+                {"id": "PLT5", "title": "PS5 DualSense Features", "summary": "The use of haptic feedback and adaptive triggers is game-changing.", "similar_to": ["GPM7", "AUD4"], "embedding": []},
+                {"id": "PLT6", "title": "Xbox Cloud Save Bug", "summary": "My save file got corrupted when switching between my console and PC.", "similar_to": ["PFS2", "PLT1"], "embedding": []},
+                {"id": "PLT7", "title": "Ray Tracing Performance Hit", "summary": "Turning on RT drops the PC framerate by 50% for minimal visual gain.", "similar_to": ["GRS7", "PFS1"], "embedding": []},
+                {"id": "PLT8", "title": "PC UI is Clunky", "summary": "The mouse cursors on the PC version look like they were designed for a controller.", "similar_to": ["UIX9", "UIX1"], "embedding": []},
+                {"id": "PLT9", "title": "Game Only Available on Epic", "summary": "The year-long exclusivity deal on the Epic Store is a barrier to entry.", "similar_to": ["PLT3", "OVR2"], "embedding": []},
+                {"id": "PLT10", "title": "Requires Constant Internet", "summary": "Even the single-player campaign requires a constant online connection.", "similar_to": ["MPL2", "F2"], "embedding": []}
+            ]
+        },
+        {
+            "id": 518,
+            "name": "Community Reception",
+            "cx": 650, "cy": 900,
+            "nodes": [
+                {"id": "COM1", "title": "Split Fanbase", "summary": "Half the community loves the live-service changes, the other half hates them.", "similar_to": ["MCT5", "HYR8"], "embedding": []},
+                {"id": "COM2", "title": "Positive Review Bombing", "summary": "Fans are flooding Metacritic to combat the initial negative press.", "similar_to": ["COM3", "HYR7"], "embedding": []},
+                {"id": "COM3", "title": "Toxic Discourse", "summary": "The main subreddit is just a battleground of angry and defensive players.", "similar_to": ["MPL6", "CMT8"], "embedding": []},
+                {"id": "COM4", "title": "Creative Modding Scene", "summary": "The PC modding community has already fixed several core issues.", "similar_to": ["PLT1", "PFS9"], "embedding": []},
+                {"id": "COM5", "title": "Streamer Backlash", "summary": "Several major streamers publicly dropped the game after the first week.", "similar_to": ["HYR7", "MCT6"], "embedding": []},
+                {"id": "COM6", "title": "Official Discord is Helpful", "summary": "The dev-run Discord server is a civil and constructive space.", "similar_to": ["CMT3", "MPL7"], "embedding": []},
+                {"id": "COM7", "title": "Nostalgia is Driving Sales", "summary": "The majority of positive reviews come from fans of the original IP.", "similar_to": ["HYR1", "STL9"], "embedding": []},
+                {"id": "COM8", "title": "Community-Created Lore", "summary": "Players are filling in the gaps in the story with their own theories.", "similar_to": ["STL7", "STL2"], "embedding": []},
+                {"id": "COM9", "title": "Demand for PvP Fixes", "summary": "The biggest cry from the community is for balance patches in the PvP mode.", "similar_to": ["MPL3", "ENM6"], "embedding": []},
+                {"id": "COM10", "title": "Fan Art is Amazing", "summary": "The creative output of the community is fantastic despite the game's flaws.", "similar_to": ["GRS3", "CHR1"], "embedding": []}
+            ]
+        },
+        {
+            "id": 519,
+            "name": "Tutorial/Onboarding",
+            "cx": 900, "cy": 900,
+            "nodes": [
+                {"id": "TUT1", "title": "Overwhelming First Hour", "summary": "Too many pop-ups and mechanics are introduced simultaneously.", "similar_to": ["GPM6", "UIX2"], "embedding": []},
+                {"id": "TUT2", "title": "Lack of Combat Practice Zone", "summary": "There's nowhere to test out new weapons/skills safely.", "similar_to": ["CSD3", "GPM2"], "embedding": []},
+                {"id": "TUT3", "title": "Optional Tutorial is Great", "summary": "It's optional for veterans but detailed enough for newcomers.", "similar_to": ["TUT1", "ACS10"], "embedding": []},
+                {"id": "TUT4", "title": "Poor Tooltip Placement", "summary": "Key tips are displayed at the bottom of the screen during action.", "similar_to": ["UIX4", "GPM6"], "embedding": []},
+                {"id": "TUT5", "title": "Needs a Glossary", "summary": "The game uses too much unique jargon without defining it clearly.", "similar_to": ["UIX8", "STL6"], "embedding": []},
+                {"id": "TUT6", "title": "Too Long to Unlock Systems", "summary": "It takes 20 hours to fully unlock all the core systems (crafting, etc.).", "similar_to": ["GPM6", "ENM7"], "embedding": []},
+                {"id": "TUT7", "title": "Training Dummies Needed", "summary": "I wish there were targets to test my actual damage numbers on.", "similar_to": ["TUT2", "CSD4"], "embedding": []},
+                {"id": "TUT8", "title": "Lore Drops are Forced", "summary": "The opening cutscene bombards you with unnecessary backstory.", "similar_to": ["STL6", "TUT1"], "embedding": []},
+                {"id": "TUT9", "title": "Contextual Hints are Good", "summary": "Hints only pop up when you are near a relevant mechanic.", "similar_to": ["UIX3", "GPM1"], "embedding": []},
+                {"id": "TUT10", "title": "No Skip Button for Intro", "summary": "Have to watch the 10-minute intro cutscene on every new character.", "similar_to": ["GPM6", "PFS5"], "embedding": []}
+            ]
+        },
+        {
+            "id": 520,
+            "name": "Overall Value/Price",
+            "cx": 1150, "cy": 900,
+            "nodes": [
+                {"id": "OVR1", "title": "Worth the Full Price", "summary": "The sheer amount of content and quality justifies the $70 cost.", "similar_to": ["HYR1", "ENM1"], "embedding": []},
+                {"id": "OVR2", "title": "Wait for a Sale", "summary": "The bugs and lack of content make it a clear $40 game, not $70.", "similar_to": ["PFS1", "MCT2"], "embedding": []},
+                {"id": "OVR3", "title": "Excellent Replayability", "summary": "Will easily spend hundreds of hours exploring different builds and choices.", "similar_to": ["ENM8", "CSD3"], "embedding": []},
+                {"id": "OVR4", "title": "Standard Edition is Enough", "summary": "The Deluxe Edition bonuses are mostly useless fluff.", "similar_to": ["MCT3", "OVR1"], "embedding": []},
+                {"id": "OVR5", "title": "Poor Value for Money", "summary": "It feels like an early access game sold at a premium price.", "similar_to": ["PFS3", "HYR6"], "embedding": []},
+                {"id": "OVR6", "title": "Rental Service (Game Pass) Winner", "summary": "Perfect game to try out on a subscription service.", "similar_to": ["OVR2", "PLT9"], "embedding": []},
+                {"id": "OVR7", "title": "Short Campaign", "summary": "Beat the main story in 20 hours, which is too short for an RPG of this scale.", "similar_to": ["STL10", "ENM2"], "embedding": []},
+                {"id": "OVR8", "title": "The DLC Promise is Risky", "summary": "Hoping the promised paid expansions actually fix the missing content.", "similar_to": ["ENM3", "CMT2"], "embedding": []},
+                {"id": "OVR9", "title": "Highly Recommend Co-op", "summary": "The value only comes through playing with friends.", "similar_to": ["MPL1", "OVR3"], "embedding": []},
+                {"id": "OVR10", "title": "Refund Requested", "summary": "Too many technical issues to continue playing.", "similar_to": ["PFS3", "OVR5"], "embedding": []}
+            ]
+        },
+        {
+            "id": 521,
+            "name": "Post-Launch Bug Fixes",
+            "cx": 1400, "cy": 150,
+            "nodes": [
+                {"id": "PFX1", "title": "Crash Fixes on PC", "summary": "The latest patch finally stopped my random crashes.", "similar_to": ["PFS3", "CMT3"], "embedding": []},
+                {"id": "PFX2", "title": "Mission Marker Restored", "summary": "The progression-halting bug is fixed, thank goodness.", "similar_to": ["PFS2", "CMT3"], "embedding": []},
+                {"id": "PFX3", "title": "Frame Rate Still Low", "summary": "The patch did nothing to address the low console framerate.", "similar_to": ["PFS1", "PFS7"], "embedding": []},
+                {"id": "PFX4", "title": "NPC Glitches Reduced", "summary": "Seeing far fewer NPCs T-Posing now.", "similar_to": ["PFS4", "CMT3"], "embedding": []},
+                {"id": "PFX5", "title": "Loading Time Improvement", "summary": "Fast travel is noticeably faster after the last server-side update.", "similar_to": ["PFS5", "PFS6"], "embedding": []},
+                {"id": "PFX6", "title": "Multiplayer Desync Fixed", "summary": "Competitive mode is actually playable now with less rubber-banding.", "similar_to": ["MPL9", "MPL2"], "embedding": []},
+                {"id": "PFX7", "title": "Improved HDR", "summary": "The colors finally pop with HDR enabled on my monitor.", "similar_to": ["GRS7", "PFS5"], "embedding": []},
+                {"id": "PFX8", "title": "Sound Mixing Balanced", "summary": "Dialogue levels are much clearer now during cutscenes.", "similar_to": ["AUD3", "VOA9"], "embedding": []},
+                {"id": "PFX9", "title": "Minor UI Changes", "summary": "A few confusing menus were simplified based on community feedback.", "similar_to": ["UIX2", "UIX1"], "embedding": []},
+                {"id": "PFX10", "title": "No Fix for Melee Build", "summary": "The overpowered melee build remains untouched, ruining PvP.", "similar_to": ["CSD5", "MPL3"], "embedding": []}
+            ]
+        },
+        {
+            "id": 522,
+            "name": "General Sentiment (Positive)",
+            "cx": 1400, "cy": 400,
+            "nodes": [
+                {"id": "POS1", "title": "A True Masterpiece", "summary": "The single-player campaign is one of the best I've ever played.", "similar_to": ["STL2", "OVR1"], "embedding": []},
+                {"id": "POS2", "title": "Addictive Loop", "summary": "I can't stop playing; the core gameplay is just that fun.", "similar_to": ["GPM1", "ENM1"], "embedding": []},
+                {"id": "POS3", "title": "Visually Stunning", "summary": "The graphics and art direction are worth the price of admission alone.", "similar_to": ["GRS1", "GRS3"], "embedding": []},
+                {"id": "POS4", "title": "Great Teamwork Co-op", "summary": "The multi-player raids are the best co-op experience this year.", "similar_to": ["MPL10", "MPL1"], "embedding": []},
+                {"id": "POS5", "title": "Story is Moving", "summary": "The emotional beats of the final act genuinely got to me.", "similar_to": ["STL8", "VOA1"], "embedding": []},
+                {"id": "POS6", "title": "Innovation in RPG", "summary": "The unique skill progression system is highly innovative.", "similar_to": ["CSD3", "GPM3"], "embedding": []},
+                {"id": "POS7", "title": "The Community is Fun", "summary": "Met a great squad of people through the social hub.", "similar_to": ["MPL4", "COM6"], "embedding": []},
+                {"id": "POS8", "title": "Excellent Performance Now", "summary": "The game runs like butter on my PC after the latest hotfix.", "similar_to": ["PFS9", "PFX1"], "embedding": []},
+                {"id": "POS9", "title": "Accessibility Focus", "summary": "Appreciate the care and attention to the accessibility settings.", "similar_to": ["ACS4", "ACS1"], "embedding": []},
+                {"id": "POS10", "title": "Highly Replayable", "summary": "Already on my second playthrough to see the other endings.", "similar_to": ["OVR3", "ENM8"], "embedding": []}
+            ]
+        },
+        {
+            "id": 523,
+            "name": "General Sentiment (Negative)",
+            "cx": 1400, "cy": 650,
+            "nodes": [
+                {"id": "NEG1", "title": "Unacceptable Launch State", "summary": "This game should have been delayed for 6 months.", "similar_to": ["PFS3", "OVR5"], "embedding": []},
+                {"id": "NEG2", "title": "Monetization is Greedy", "summary": "The cash shop and battle pass are a clear cash grab.", "similar_to": ["MCT5", "MCT6"], "embedding": []},
+                {"id": "NEG3", "title": "Bugs Ruined Immersion", "summary": "I couldn't get into the story because of constant visual glitches.", "similar_to": ["PFS4", "GRS4"], "embedding": []},
+                {"id": "NEG4", "title": "Misleading Marketing", "summary": "They promised a game that simply does not exist.", "similar_to": ["HYR6", "HYR2"], "embedding": []},
+                {"id": "NEG5", "title": "Boring Open World", "summary": "The massive map is full of copy-pasted activities.", "similar_to": ["WLD2", "WLD7"], "embedding": []},
+                {"id": "NEG6", "title": "Clunky Controls", "summary": "The lack of responsiveness makes combat frustrating.", "similar_to": ["GPM2", "CSD10"], "embedding": []},
+                {"id": "NEG7", "title": "Terrible Optimization", "summary": "I have a high-end rig, and it still chugs in certain zones.", "similar_to": ["PFS1", "PFS8"], "embedding": []},
+                {"id": "NEG8", "title": "Gave Up on the Grind", "summary": "The endgame is a massive time-sink designed to push microtransactions.", "similar_to": ["ENM5", "MCT2"], "embedding": []},
+                {"id": "NEG9", "title": "Uninspired Art Design", "summary": "It looks like every other sci-fi game from the last 5 years.", "similar_to": ["GRS2", "WLD7"], "embedding": []},
+                {"id": "NEG10", "title": "A Lackluster Story", "summary": "The writing is juvenile and relies too heavily on tropes.", "similar_to": ["STL3", "STL1"], "embedding": []}
+            ]
+        },
+        {
+            "id": 524,
+            "name": "General Sentiment (Mixed)",
+            "cx": 1400, "cy": 900,
+            "nodes": [
+                {"id": "MIX1", "title": "A Diamond in the Rough", "summary": "Great potential, but the core needs time to polish.", "similar_to": ["OVR2", "PFS3"], "embedding": []},
+                {"id": "MIX2", "title": "Co-op Saves the Game", "summary": "Solo is mediocre, but playing with friends is fantastic.", "similar_to": ["MPL1", "OVR9"], "embedding": []},
+                {"id": "MIX3", "title": "Great World, Bad Story", "summary": "Loved exploring the setting, hated the main questline.", "similar_to": ["WLD1", "STL3"], "embedding": []},
+                {"id": "MIX4", "title": "Fantastic Combat, Boring Loot", "summary": "The fighting feels good, but the rewards are always generic.", "similar_to": ["GPM1", "ENM2"], "embedding": []},
+                {"id": "MIX5", "title": "Good Base Game, Terrible MTX", "summary": "I enjoy playing, but the monetization makes me feel exploited.", "similar_to": ["MCT2", "MCT1"], "embedding": []},
+                {"id": "MIX6", "title": "Inconsistent Voice Acting", "summary": "The lead is great, but the side characters are awful.", "similar_to": ["VOA1", "VOA4"], "embedding": []},
+                {"id": "MIX7", "title": "Too Much Grinding", "summary": "The endgame is fun, but the lead-up is tedious.", "similar_to": ["ENM5", "TUT6"], "embedding": []},
+                {"id": "MIX8", "title": "The Fixes Are Promising", "summary": "It's a bad game now, but I have hope for the future.", "similar_to": ["PFX1", "CMT2"], "embedding": []},
+                {"id": "MIX9", "title": "Better on Console Than PC", "summary": "The stability on console makes it a superior experience despite the FPS cap.", "similar_to": ["PLT2", "PLT4"], "embedding": []},
+                {"id": "MIX10", "title": "Wait for the GOTY Edition", "summary": "All the missing content will likely be patched in or added to a complete edition.", "similar_to": ["OVR2", "HYR6"], "embedding": []}
+            ]
+        },
+        {
+            "id": 525,
+            "name": "Build Diversity & RPG Systems",
+            "cx": 1650, "cy": 150,
+            "nodes": [
+                {"id": "RPS1", "title": "Deep Skill Synergy", "summary": "Combining skills from two different trees leads to unique and powerful builds.", "similar_to": ["CSD3", "GPM3"], "embedding": []},
+                {"id": "RPS2", "title": "Respec Cost is Too High", "summary": "Changing my character build requires an excessive in-game currency fee.", "similar_to": ["MCT2", "CSD5"], "embedding": []},
+                {"id": "RPS3", "title": "Meaningless Passive Skills", "summary": "Too many nodes on the skill tree are negligible 1% stat increases.", "similar_to": ["CSD7", "TUT1"], "embedding": []},
+                {"id": "RPS4", "title": "Cyberware/Augments Feel Impactful", "summary": "The cybernetic implant system truly changes how I approach combat.", "similar_to": ["GPM1", "CSD3"], "embedding": []},
+                {"id": "RPS5", "title": "Missing Non-Combat Skills", "summary": "Wish there were more options for dialogue and diplomacy builds.", "similar_to": ["STL8", "TUT5"], "embedding": []},
+                {"id": "RPS6", "title": "Level Scaling is Broken", "summary": "Enemies scale too high, making it feel like my progress is pointless.", "similar_to": ["ENM7", "NEG7"], "embedding": []},
+                {"id": "RPS7", "title": "Legendary Items Are Weak", "summary": "The highest rarity gear offers poor stats compared to common items.", "similar_to": ["ENM1", "CSD5"], "embedding": []},
+                {"id": "RPS8", "title": "Fluid Class System", "summary": "I like that I can switch my 'class' mid-game without penalty.", "similar_to": ["CHR1", "GPM3"], "embedding": []},
+                {"id": "RPS9", "title": "Lack of Status Effects", "summary": "The only status effect that matters is 'burn'.", "similar_to": ["CSD7", "CSD1"], "embedding": []},
+                {"id": "RPS10", "title": "Weapons Don't Feel Unique", "summary": "Most weapon types just feel like reskinned versions of each other.", "similar_to": ["CSD1", "AUD10"], "embedding": []}
+            ]
+        }
+    ]
+},
+{
+    "id": 19,
+    "name": "Tech Knowledge Cloud",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Mixed Knowledge Cloud",
+        "cx": 0.0,
+        "cy": 0.0,
+        "nodes": [
+          {
+            "id": "n1",
+            "title": "Neural Networks",
+            "summary": "Artificial neural networks mimic the human brain using interconnected nodes to learn patterns from data and make predictions in AI systems.",
+            "similar_to": ["n2", "n3", "n4"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n2",
+            "title": "Deep Learning Models",
+            "summary": "Deep learning models with multiple hidden layers can automatically extract complex features from large datasets like images and text.",
+            "similar_to": ["n1", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n3",
+            "title": "Machine Learning Algorithms",
+            "summary": "Machine learning algorithms such as decision trees, SVM, and random forests allow computers to identify patterns and make intelligent predictions.",
+            "similar_to": ["n1", "n2", "n5"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n4",
+            "title": "AI Ethics",
+            "summary": "AI ethics ensures fairness, transparency, and accountability in machine learning systems, preventing bias and misuse of algorithms.",
+            "similar_to": ["n1", "n2", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n5",
+            "title": "Reinforcement Learning",
+            "summary": "Reinforcement learning enables agents to make sequential decisions through rewards and penalties, used in robotics and game AI.",
+            "similar_to": ["n1", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n6",
+            "title": "Natural Language Processing",
+            "summary": "NLP enables machines to understand and generate human language using models like transformers and LSTMs.",
+            "similar_to": ["n1", "n2", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+          {
+            "id": "n7",
+            "title": "React Framework",
+            "summary": "React is a JavaScript library for building reusable UI components, improving performance through a virtual DOM.",
+            "similar_to": ["n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n8",
+            "title": "REST APIs",
+            "summary": "REST APIs use HTTP methods to allow communication between client and server in a stateless, scalable architecture.",
+            "similar_to": ["n7", "n9", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n9",
+            "title": "Frontend Development",
+            "summary": "Frontend development focuses on building responsive, interactive web interfaces using HTML, CSS, and JavaScript.",
+            "similar_to": ["n7", "n8", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n10",
+            "title": "Web Authentication",
+            "summary": "Web authentication techniques such as JWT and OAuth ensure secure login and session management in modern web applications.",
+            "similar_to": ["n7", "n8", "n9", "n26"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n11",
+            "title": "Backend Frameworks",
+            "summary": "Backend frameworks like Django, Flask, and Node.js handle routing, databases, and API management for scalable web services.",
+            "similar_to": ["n7", "n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n12",
+            "title": "Progressive Web Apps",
+            "summary": "PWAs combine the reach of the web with the experience of native apps, offering offline support and push notifications.",
+            "similar_to": ["n7", "n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+
+          {
+            "id": "n13",
+            "title": "Data Visualization",
+            "summary": "Data visualization tools like Matplotlib and Seaborn help convert data into graphical insights for better decision-making.",
+            "similar_to": ["n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n14",
+            "title": "Data Cleaning",
+            "summary": "Data cleaning involves handling missing values, removing duplicates, and transforming data for analysis.",
+            "similar_to": ["n13", "n15", "n16"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n15",
+            "title": "Feature Engineering",
+            "summary": "Feature engineering creates meaningful variables that improve the performance of predictive models.",
+            "similar_to": ["n13", "n14", "n16"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n16",
+            "title": "Exploratory Data Analysis",
+            "summary": "EDA involves summarizing data and visualizing trends to discover underlying patterns and anomalies.",
+            "similar_to": ["n13", "n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n17",
+            "title": "Time Series Analysis",
+            "summary": "Time series analysis examines data points collected over time to forecast trends using models like ARIMA or LSTM.",
+            "similar_to": ["n13", "n15", "n18"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n18",
+            "title": "Data Pipelines",
+            "summary": "Data pipelines automate data collection, cleaning, and transformation for analytics and machine learning workflows.",
+            "similar_to": ["n13", "n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+          {
+            "id": "n19",
+            "title": "Cybersecurity Fundamentals",
+            "summary": "Cybersecurity protects systems and networks from unauthorized access and data breaches using firewalls and encryption.",
+            "similar_to": ["n20", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n20",
+            "title": "Phishing Attacks",
+            "summary": "Phishing attacks deceive users into sharing confidential information by impersonating trusted entities online.",
+            "similar_to": ["n19", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n21",
+            "title": "Network Security",
+            "summary": "Network security ensures safe data transmission using VPNs, intrusion detection, and secure protocols like HTTPS.",
+            "similar_to": ["n19", "n20", "n22"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n22",
+            "title": "Web3 Security",
+            "summary": "Web3 security focuses on protecting decentralized apps and smart contracts from exploits and vulnerabilities.",
+            "similar_to": ["n19", "n21", "n25"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n23",
+            "title": "Penetration Testing",
+            "summary": "Pen testing simulates cyberattacks to identify weaknesses in systems and networks before hackers can exploit them.",
+            "similar_to": ["n19", "n20", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n24",
+            "title": "Cloud Security",
+            "summary": "Cloud security protects cloud-based infrastructure, ensuring compliance and data protection in remote environments.",
+            "similar_to": ["n19", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+          {
+            "id": "n25",
+            "title": "Blockchain Basics",
+            "summary": "Blockchain is a decentralized ledger system that stores transactions securely using cryptographic techniques.",
+            "similar_to": ["n26", "n27"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n26",
+            "title": "Smart Contracts",
+            "summary": "Smart contracts automatically execute terms of an agreement without intermediaries, running on blockchain platforms.",
+            "similar_to": ["n25", "n27", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n27",
+            "title": "Decentralized Applications",
+            "summary": "DApps operate on peer-to-peer blockchain networks, allowing transparent and censorship-resistant transactions.",
+            "similar_to": ["n25", "n26"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n28",
+            "title": "Cryptocurrency",
+            "summary": "Cryptocurrencies like Bitcoin and Ethereum are digital assets that use cryptography for secure transactions and value transfer.",
+            "similar_to": ["n25", "n26", "n27"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n29",
+            "title": "DeFi Platforms",
+            "summary": "DeFi uses blockchain to offer decentralized financial services like lending and trading without intermediaries.",
+            "similar_to": ["n25", "n26", "n27", "n28"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n30",
+            "title": "NFT Technology",
+            "summary": "Non-fungible tokens represent digital ownership of unique assets on a blockchain, used in art, gaming, and collectibles.",
+            "similar_to": ["n25", "n26", "n29"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          }
+        ]
+      }
+    ]
+  }
+]

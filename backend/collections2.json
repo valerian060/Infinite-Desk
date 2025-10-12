@@ -1,0 +1,537 @@
+[
+  {
+    "id": 19,
+    "name": "Tech Knowledge Cloud",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Mixed Knowledge Cloud",
+        "cx": 0.0,
+        "cy": 0.0,
+        "nodes": [
+          {
+            "id": "n1",
+            "title": "Neural Networks",
+            "summary": "Artificial neural networks mimic the human brain using interconnected nodes to learn patterns from data and make predictions in AI systems.",
+            "similar_to": ["n2", "n3", "n4"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n2",
+            "title": "Deep Learning Models",
+            "summary": "Deep learning models with multiple hidden layers can automatically extract complex features from large datasets like images and text.",
+            "similar_to": ["n1", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n3",
+            "title": "Machine Learning Algorithms",
+            "summary": "Machine learning algorithms such as decision trees, SVM, and random forests allow computers to identify patterns and make intelligent predictions.",
+            "similar_to": ["n1", "n2", "n5"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n4",
+            "title": "AI Ethics",
+            "summary": "AI ethics ensures fairness, transparency, and accountability in machine learning systems, preventing bias and misuse of algorithms.",
+            "similar_to": ["n1", "n2", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n5",
+            "title": "Reinforcement Learning",
+            "summary": "Reinforcement learning enables agents to make sequential decisions through rewards and penalties, used in robotics and game AI.",
+            "similar_to": ["n1", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n6",
+            "title": "Natural Language Processing",
+            "summary": "NLP enables machines to understand and generate human language using models like transformers and LSTMs.",
+            "similar_to": ["n1", "n2", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+          {
+            "id": "n7",
+            "title": "React Framework",
+            "summary": "React is a JavaScript library for building reusable UI components, improving performance through a virtual DOM.",
+            "similar_to": ["n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n8",
+            "title": "REST APIs",
+            "summary": "REST APIs use HTTP methods to allow communication between client and server in a stateless, scalable architecture.",
+            "similar_to": ["n7", "n9", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n9",
+            "title": "Frontend Development",
+            "summary": "Frontend development focuses on building responsive, interactive web interfaces using HTML, CSS, and JavaScript.",
+            "similar_to": ["n7", "n8", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n10",
+            "title": "Web Authentication",
+            "summary": "Web authentication techniques such as JWT and OAuth ensure secure login and session management in modern web applications.",
+            "similar_to": ["n7", "n8", "n9", "n26"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n11",
+            "title": "Backend Frameworks",
+            "summary": "Backend frameworks like Django, Flask, and Node.js handle routing, databases, and API management for scalable web services.",
+            "similar_to": ["n7", "n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n12",
+            "title": "Progressive Web Apps",
+            "summary": "PWAs combine the reach of the web with the experience of native apps, offering offline support and push notifications.",
+            "similar_to": ["n7", "n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+
+          {
+            "id": "n13",
+            "title": "Data Visualization",
+            "summary": "Data visualization tools like Matplotlib and Seaborn help convert data into graphical insights for better decision-making.",
+            "similar_to": ["n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n14",
+            "title": "Data Cleaning",
+            "summary": "Data cleaning involves handling missing values, removing duplicates, and transforming data for analysis.",
+            "similar_to": ["n13", "n15", "n16"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n15",
+            "title": "Feature Engineering",
+            "summary": "Feature engineering creates meaningful variables that improve the performance of predictive models.",
+            "similar_to": ["n13", "n14", "n16"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n16",
+            "title": "Exploratory Data Analysis",
+            "summary": "EDA involves summarizing data and visualizing trends to discover underlying patterns and anomalies.",
+            "similar_to": ["n13", "n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n17",
+            "title": "Time Series Analysis",
+            "summary": "Time series analysis examines data points collected over time to forecast trends using models like ARIMA or LSTM.",
+            "similar_to": ["n13", "n15", "n18"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n18",
+            "title": "Data Pipelines",
+            "summary": "Data pipelines automate data collection, cleaning, and transformation for analytics and machine learning workflows.",
+            "similar_to": ["n13", "n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+          {
+            "id": "n19",
+            "title": "Cybersecurity Fundamentals",
+            "summary": "Cybersecurity protects systems and networks from unauthorized access and data breaches using firewalls and encryption.",
+            "similar_to": ["n20", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n20",
+            "title": "Phishing Attacks",
+            "summary": "Phishing attacks deceive users into sharing confidential information by impersonating trusted entities online.",
+            "similar_to": ["n19", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n21",
+            "title": "Network Security",
+            "summary": "Network security ensures safe data transmission using VPNs, intrusion detection, and secure protocols like HTTPS.",
+            "similar_to": ["n19", "n20", "n22"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n22",
+            "title": "Web3 Security",
+            "summary": "Web3 security focuses on protecting decentralized apps and smart contracts from exploits and vulnerabilities.",
+            "similar_to": ["n19", "n21", "n25"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n23",
+            "title": "Penetration Testing",
+            "summary": "Pen testing simulates cyberattacks to identify weaknesses in systems and networks before hackers can exploit them.",
+            "similar_to": ["n19", "n20", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n24",
+            "title": "Cloud Security",
+            "summary": "Cloud security protects cloud-based infrastructure, ensuring compliance and data protection in remote environments.",
+            "similar_to": ["n19", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+
+          {
+            "id": "n25",
+            "title": "Blockchain Basics",
+            "summary": "Blockchain is a decentralized ledger system that stores transactions securely using cryptographic techniques.",
+            "similar_to": ["n26", "n27"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n26",
+            "title": "Smart Contracts",
+            "summary": "Smart contracts automatically execute terms of an agreement without intermediaries, running on blockchain platforms.",
+            "similar_to": ["n25", "n27", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n27",
+            "title": "Decentralized Applications",
+            "summary": "DApps operate on peer-to-peer blockchain networks, allowing transparent and censorship-resistant transactions.",
+            "similar_to": ["n25", "n26"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n28",
+            "title": "Cryptocurrency",
+            "summary": "Cryptocurrencies like Bitcoin and Ethereum are digital assets that use cryptography for secure transactions and value transfer.",
+            "similar_to": ["n25", "n26", "n27"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n29",
+            "title": "DeFi Platforms",
+            "summary": "DeFi uses blockchain to offer decentralized financial services like lending and trading without intermediaries.",
+            "similar_to": ["n25", "n26", "n27", "n28"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          },
+          {
+            "id": "n30",
+            "title": "NFT Technology",
+            "summary": "Non-fungible tokens represent digital ownership of unique assets on a blockchain, used in art, gaming, and collectibles.",
+            "similar_to": ["n25", "n26", "n29"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 19
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Innovation Day Reviews",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Raw Student Thoughts",
+        "cx": 0.0,
+        "cy": 0.0,
+        "nodes": [
+          {
+            "id": "r1",
+            "title": "Loved the AI Demos",
+            "summary": "The AI booths were amazing! Especially the one that summarized research papers — super helpful.",
+            "similar_to": ["r2", "r3"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r2",
+            "title": "Great Innovation Spirit",
+            "summary": "Really proud to see juniors building practical projects with new ideas, good mix of creativity and tech.",
+            "similar_to": ["r1", "r4"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r3",
+            "title": "AI Chatbot Project",
+            "summary": "The chatbot built using FastAPI and NLP was fun to use, but the UI could be improved.",
+            "similar_to": ["r1", "r5"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r4",
+            "title": "Excellent Organization",
+            "summary": "Event was well-organized, timings were followed and faculty support was great.",
+            "similar_to": ["r6", "r7"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r5",
+            "title": "Machine Learning Projects",
+            "summary": "A lot of ML-based projects, some repetitive but still inspiring to see real implementations.",
+            "similar_to": ["r1", "r2"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r6",
+            "title": "Crowd Management Issues",
+            "summary": "The main hall was overcrowded; it was hard to move between stalls comfortably.",
+            "similar_to": ["r7", "r8"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r7",
+            "title": "Late Start",
+            "summary": "Event started late, some teams seemed unprepared, though things picked up later.",
+            "similar_to": ["r4", "r6"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r8",
+            "title": "Best Projects in Robotics",
+            "summary": "The autonomous car demo and line-follower robots were the highlights for me.",
+            "similar_to": ["r9", "r10"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r9",
+            "title": "App Development Projects",
+            "summary": "Loved seeing mobile apps for campus utilities, like feedback systems and attendance trackers.",
+            "similar_to": ["r10", "r11"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r10",
+            "title": "Creative Ideas",
+            "summary": "Some projects were super creative — especially the mental health AI assistant and social apps.",
+            "similar_to": ["r8", "r9"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r11",
+            "title": "Good Use of OpenAI APIs",
+            "summary": "Projects using ChatGPT and image generation APIs were technically strong.",
+            "similar_to": ["r1", "r10"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r12",
+            "title": "Feedback Collection App",
+            "summary": "The feedback collection system built for the event was actually being used live — very meta!",
+            "similar_to": ["r4", "r9"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r13",
+            "title": "Networking Opportunity",
+            "summary": "Met students from other branches and seniors — great exposure for collaboration.",
+            "similar_to": ["r2", "r14"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r14",
+            "title": "Suggestions for Next Time",
+            "summary": "Need more seating space, maybe an online voting system for best project.",
+            "similar_to": ["r6", "r7"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r15",
+            "title": "Food Stalls",
+            "summary": "Loved the food stalls outside; gave us a good break between project visits.",
+            "similar_to": ["r14"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r16",
+            "title": "VR and AR Exhibits",
+            "summary": "The AR/VR section was cool; interactive campus map was a nice touch.",
+            "similar_to": ["r8", "r10"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r17",
+            "title": "Best Booth Design",
+            "summary": "The cyber security project team had the most aesthetic and interactive booth.",
+            "similar_to": ["r19"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r18",
+            "title": "Inspiration for Next Year",
+            "summary": "Feeling inspired to participate next time, learned a lot by visiting other teams.",
+            "similar_to": ["r2", "r13"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r19",
+            "title": "Strong Presentations",
+            "summary": "Teams that prepared slides and short demos stood out the most.",
+            "similar_to": ["r17", "r20"],
+            "embedding": [],
+            "collection_id": 2
+          },
+          {
+            "id": "r20",
+            "title": "AI-Powered Summary Tool",
+            "summary": "There was a project that summarized project descriptions — looked professional and well thought-out.",
+            "similar_to": ["r1", "r3", "r11"],
+            "embedding": [],
+            "collection_id": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "CSE Fundamentals (AKTU)",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Core CS Topics",
+        "nodes": [
+          { "id": "c1", "title": "Operating System", "summary": "Manages hardware and software resources, provides process management, memory management, and file systems.", "embedding": [], "collection_id": 3 },
+          { "id": "c2", "title": "Database Management System", "summary": "DBMS handles storage, retrieval, and management of data using SQL and relational models.", "embedding": [], "collection_id": 3 },
+          { "id": "c3", "title": "Computer Networks", "summary": "Covers communication models, network topologies, TCP/IP, and routing algorithms.", "embedding": [], "collection_id": 3 },
+          { "id": "c4", "title": "Data Structures and Algorithms", "summary": "Efficient organization of data using arrays, stacks, queues, trees, and graphs.", "embedding": [], "collection_id": 3 },
+          { "id": "c5", "title": "Theory of Computation", "summary": "Covers automata, grammars, Turing machines, and computability.", "embedding": [], "collection_id": 3 },
+          { "id": "c6", "title": "Compiler Design", "summary": "Translates source code into machine code using lexical, syntax, and semantic analysis.", "embedding": [], "collection_id": 3 },
+          { "id": "c7", "title": "Machine Learning", "summary": "Algorithms that learn from data to predict or classify information.", "embedding": [], "collection_id": 3 },
+          { "id": "c8", "title": "Artificial Intelligence", "summary": "Simulating intelligent behavior using logic, learning, and problem-solving.", "embedding": [], "collection_id": 3 },
+          { "id": "c9", "title": "Software Engineering", "summary": "Principles for designing, developing, testing, and maintaining software systems.", "embedding": [], "collection_id": 3 },
+          { "id": "c10", "title": "Cybersecurity Basics", "summary": "Protecting systems and networks from digital attacks using encryption and access control.", "embedding": [], "collection_id": 3 }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "1st Year AKTU Notes",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Semester 1 & 2 Notes",
+        "nodes": [
+          { "id": "n1", "title": "Engineering Physics", "summary": "Covers quantum mechanics, wave optics, and semiconductors.", "embedding": [], "collection_id": 4 },
+          { "id": "n2", "title": "Engineering Chemistry", "summary": "Focuses on atomic structure, corrosion, water treatment, and polymers.", "embedding": [], "collection_id": 4 },
+          { "id": "n3", "title": "Basic Electrical Engineering", "summary": "Ohm’s law, Kirchhoff’s laws, AC/DC circuits, transformers, and motors.", "embedding": [], "collection_id": 4 },
+          { "id": "n4", "title": "Programming for Problem Solving", "summary": "Introduction to C programming, loops, arrays, and functions.", "embedding": [], "collection_id": 4 },
+          { "id": "n5", "title": "Mathematics I", "summary": "Limits, continuity, derivatives, integration, and differential equations.", "embedding": [], "collection_id": 4 },
+          { "id": "n6", "title": "Mathematics II", "summary": "Matrices, vector calculus, Laplace transforms, and Fourier series.", "embedding": [], "collection_id": 4 },
+          { "id": "n7", "title": "Engineering Mechanics", "summary": "Statics, dynamics, friction, trusses, and equilibrium.", "embedding": [], "collection_id": 4 },
+          { "id": "n8", "title": "Environmental Studies", "summary": "Ecology, ecosystems, natural resources, and pollution management.", "embedding": [], "collection_id": 4 }
+        ]
+      }
+    ]
+  }
+]

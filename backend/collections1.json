@@ -1,0 +1,321 @@
+[
+  {
+    "id": 1,
+    "name": "Knowledge Galaxy Demo",
+    "clusters": [
+      {
+        "id": 0,
+        "name": "Mixed Knowledge Cloud",
+        "cx": 0.0,
+        "cy": 0.0,
+        "nodes": [
+          {
+            "id": "n1",
+            "title": "Neural Networks",
+            "summary": "Artificial neural networks mimic the human brain using interconnected nodes to learn patterns from data and make predictions in AI systems.",
+            "similar_to": ["n2", "n3", "n4"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n2",
+            "title": "Deep Learning Models",
+            "summary": "Deep learning models with multiple hidden layers can automatically extract complex features from large datasets like images and text.",
+            "similar_to": ["n1", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n3",
+            "title": "Machine Learning Algorithms",
+            "summary": "Machine learning algorithms such as decision trees, SVM, and random forests allow computers to identify patterns and make intelligent predictions.",
+            "similar_to": ["n1", "n2", "n5"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n4",
+            "title": "AI Ethics",
+            "summary": "AI ethics ensures fairness, transparency, and accountability in machine learning systems, preventing bias and misuse of algorithms.",
+            "similar_to": ["n1", "n2", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n5",
+            "title": "Reinforcement Learning",
+            "summary": "Reinforcement learning enables agents to make sequential decisions through rewards and penalties, used in robotics and game AI.",
+            "similar_to": ["n1", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n6",
+            "title": "Natural Language Processing",
+            "summary": "NLP enables machines to understand and generate human language using models like transformers and LSTMs.",
+            "similar_to": ["n1", "n2", "n3"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+
+          {
+            "id": "n7",
+            "title": "React Framework",
+            "summary": "React is a JavaScript library for building reusable UI components, improving performance through a virtual DOM.",
+            "similar_to": ["n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n8",
+            "title": "REST APIs",
+            "summary": "REST APIs use HTTP methods to allow communication between client and server in a stateless, scalable architecture.",
+            "similar_to": ["n7", "n9", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n9",
+            "title": "Frontend Development",
+            "summary": "Frontend development focuses on building responsive, interactive web interfaces using HTML, CSS, and JavaScript.",
+            "similar_to": ["n7", "n8", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n10",
+            "title": "Web Authentication",
+            "summary": "Web authentication techniques such as JWT and OAuth ensure secure login and session management in modern web applications.",
+            "similar_to": ["n7", "n8", "n9", "n26"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n11",
+            "title": "Backend Frameworks",
+            "summary": "Backend frameworks like Django, Flask, and Node.js handle routing, databases, and API management for scalable web services.",
+            "similar_to": ["n7", "n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n12",
+            "title": "Progressive Web Apps",
+            "summary": "PWAs combine the reach of the web with the experience of native apps, offering offline support and push notifications.",
+            "similar_to": ["n7", "n8", "n9"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+
+
+          {
+            "id": "n13",
+            "title": "Data Visualization",
+            "summary": "Data visualization tools like Matplotlib and Seaborn help convert data into graphical insights for better decision-making.",
+            "similar_to": ["n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n14",
+            "title": "Data Cleaning",
+            "summary": "Data cleaning involves handling missing values, removing duplicates, and transforming data for analysis.",
+            "similar_to": ["n13", "n15", "n16"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n15",
+            "title": "Feature Engineering",
+            "summary": "Feature engineering creates meaningful variables that improve the performance of predictive models.",
+            "similar_to": ["n13", "n14", "n16"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n16",
+            "title": "Exploratory Data Analysis",
+            "summary": "EDA involves summarizing data and visualizing trends to discover underlying patterns and anomalies.",
+            "similar_to": ["n13", "n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n17",
+            "title": "Time Series Analysis",
+            "summary": "Time series analysis examines data points collected over time to forecast trends using models like ARIMA or LSTM.",
+            "similar_to": ["n13", "n15", "n18"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n18",
+            "title": "Data Pipelines",
+            "summary": "Data pipelines automate data collection, cleaning, and transformation for analytics and machine learning workflows.",
+            "similar_to": ["n13", "n14", "n15"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+
+          {
+            "id": "n19",
+            "title": "Cybersecurity Fundamentals",
+            "summary": "Cybersecurity protects systems and networks from unauthorized access and data breaches using firewalls and encryption.",
+            "similar_to": ["n20", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n20",
+            "title": "Phishing Attacks",
+            "summary": "Phishing attacks deceive users into sharing confidential information by impersonating trusted entities online.",
+            "similar_to": ["n19", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n21",
+            "title": "Network Security",
+            "summary": "Network security ensures safe data transmission using VPNs, intrusion detection, and secure protocols like HTTPS.",
+            "similar_to": ["n19", "n20", "n22"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n22",
+            "title": "Web3 Security",
+            "summary": "Web3 security focuses on protecting decentralized apps and smart contracts from exploits and vulnerabilities.",
+            "similar_to": ["n19", "n21", "n25"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n23",
+            "title": "Penetration Testing",
+            "summary": "Pen testing simulates cyberattacks to identify weaknesses in systems and networks before hackers can exploit them.",
+            "similar_to": ["n19", "n20", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n24",
+            "title": "Cloud Security",
+            "summary": "Cloud security protects cloud-based infrastructure, ensuring compliance and data protection in remote environments.",
+            "similar_to": ["n19", "n21"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+
+          {
+            "id": "n25",
+            "title": "Blockchain Basics",
+            "summary": "Blockchain is a decentralized ledger system that stores transactions securely using cryptographic techniques.",
+            "similar_to": ["n26", "n27"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n26",
+            "title": "Smart Contracts",
+            "summary": "Smart contracts automatically execute terms of an agreement without intermediaries, running on blockchain platforms.",
+            "similar_to": ["n25", "n27", "n10"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n27",
+            "title": "Decentralized Applications",
+            "summary": "DApps operate on peer-to-peer blockchain networks, allowing transparent and censorship-resistant transactions.",
+            "similar_to": ["n25", "n26"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n28",
+            "title": "Cryptocurrency",
+            "summary": "Cryptocurrencies like Bitcoin and Ethereum are digital assets that use cryptography for secure transactions and value transfer.",
+            "similar_to": ["n25", "n26", "n27"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n29",
+            "title": "DeFi Platforms",
+            "summary": "DeFi uses blockchain to offer decentralized financial services like lending and trading without intermediaries.",
+            "similar_to": ["n25", "n26", "n27", "n28"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          },
+          {
+            "id": "n30",
+            "title": "NFT Technology",
+            "summary": "Non-fungible tokens represent digital ownership of unique assets on a blockchain, used in art, gaming, and collectibles.",
+            "similar_to": ["n25", "n26", "n29"],
+            "embedding": [],
+            "x": 0.0,
+            "y": 0.0,
+            "collection_id": 1
+          }
+        ]
+      }
+    ]
+  }
+]
