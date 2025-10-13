@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Step Workflow - Infinite Desk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/workflow.css">
+</head>
+<body>
+    <div class="star-field" id="starfield"></div>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
+
+        <div class="header">
+            <h1 class="page-title">The 10-Step Workflow of Infinite Desk</h1>
+            <p class="page-subtitle">From sign-in to discovering hidden connections</p>
+        </div>
+
+        <div class="workflow-steps">
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🏠</span>
+                        <h2 class="step-title">Sign In & Enter Your Cosmos</h2>
+                    </div>
+                    <p class="step-description">
+                        You sign up or log in through the homepage. The backend authenticates your credentials against user data stored in MongoDB, granting you access to your personal cosmos.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz1">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🌠</span>
+                        <h2 class="step-title">Open Your Galaxy</h2>
+                    </div>
+                    <p class="step-description">
+                        After logging in, you land on your personal canvas, the Galaxy. All your existing ideas, called Stars ⭐, are fetched from MongoDB by the FastAPI backend and visualized as colored dots by D3.js.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz2">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">➕</span>
+                        <h2 class="step-title">Create a New Star</h2>
+                    </div>
+                    <p class="step-description">
+                        You click 'Create Node' and add a title and content. This new Star is sent to the FastAPI backend, which assigns a unique ID and saves it to MongoDB. A new star instantly appears on your canvas.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz3">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">📄</span>
+                        <h2 class="step-title">Attach Files to a Star</h2>
+                    </div>
+                    <p class="step-description">
+                        By double-clicking a Star, you can upload files like PDFs or images. These files are stored on the server, and their metadata is linked to the node in MongoDB.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz4">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🤖</span>
+                        <h2 class="step-title">Generate Its "Gravity" (Vector Embedding)</h2>
+                    </div>
+                    <p class="step-description">
+                        Whenever a Star is saved, the Cosmic Engine activates. It uses a Sentence-Transformer model to convert the text into a numerical vector called an embedding. This vector, representing the idea's mathematical meaning or "gravity," is stored in MongoDB's Vector Search collection.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz5">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">✨</span>
+                        <h2 class="step-title">Form a Constellation (Automatic Clustering)</h2>
+                    </div>
+                    <p class="step-description">
+                        As your Galaxy grows, the HDBSCAN algorithm runs on all the vector embeddings. It analyzes the "gravity" (similarity) between Stars and automatically groups them into colored Constellations, revealing the core themes in your knowledge without any manual tagging.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz6">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">✏️</span>
+                        <h2 class="step-title">Edit a Star's Content</h2>
+                    </div>
+                    <p class="step-description">
+                        You can double-click any Star to edit its title or content. The changes are sent to the backend, which updates the node in MongoDB and regenerates its vector embedding to reflect the new meaning.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz7">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🔍</span>
+                        <h2 class="step-title">Search and Discover</h2>
+                    </div>
+                    <p class="step-description">
+                        When you search, the system performs two actions: it highlights Stars with matching titles and also converts your query into a vector to find semantically similar ideas using cosine similarity. This allows you to discover related concepts you may have forgotten about.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz8">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🗑️</span>
+                        <h2 class="step-title">Delete a Star (Supernova)</h2>
+                    </div>
+                    <p class="step-description">
+                        Deleting a Star via its modal triggers a "supernova." The backend removes the node's data from MongoDB, its associated files, and its embedding, causing it to vanish from the canvas.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz9">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+
+            <div class="workflow-item">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-icon">🔗</span>
+                        <h2 class="step-title">Find Hidden Connections (Conceptual Bridges)</h2>
+                    </div>
+                    <p class="step-description">
+                        The system automatically finds and draws dotted lines between Stars in different Constellations that are highly similar. These 'conceptual bridges' are found by running a cosine similarity query in MongoDB Vector Search for each node to find its closest relative in another topic, revealing unexpected connections.
+                    </p>
+                </div>
+                <div class="step-visualization" id="viz10">
+                    <svg class="links-svg" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/common.js"></script>
+    <script src="scripts/workflow.js"></script>
+</body>
+</html>

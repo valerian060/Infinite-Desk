@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Infinite Desk</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(180deg, #0d1117 0%, #000000 100%);
+            color: #edf2f4;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Starfield Background */
+        .star-field {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        .star:nth-child(3n) {
+            width: 1px;
+            height: 1px;
+            animation-duration: 10s;
+        }
+
+        .star:nth-child(3n + 1) {
+            width: 2px;
+            height: 2px;
+            animation-duration: 15s;
+            background: #00f2ff;
+        }
+
+        .star:nth-child(3n + 2) {
+            width: 3px;
+            height: 3px;
+            animation-duration: 8s;
+            background: #cdb4db;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Login Container */
+        .login-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 450px;
+            padding: 50px 40px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 2px solid rgba(0, 242, 255, 0.3);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            color: #00f2ff;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
+        }
+
+        .logo p {
+            font-size: 0.9rem;
+            color: #edf2f4;
+            font-weight: 300;
+        }
+
+        .form-title {
+            font-size: 1.8rem;
+            color: #00f2ff;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            color: #edf2f4;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
+            background: rgba(237, 242, 244, 0.05);
+            border: 2px solid rgba(0, 242, 255, 0.3);
+            border-radius: 10px;
+            color: #edf2f4;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #00f2ff;
+            box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+            background: rgba(237, 242, 244, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(237, 242, 244, 0.5);
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -15px;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            font-size: 0.85rem;
+            color: #00f2ff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-password a:hover {
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            font-size: 1.1rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            background: linear-gradient(135deg, #00f2ff 0%, #00b4d8 100%);
+            color: #0d1117;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(0, 242, 255, 0.7);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            color: #edf2f4;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: rgba(0, 242, 255, 0.3);
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.95rem;
+            color: #edf2f4;
+        }
+
+        .signup-link a {
+            color: #00f2ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .signup-link a:hover {
+            text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+        }
+
+        .back-home {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-home a {
+            font-size: 0.9rem;
+            color: #edf2f4;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-home a:hover {
+            color: #00f2ff;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                margin: 20px;
+                padding: 40px 30px;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="star-field" id="starfield"></div>
+
+    <div class="login-container">
+        <div class="logo">
+            <h1>INFINITE DESK</h1>
+            <p>Your Personal Cognitive Cosmos</p>
+        </div>
+
+        <h2 class="form-title">Welcome Back</h2>
+
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="submit-btn">Login</button>
+        </form>
+
+        <div class="divider">OR</div>
+
+        <div class="signup-link">
+            Don't have an account? <a href="signup.html">Sign Up</a>
+        </div>
+
+        <div class="back-home">
+            <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        // Generate Starfield
+        const starfield = document.getElementById('starfield');
+        const starCount = 100;
+
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 10 + 's';
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
