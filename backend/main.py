@@ -164,7 +164,7 @@ def load_mock_data(file_path: str) -> List[CollectionData]:
                         node.collection_id = collection.id
                         # Generate embeddings if missing
                         if not node.embedding:
-                            node.embedding = model.encode([node.title + ". " + node.summary], normalize_embeddings=True)[0].tolist()
+                           node.embedding = model.encode([node.title + ". " + node.summary], normalize_embeddings=True)[0].tolist()
             
             print(f"DEBUG: Loaded {len(collections)} collections")
             return collections
@@ -172,7 +172,7 @@ def load_mock_data(file_path: str) -> List[CollectionData]:
         print(f"ERROR loading {file_path}: {e}")
         return []
 
-CS_MOCK_COLLECTIONS: List[CollectionData] = load_mock_data("collections3.json")
+CS_MOCK_COLLECTIONS: List[CollectionData] = load_mock_data("collections.json")
 
 
 
@@ -347,13 +347,21 @@ async def recluster(collection_id: int):
     if len(embeddings) < 10:
         return {"message": "Not enough data to recluster"}
 
-    # 2️⃣ Dimensionality reduction (UMAP helps tighten density structure)
+     # 2️⃣ Dimensionality reduction (UMAP helps tighten density structure)
     reducer = umap.UMAP(
         n_neighbors=15,
         n_components=8,
         metric="cosine",
         random_state=42,
     )
+
+    '''# 2️⃣ UMAP: Max Compression
+    reducer = umap.UMAP(
+        n_neighbors=75,         # Global view, higher compression
+        n_components=3,         # Maximum dimensionality reduction
+        metric="cosine",
+        random_state=42,
+    )'''
     X = reducer.fit_transform(embeddings)
 
     # 3️⃣ Run HDBSCAN (tuned for fewer outliers)
