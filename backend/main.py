@@ -12,6 +12,8 @@ import networkx as nx # NEW: For PageRank calculation
 from umap import UMAP
 from hdbscan import prediction
 import umap
+import httpx
+import asyncio
 # ==============================================================
 # 🧩 Data Models
 # ==============================================================
@@ -54,6 +56,94 @@ print("Loading embedding model... (this may take a few seconds)")
 model = SentenceTransformer("paraphrase-multilingual-MiniLM-L12-v2")
 print("Model loaded ✅")
 
+# ==============================================================
+# 🌐 GEMINI API CONFIGURATION & HELPER
+# ==============================================================
+
+# The API key is set as an empty string as per environment requirements.
+apiKey = "AIzaSyCFnZY2euplsaO2yFyNJV5TZh60CEcwyKo" 
+GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
+API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={apiKey}"
+
+async def call_gemini_api(prompt: str) -> str:
+    """
+    Performs the asynchronous POST request to the Gemini generateContent endpoint.
+    """
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        # Using a system instruction to guide the model's persona and rules
+        "systemInstruction": {
+            "parts": [{"text": "You are a professional knowledge system assistant. Answer precisely and truthfully based only on the provided context."}]
+        }
+    }
+
+    try:
+        # Use httpx for asynchronous HTTP requests in a FastAPI application
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.post(
+                API_URL,
+                headers={'Content-Type': 'application/json'},
+                data=json.dumps(payload)
+            )
+            response.raise_for_status()
+            
+            result = response.json()
+            
+            # Safely extract the generated text
+            llm_answer = result.get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', 'Error: Could not extract text from AI response.')
+            
+            return llm_answer
+    except httpx.HTTPError as e:
+        print(f"HTTP error calling Gemini API: {e}")
+        return f"Error: Failed to connect to AI model ({GEMINI_MODEL}). Check network or API key. Detail: {e}"
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        return f"Error: An unexpected error occurred during AI generation: {e}"
+    
+
+async def rewrite_query_with_llm(query: str) -> str:
+    """
+    Uses the LLM to rewrite a complex query into an optimal search string.
+    This step improves the quality of the vector search.
+    """
+    REWRITE_SYSTEM_PROMPT = (
+        "You are a sophisticated query rewriter. Your goal is to transform "
+        "a user's natural language, potentially conversational or ambiguous, "
+        "question into the most effective, concise, and specific standalone "
+        "search query possible. Output ONLY the rewritten query text, with no preamble or explanation."
+    )
+    
+    prompt = f"Rewrite the following query for optimal semantic search: '{query}'"
+
+    payload = {
+        "contents": [{"parts": [{"text": prompt}]}],
+        "systemInstruction": {
+            "parts": [{"text": REWRITE_SYSTEM_PROMPT}]
+        }
+    }
+
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.post(
+                API_URL,
+                headers={'Content-Type': 'application/json'},
+                data=json.dumps(payload)
+            )
+            response.raise_for_status()
+            result = response.json()
+            
+            # Safely extract and clean the rewritten query
+            rewritten_query = result.get('candidates', [{}])[0].get('content', {}).get('parts', [{}])[0].get('text', query).strip()
+            
+            # Fallback to original query if LLM response is empty or unexpected
+            return rewritten_query if rewritten_query else query
+
+    except Exception as e:
+        # If rewriting fails (network error, etc.), fall back to the original query
+        print(f"Query rewriting failed, falling back to original query: {e}")
+        return query
+    
+
 
 # ==============================================================
 # 🗂 Load Mock Data
@@ -72,6 +162,9 @@ def load_mock_data(file_path: str) -> List[CollectionData]:
                 for cluster in collection.clusters:
                     for node in cluster.nodes:
                         node.collection_id = collection.id
+                        # Generate embeddings if missing
+                        if not node.embedding:
+                            node.embedding = model.encode([node.title + ". " + node.summary], normalize_embeddings=True)[0].tolist()
             
             print(f"DEBUG: Loaded {len(collections)} collections")
             return collections
@@ -79,7 +172,8 @@ def load_mock_data(file_path: str) -> List[CollectionData]:
         print(f"ERROR loading {file_path}: {e}")
         return []
 
-CS_MOCK_COLLECTIONS: List[CollectionData] = load_mock_data("collections.json")
+CS_MOCK_COLLECTIONS: List[CollectionData] = load_mock_data("collections3.json")
+
 
 
 # ==============================================================
@@ -101,6 +195,8 @@ app.add_middleware(
 # ==============================================================
 # ⚙️ Utility Functions
 # ==============================================================
+
+
 
 def ensure_embeddings(nodes: List[NodeData]):
     """Generate embeddings for nodes that lack them."""
@@ -262,7 +358,7 @@ async def recluster(collection_id: int):
 
     # 3️⃣ Run HDBSCAN (tuned for fewer outliers)
     clusterer = hdbscan.HDBSCAN(
-        min_cluster_size=3,#max(1, int(np.sqrt(len(X)))),
+        min_cluster_size=2,#max(2, int(np.sqrt(len(X)))),
         min_samples=None,  # auto
         metric="euclidean",
         cluster_selection_epsilon=0.05,  # merge nearby clusters
@@ -358,6 +454,75 @@ async def semantic_query(collection_id: int, query: Dict[str, str], top_n: int =
         ))
         
     return results
+
+
+'''@app.post("/api/rag/query/{collection_id}")
+async def rag_query(collection_id: int, body: dict):
+    query = body.get("query", "")
+    # Placeholder response
+    return {"response": f"This is a simulated AI response for: '{query}' from collection {collection_id}."}'''
+
+@app.post("/api/rag/query/{collection_id}")
+async def rag_query(collection_id: int, data: Dict[str, Any]):
+    """
+    RAG-based query endpoint (Gemini compatible).
+    1. Embed the query
+    2. Retrieve top similar nodes (vector search)
+    3. Use them as context for LLM response
+    """
+    query_text: str = data.get("query", "")
+    top_n: int = data.get("k", 5)
+
+    if not query_text:
+        raise HTTPException(status_code=400, detail="Missing 'query' field in body.")
+    
+    # 1. NEW: Rewrite the user's query for better search
+    rewritten_query = await rewrite_query_with_llm(query_text)
+    print(f"DEBUG: Original Query: '{query_text}' -> Rewritten Query: '{rewritten_query}'")
+
+    collection = get_collection_by_id(collection_id)
+
+    # 1. Get all nodes and their embeddings
+    # Filter for nodes that actually have an embedding
+    all_nodes = [n for cl in collection.clusters for n in cl.nodes if n.embedding]
+    if len(all_nodes) < 1 or not all_nodes[0].embedding:
+        raise HTTPException(status_code=404, detail="No nodes with embeddings found for RAG.")
+
+    # 2. Embed the query
+    query_embedding = model.encode([query_text], normalize_embeddings=True)
+    
+    # 3. Vector Search (Retrieve top-n nodes)
+    node_embeddings = np.array([n.embedding for n in all_nodes])
+    similarities = cosine_similarity(query_embedding, node_embeddings)[0]
+    top_indices = np.argsort(similarities)[::-1][:top_n]
+    top_nodes = [all_nodes[i] for i in top_indices]
+    
+    # 4. Construct context
+    # Format the retrieved nodes into a readable context block for the LLM
+    context = "\n\n---\n\n".join([f"**{n.title}**\nSummary: {n.summary}" for n in top_nodes])
+    
+    # 5. Query the LLM (Gemini API)
+    prompt = f'''
+                You are an intelligent assistant for a knowledge system.
+                Answer the following query based **only** on the provided context. If the context does not contain the answer, state clearly that you cannot answer based on the provided information.
+
+                <CONTEXT>
+                {context}
+                </CONTEXT>
+
+                <QUERY>
+                {query_text}
+                </QUERY>
+
+                <ANSWER>
+                '''
+    
+    llm_answer = await call_gemini_api(prompt)
+
+    # 6. Return the RAG result
+    return { "response": llm_answer, "context": context }
+
+
 
 
 # ==============================================================
