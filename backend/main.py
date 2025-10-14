@@ -61,7 +61,7 @@ print("Model loaded ✅")
 # ==============================================================
 
 # The API key is set as an empty string as per environment requirements.
-apiKey = "AIzaSyCFnZY2euplsaO2yFyNJV5TZh60CEcwyKo" 
+apiKey = ""
 GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
 API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={apiKey}"
 
