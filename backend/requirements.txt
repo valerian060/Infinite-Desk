@@ -1,0 +1,11 @@
+fastapi
+pydantic
+typing
+numpy
+hdbscan
+scikit-learn # The imports cosine_similarity, NearestCentroid are from sklearn
+sentence-transformers
+networkx
+umap-learn # The imports UMAP, umap are from umap-learn
+httpx
+uvicorn[standard]

@@ -350,7 +350,7 @@ async def recluster(collection_id: int):
      # 2️⃣ Dimensionality reduction (UMAP helps tighten density structure)
     reducer = umap.UMAP(
         n_neighbors=15,
-        n_components=8,
+        n_components=5,
         metric="cosine",
         random_state=42,
     )
@@ -366,7 +366,7 @@ async def recluster(collection_id: int):
 
     # 3️⃣ Run HDBSCAN (tuned for fewer outliers)
     clusterer = hdbscan.HDBSCAN(
-        min_cluster_size=2,#max(2, int(np.sqrt(len(X)))),
+        min_cluster_size=3,#max(2, int(np.sqrt(len(X)))),
         min_samples=None,  # auto
         metric="euclidean",
         cluster_selection_epsilon=0.05,  # merge nearby clusters
