@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>infinitedesk</title>
-    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- D3.js for data visualization -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- Lucide Icons for UI elements -->
     <script src="https://unpkg.com/lucide-react@0.292.0/dist/umd/lucide-react.min.js"></script>
     
     <style>
@@ -143,6 +140,74 @@
             opacity: 1;
         }
 
+        /* --- MOBILE STYLES (New/Modified) --- */
+        
+        /* Info Panel: On mobile, use a larger portion of the screen width */
+        #info-panel {
+            width: 100%; /* Default to full width on mobile */
+            height: 50vh; /* Use half the viewport height */
+            top: auto; /* Override top: 0 */
+            bottom: 0; /* Align to the bottom */
+            /* Transform is for sliding up/down on mobile */
+            transform: translateY(100%); 
+            transition: transform 0.3s ease-in-out;
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* Add a border to the top */
+            border-left: none; /* Remove left border */
+            
+        }
+
+        /* Override the translate-x-full class to use translateY for mobile */
+        #info-panel.translate-x-full {
+             transform: translateY(100%);
+        }
+        
+        /* New class for when the panel is open on mobile */
+        #info-panel:not(.translate-x-full) {
+             transform: translateY(0);
+        }
+
+        /* Desktop Info Panel Styles (re-apply for md and up) */
+        @media (min-width: 768px) {
+            #info-panel {
+                width: 24rem; /* w-96 */
+                height: 100%; /* h-full */
+                top: 0;
+                bottom: auto;
+                transform: translateX(100%); /* Use X translation for desktop */
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                border-top: none;
+            }
+            #info-panel.translate-x-full {
+                transform: translateX(100%);
+            }
+            #info-panel:not(.translate-x-full) {
+                 transform: translateX(0);
+            }
+        }
+        
+        /* Top-Left Controls: Stack and make wider on small screens */
+        .top-controls-container {
+             width: calc(100% - 1rem); /* Full width minus padding */
+             left: 0.5rem; /* half the padding */
+             right: 0.5rem;
+        }
+        
+        /* The contained element for controls: flex-col on mobile */
+        .top-controls-content {
+            flex-direction: column; 
+            gap: 0.5rem; /* Add small gap when stacked */
+        }
+        
+        /* Search input container should take full width on mobile */
+        .search-container {
+             width: 100%;
+        }
+
+        /* Ensure modal containers are full width on mobile */
+        #add-node-modal, #rename-cluster-modal, #search-results-modal, #rag-llm-modal, #share-modal {
+             max-width: calc(100% - 2rem); /* Keep a margin on the sides */
+        }
+
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,14 +215,11 @@
 </head>
 <body class="w-screen h-screen flex relative">
     
-    <!-- Starfield Background -->
     <div id="starfield"></div>
     <canvas id="stars-canvas" class="absolute top-0 left-0 w-full h-full z-[-1]"></canvas>
 
-    <!-- Main SVG for D3 visualization -->
     <svg id="galaxy-graph" class="w-full h-full"></svg>
     
-    <!-- Drop zones for visual feedback -->
     <div id="delete-zone">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash-2"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="10" x2="10" y1="11" y2="17"/><line x1="14" x2="14" y1="11" y2="17"/></svg>
     </div>
@@ -166,14 +228,11 @@
     </div>
 
 
-    <!-- UI Panels -->
-    <!-- Top-left controls -->
-    <div class="absolute top-0 left-0 p-4 z-10">
-        <div class="bg-black/40 backdrop-blur-md rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+    <div class="absolute top-0 left-0 p-2 md:p-4 z-10 top-controls-container">
+        <div class="bg-black/40 backdrop-blur-md rounded-lg shadow-lg border border-white/10 flex items-center gap-2 top-controls-content md:flex-row">
             <select id="collection-selector" class="bg-transparent text-white border-none rounded-md p-2 w-full md:w-48 focus:outline-none focus:ring-2 focus:ring-cyan-400 appearance-none">
-                <!-- Options will be populated by JS -->
-            </select>
-            <div class="relative flex-grow w-full md:w-auto">
+                </select>
+            <div class="relative flex-grow w-full md:w-auto search-container">
                  <input type="text" id="search-input" placeholder="Semantic search..." class="bg-transparent text-white border-none rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-cyan-400 placeholder-gray-400">
                  <button id="search-btn" title="Search" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
@@ -182,11 +241,9 @@
         </div>
     </div>
 
-    <!-- Bottom-CENTER controls -->
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-10">
+    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 z-10">
         <div class="bg-black/40 backdrop-blur-md rounded-lg shadow-lg border border-white/10 flex items-center gap-2 p-2">
-             <!-- Share Link Button (Placeholder) -->
-            <button id="share-link-btn" title="Share Galaxy" class="bg-transparent hover:bg-sky-500/40 text-white p-2 rounded-md transition-colors">
+             <button id="share-link-btn" title="Share Galaxy" class="bg-transparent hover:bg-sky-500/40 text-white p-2 rounded-md transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
             </button>
             <button hidden id="recluster-btn" title="Recluster Collection" class="bg-transparent hover:bg-cyan-500/40 text-white p-2 rounded-md transition-colors">
@@ -203,20 +260,16 @@
         </div>
     </div>
 
-    <!-- Info Panel -->
-    <div id="info-panel" class="absolute top-0 right-0 h-full w-96 bg-black/50 backdrop-blur-lg border-l border-white/10 p-6 transform translate-x-full transition-transform duration-300 ease-in-out z-20 overflow-y-auto">
+    <div id="info-panel" class="absolute top-0 right-0 bg-black/50 backdrop-blur-lg border-l border-white/10 p-6 transform translate-x-full transition-transform duration-300 ease-in-out z-20 overflow-y-auto">
         <button id="close-panel-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
         <div id="info-content">
-            <!-- Content will be populated by JS -->
-        </div>
+            </div>
     </div>
     
-    <!-- Modals -->
     <div id="modal-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 hidden"></div>
 
-    <!-- Add Node Modal -->
     <div id="add-node-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a1a2e] border border-white/20 p-6 rounded-lg shadow-2xl w-full max-w-lg z-50 hidden">
         <h2 class="text-2xl font-bold mb-4">Add a New Star</h2>
         <input id="new-node-title" type="text" placeholder="Star Title" class="w-full bg-gray-700/50 p-2 rounded border border-gray-600 mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-400">
@@ -227,7 +280,6 @@
         </div>
     </div>
     
-    <!-- Rename Cluster Modal -->
     <div id="rename-cluster-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a1a2e] border border-white/20 p-6 rounded-lg shadow-2xl w-full max-w-lg z-50 hidden">
         <h2 class="text-2xl font-bold mb-4">Rename Galaxy</h2>
         <input id="rename-cluster-input" type="text" placeholder="New Galaxy Name" class="w-full bg-gray-700/50 p-2 rounded border border-gray-600 mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-400">
@@ -238,18 +290,15 @@
         </div>
     </div>
     
-    <!-- Search Results Modal -->
-     <div id="search-results-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a1a2e] border border-white/20 p-6 rounded-lg shadow-2xl w-full max-w-2xl z-50 hidden max-h-[80vh] flex flex-col">
+    <div id="search-results-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a1a2e] border border-white/20 p-6 rounded-lg shadow-2xl w-full max-w-2xl z-50 hidden max-h-[80vh] flex flex-col">
         <div class="flex justify-between items-center mb-4">
              <h2 class="text-2xl font-bold">Search Results</h2>
              <button id="close-search-results" class="text-gray-400 hover:text-white">&times;</button>
         </div>
         <div id="search-results-content" class="overflow-y-auto pr-2">
-            <!-- Results here -->
-        </div>
+            </div>
     </div>
 
-    <!-- RAG + LLM Modal -->
     <div id="rag-llm-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a1a2e]/90 border border-white/20 p-6 rounded-lg shadow-2xl w-full max-w-2xl z-50 hidden backdrop-blur-lg">
     <h2 class="text-2xl font-bold mb-4 text-cyan-300 flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-brain">
@@ -269,13 +318,11 @@
     </div>
 
 
-    <!-- Share Modal (NEW) -->
     <div id="share-modal" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/60 backdrop-blur-lg border border-white/20 p-6 rounded-xl shadow-2xl w-full max-w-md z-50 hidden">
         <h2 class="text-2xl font-bold mb-4 text-cyan-300">Share your universe</h2>
         <p class="font-medium text-gray-300 mb-4">Who can access this collection?</p>
         
         <div class="space-y-3">
-            <!-- View Permission -->
             <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 transition">
                 <label class="flex items-center space-x-3 cursor-pointer">
                     <input type="radio" name="access-type" value="view" checked class="form-radio text-cyan-500 bg-gray-700 border-gray-600 focus:ring-cyan-500">
@@ -284,7 +331,6 @@
                 <p class="text-xs text-gray-400 mt-1 ml-6">Anyone with the link can view the visualization.</p>
             </div>
             
-            <!-- Edit Permission (Mock) -->
             <div class="bg-gray-800/50 p-3 rounded-lg border border-gray-700/50 hover:border-cyan-500/50 transition">
                 <label class="flex items-center space-x-3 cursor-pointer">
                     <input type="radio" name="access-type" value="edit" class="form-radio text-cyan-500 bg-gray-700 border-gray-600 focus:ring-cyan-500">
@@ -311,7 +357,6 @@
     </div>
 
 
-    <!-- Loader -->
     <div id="loader-overlay" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center hidden">
         <div class="flex flex-col items-center gap-4">
             <div class="loader"></div>
@@ -325,7 +370,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- CONFIG ---
-            const API_BASE_URL = 'https://valerian060-infinitedesk.hf.space'; //'http://127.0.0.1:8000'; 
+            const API_BASE_URL = 'http://127.0.0.1:8000' //'https://valerian060-infinitedesk.hf.space';'' //; 
             const DELETE_THRESHOLD = 0.95; // Drag to right 95% of screen to delete
             const MERGE_THRESHOLD = 0.05; // Drag to left 5% of screen to merge
 
@@ -485,11 +530,23 @@
             }
             
             function openInfoPanel() {
-                infoPanel.classList.remove('translate-x-full');
+                // Use a check for screen size to apply the correct open class
+                if (window.innerWidth < 768) { // Mobile
+                    infoPanel.classList.remove('translate-x-full'); // Remove the desktop close class
+                    // The custom CSS now handles the translateY(0) transformation when translate-x-full is NOT present
+                } else { // Desktop
+                    infoPanel.classList.remove('translate-x-full'); 
+                }
             }
 
             function closeInfoPanel() {
-                infoPanel.classList.add('translate-x-full');
+                // Use a check for screen size to apply the correct close class
+                if (window.innerWidth < 768) { // Mobile
+                    infoPanel.classList.add('translate-x-full'); // Add the desktop close class (which triggers mobile close in CSS)
+                } else { // Desktop
+                    infoPanel.classList.add('translate-x-full');
+                }
+                
                 if (selectedNode) {
                     d3.select(`#node-${selectedNode.id}`).classed('selected', false);
                     selectedNode = null;
@@ -971,7 +1028,16 @@
             });
 
             cancelRagQuery.addEventListener('click', () => {ragModal.classList.add('hidden');modalBackdrop.classList.add('hidden');});
-            modalBackdrop.addEventListener('click', () => {ragModal.classList.add('hidden');modalBackdrop.classList.add('hidden');});
+            // Changed modal backdrop close listener to check if the clicked modal is one of the main ones
+            modalBackdrop.addEventListener('click', () => {
+                // If rag modal is open, close it. Otherwise, hide all.
+                if (!ragModal.classList.contains('hidden')) {
+                     ragModal.classList.add('hidden');
+                     modalBackdrop.classList.add('hidden');
+                } else {
+                     hideAllModals();
+                }
+            });
 
             submitRagQuery.addEventListener('click', async () => {
             const query = ragQueryInput.value.trim();
@@ -1020,7 +1086,7 @@
             
             addNodeBtn.addEventListener('click', () => showModal(addNodeModal));
             cancelAddNodeBtn.addEventListener('click', hideAllModals);
-            modalBackdrop.addEventListener('click', hideAllModals);
+            // Removed modalBackdrop.addEventListener('click', hideAllModals) here, it was moved and refined above.
             confirmAddNodeBtn.addEventListener('click', createNewNode);
             
             cancelRenameClusterBtn.addEventListener('click', hideAllModals);
