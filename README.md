@@ -4,7 +4,7 @@
 
 Infinite Desk is a full-stack web application that helps you organize, visualize, and discover knowledge using semantic embeddings (Sentence Transformers), UMAP dimensionality reduction, and HDBSCAN clustering. Explore your notes as an interactive, navigable knowledge universe with AI-powered search and retrieval.
 
-**[Live Demo](https://infinitedesk.onrender.com)** • [GitHub](https://github.com/valerian060/Infinite-Desk) • [Demo Branch](https://github.com/valerian060/Infinite-Desk/tree/demo) • [Test Branch (Latest)](https://github.com/valerian060/Infinite-Desk/tree/test)
+**[Live Demo](https://valerian060.github.io/Infinite-Desk/)** • [GitHub](https://github.com/valerian060/Infinite-Desk) • [Demo Branch](https://github.com/valerian060/Infinite-Desk/tree/demo) • [Test Branch (Latest)](https://github.com/valerian060/Infinite-Desk/tree/test)
 
 ---
 
