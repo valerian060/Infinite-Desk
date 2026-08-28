@@ -4,7 +4,7 @@
 
 Infinite Desk is a full-stack web application that helps you organize, visualize, and discover knowledge using semantic embeddings (Sentence Transformers), UMAP dimensionality reduction, and HDBSCAN clustering. Explore your notes as an interactive, navigable knowledge universe with AI-powered search and retrieval.
 
-**[Live Demo](https://infinitedesk.onrender.com)** • [GitHub](https://github.com/valerian060/Infinite-Desk) • [Demo Branch](https://github.com/valerian060/Infinite-Desk/tree/demo)
+**[Live Demo](https://infinitedesk.onrender.com)** • [GitHub](https://github.com/valerian060/Infinite-Desk) • [Demo Branch](https://github.com/valerian060/Infinite-Desk/tree/demo) • [Test Branch (Latest)](https://github.com/valerian060/Infinite-Desk/tree/test)
 
 ---
 
@@ -23,7 +23,7 @@ Infinite Desk is a full-stack web application that helps you organize, visualize
 - **Dimensionality Reduction** — UMAP projects embeddings to optimized lower dimensions for fast clustering
 - **HDBSCAN Clustering** — Density-based clustering discovers natural topic groupings with minimal outliers
 - **Soft Reassignment** — Outliers intelligently reassigned to nearest clusters using `approximate_predict` and `NearestCentroid`
-- **PageRank Naming** — Cluster names automatically derived from most central node based on internal similarity graph
+- **KeyBERT Naming** — Cluster names automatically extracted from most relevant keywords in the cluster text
 - **Semantic Query** — Search entire knowledge base by meaning, not just keywords
 
 ### 🤖 RAG (Retrieval-Augmented Generation)
@@ -32,10 +32,16 @@ Infinite Desk is a full-stack web application that helps you organize, visualize
 - **Query Rewriting** — LLM rewrites user queries for optimal semantic search
 - **Grounded Responses** — Answers based only on retrieved knowledge base content
 
+### 💾 Production-Ready Backend
+- **MongoDB Integration** — Fully async persistent storage with Motor
+- **Async/Await Architecture** — Non-blocking I/O throughout the stack
+- **Scalable Design** — Ready for production deployment
+- **API-First** — Clean REST API for all operations
+
 ### 📊 Collection & Layout Management
 - **Multiple Collections** — Organize multiple independent knowledge bases
 - **Persistent Layout** — Save node positions after manual arrangement
-- **Session Persistence** — Authentication and data persistence
+- **Session Persistence** — Data persisted in MongoDB
 - **One-Click Jump** — Navigate directly to context within the knowledge graph
 
 ---
@@ -47,11 +53,12 @@ Infinite Desk is a full-stack web application that helps you organize, visualize
 | Layer | Technology |
 |-------|-----------|
 | **Frontend** | HTML5, D3.js v7, JavaScript (ES6+), Tailwind CSS |
-| **Backend** | FastAPI, Python, Pydantic |
-| **ML/NLP** | Sentence Transformers, UMAP, HDBSCAN, scikit-learn, NetworkX |
+| **Backend** | FastAPI, Python, Pydantic, Async/Await |
+| **Database** | MongoDB (Motor async driver) |
+| **ML/NLP** | Sentence Transformers, UMAP, HDBSCAN, scikit-learn, NetworkX, KeyBERT |
 | **LLM Integration** | Gemini API, async HTTP (httpx) |
-| **Data Storage** | JSON-based collections, localStorage for sessions |
 | **Visualization** | D3.js force simulation, SVG rendering |
+| **Hosting** | Hugging Face Spaces (backend), Render/GitHub Pages (frontend) |
 
 ### System Design
 
@@ -64,21 +71,22 @@ Infinite Desk is a full-stack web application that helps you organize, visualize
 └──────────────┬──────────────────────────────┘
                │ HTTP/REST API (CORS enabled)
 ┌──────────────▼──────────────────────────────┐
-│    FastAPI Backend with ML Pipeline         │
+│  FastAPI Backend (Hosted on Hugging Face)   │
+│  - Fully Async/Await Architecture           │
 │  - Collections & CRUD API                   │
 │  - Semantic Embeddings (Sentence Trans.)    │
 │  - UMAP Dimensionality Reduction            │
 │  - HDBSCAN Clustering with Outlier Handling │
 │  - Semantic Query Endpoint                  │
 │  - RAG Query with Gemini Integration        │
-│  - PageRank-based Auto Naming               │
+│  - KeyBERT-based Auto Naming                │
 └──────────────┬──────────────────────────────┘
-               │ Read/Write + ML Compute
+               │ Async Read/Write + ML Compute
 ┌──────────────▼──────────────────────────────┐
-│    Data Layer                               │
-│  - collections.json (knowledge bases)       │
-│  - localStorage (sessions)                  │
-│  - Gemini API (LLM responses)               │
+│    MongoDB Atlas                            │
+│  - Collections & Persistent Storage         │
+│  - Async Operations via Motor               │
+│  - Scalable Cloud Database                  │
 └─────────────────────────────────────────────┘
 ```
 
@@ -87,23 +95,25 @@ Infinite Desk is a full-stack web application that helps you organize, visualize
 ```
 Raw Notes (Text)
     ↓
-Sentence Transformers (Encode to 384-D embeddings)
+Sentence Transformers (Encode to 384-D embeddings, cached)
     ↓
-UMAP (Project to optimized dimensions)
+UMAP (Project to 8D, n_neighbors=12 for balance)
     ↓
-HDBSCAN (Find natural clusters)
+HDBSCAN (Find natural clusters, min_samples=1 for flexibility)
     ↓
 Outlier Handling:
-  ├→ approximate_predict (try to assign soft)
+  ├→ approximate_predict (try to assign with confidence)
   └→ NearestCentroid (fallback to closest cluster)
     ↓
 Similarity Links (Top-3 nodes per cosine similarity)
     ↓
-PageRank Graph (Calculate node importance within each cluster)
+PageRank Graph (Calculate node importance within cluster)
     ↓
-Auto Naming (Use title of most central node)
+KeyBERT Keyword Extraction (Extract key topics from cluster text)
     ↓
-Interactive Graph Visualization (D3.js)
+Auto Naming (Use top keyword or central node title)
+    ↓
+Interactive Graph Visualization (D3.js with cached positions)
 ```
 
 ### Data Model
@@ -114,10 +124,11 @@ Interactive Graph Visualization (D3.js)
 {
   id: 1,
   name: "My Knowledge Base",
+  mongo_id: "ObjectId(...)",  // MongoDB document ID
   clusters: [
     {
       id: 0,
-      name: "Machine Learning",           // Auto-named from PageRank
+      name: "machine learning",           // Auto-named from KeyBERT
       cx: 400,                            // cluster center X
       cy: 300,                            // cluster center Y
       nodes: [
@@ -128,7 +139,8 @@ Interactive Graph Visualization (D3.js)
           embedding: [0.234, 0.567, ...], // 384-D Sentence Transformer vector
           similar_to: ["node_2", "node_5"],// Top-3 similar nodes
           x: 410,                          // Position on canvas
-          y: 295
+          y: 295,
+          collection_id: 1
         },
         ...
       ]
@@ -148,7 +160,8 @@ Interactive Graph Visualization (D3.js)
 - pip
 - Modern web browser (Chrome/Firefox/Safari)
 - Virtual Environment (recommended)
-- Gemini API key (optional, for RAG features)
+- Gemini API key (for RAG features)
+- MongoDB Atlas account (or local MongoDB instance)
 
 ### Installation
 
@@ -157,7 +170,7 @@ Interactive Graph Visualization (D3.js)
 ```bash
 git clone https://github.com/valerian060/Infinite-Desk.git
 cd Infinite-Desk
-git checkout demo  # Switch to ML-enabled branch
+git checkout test  # Switch to latest branch with MongoDB + async
 ```
 
 #### 2. Setup Backend
@@ -173,52 +186,27 @@ venv\Scripts\activate
 source venv/bin/activate
 
 # Install dependencies
-pip install fastapi uvicorn pydantic numpy hdbscan sentence-transformers umap-learn scikit-learn networkx httpx
+pip install fastapi uvicorn pydantic numpy hdbscan sentence-transformers umap-learn scikit-learn networkx httpx motor keybert
 ```
 
-#### 3. Prepare Mock Data
+#### 3. Configure MongoDB
 
-Create a `collections.json` file in the `backend/` directory:
+Edit `backend/main.py` and update MongoDB connection:
 
-```json
-[
-  {
-    "id": 1,
-    "name": "Computer Science",
-    "clusters": [
-      {
-        "id": 0,
-        "name": "Algorithms",
-        "cx": 300,
-        "cy": 250,
-        "nodes": [
-          {
-            "id": "algo_1",
-            "title": "Binary Search",
-            "summary": "Efficient search in sorted arrays using divide and conquer approach",
-            "similar_to": [],
-            "embedding": []
-          },
-          {
-            "id": "algo_2",
-            "title": "Merge Sort",
-            "summary": "Stable sorting algorithm with O(n log n) time complexity",
-            "similar_to": [],
-            "embedding": []
-          }
-        ]
-      }
-    ]
-  }
-]
+```python
+# Hardcoded MongoDB URI and details
+MONGO_URI = "mongodb+srv://username:password@cluster.mongodb.net/"
+DB_NAME = "infinite_desk_demo"
+COLLECTION_NAME = "collections"
 ```
 
-#### 4. Configure Gemini API (Optional)
+#### 4. Configure Gemini API
 
 Edit `backend/main.py` and add your Gemini API key:
 
 ```python
 apiKey = "your-gemini-api-key-here"
+GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
 ```
 
 #### 5. Run Backend Server
@@ -227,12 +215,10 @@ apiKey = "your-gemini-api-key-here"
 cd backend
 python main.py
 # Server runs at http://127.0.0.1:8000
-# Model loads automatically on startup (~10 seconds for first run)
+# Models load automatically on startup (~10 seconds)
 ```
 
 #### 6. Open Frontend
-
-Open `index.html` in your browser (or use Live Server):
 
 ```bash
 # Using Python
@@ -270,9 +256,9 @@ python -m http.server 8001
 - Results ranked by embedding similarity automatically
 - Click **Recalculate Clustering** to re-run ML pipeline with updated embeddings
 
-### 5. **AI-Powered RAG Query** (Requires Gemini API Key)
+### 5. **AI-Powered RAG Query**
 
-- Click the **Ask AI** button (future feature)
+- Click **Ask AI** (available in top bar)
 - Type your question in natural language
 - System retrieves top-5 most relevant nodes using vector search
 - Gemini LLM generates an answer based on retrieved context
@@ -294,13 +280,13 @@ python -m http.server 8001
 - Click **Recalculate Clustering** to run HDBSCAN again
 - System re-encodes all notes, applies UMAP, and discovers new clusters
 - Automatically reorganizes nodes based on semantic similarity
-- Cluster names updated via PageRank analysis
+- Cluster names updated via KeyBERT + PageRank analysis
 
 ### 9. **Save Layout**
 
 - Arrange nodes manually by dragging
 - Click **Save Layout** to persist positions
-- Positions saved locally for next session
+- Positions saved to MongoDB for next session
 
 ---
 
@@ -309,8 +295,8 @@ python -m http.server 8001
 ```
 Infinite-Desk/
 ├── backend/
-│   ├── main.py                    # FastAPI app with full ML pipeline
-│   ├── collections.json           # Mock knowledge base data
+│   ├── main.py                    # FastAPI app with full ML pipeline + MongoDB
+│   ├── collections.json           # Initial mock data (optional)
 │   └── requirements.txt           # Python dependencies
 ├── frontend/
 │   ├── index.html                 # Main application UI
@@ -333,14 +319,16 @@ Infinite-Desk/
 **GET** `/api/collections`
 - Returns all collections with clusters and nodes
 - Response: `List[CollectionData]`
+- Fetched from MongoDB
 
 ### Semantic Operations (ML-Powered)
 
 **POST** `/api/ai/recluster/{collection_id}`
 - Trigger HDBSCAN re-clustering on all notes
-- Pipeline: Embeddings → UMAP → HDBSCAN → Soft Reassignment → PageRank Naming
+- Pipeline: Embeddings → UMAP → HDBSCAN → Soft Reassignment → KeyBERT Naming
 - Returns: Updated collection with new clusters
-- Query: `POST /api/ai/recluster/1`
+- Persisted to MongoDB
+- Example: `POST /api/ai/recluster/1`
 
 **POST** `/api/ai/query/{collection_id}`
 - Semantic search across all nodes in a collection
@@ -353,7 +341,7 @@ Infinite-Desk/
 - Body: `{"query": "your question", "k": 5}`
 - Steps:
   1. Rewrite query using LLM for optimal search
-  2. Retrieve top-5 most relevant nodes
+  2. Retrieve top-5 most relevant nodes via vector search
   3. Generate answer using Gemini with retrieved context
 - Returns: `{ "response": "AI answer", "context": "retrieved nodes" }`
 
@@ -364,9 +352,11 @@ Infinite-Desk/
 - Auto-assigned to nearest cluster using NearestCentroid
 - Auto-generates embedding via Sentence Transformers
 - Body: `{ collection_id, title, summary, x, y }`
+- Saved to MongoDB
 
 **DELETE** `/api/collections/{collection_id}/nodes/{node_id}`
 - Remove a node from specified collection
+- Updates persisted in MongoDB
 - Returns: Success message
 
 ### Cluster Operations
@@ -376,16 +366,19 @@ Infinite-Desk/
 - Body: `{ collection_id, cluster1_id, cluster2_id }`
 - Cluster1 receives all nodes from Cluster2
 - Cluster2 deleted, IDs reindexed
+- Changes persisted to MongoDB
 
 **POST** `/api/clusters/rename`
-- Manually rename a cluster
+- Manually rename a cluster (overrides auto-naming)
 - Body: `{ collection_id, cluster_id, new_name }`
+- Persisted to MongoDB
 
 ### Layout Persistence
 
 **POST** `/api/collections/{collection_id}/save`
 - Save node positions after user drags
 - Body: `List[NodeData]` with updated x, y coordinates
+- Changes immediately saved to MongoDB
 
 ---
 
@@ -396,7 +389,8 @@ Infinite-Desk/
 - **Collection Dropdown** — Switch between knowledge bases
 - **Search Box** — Semantic search with ML ranking
 - **Recalculate Clustering Button** — Re-run full ML pipeline
-- **Save Layout Button** — Persist graph positions
+- **Save Layout Button** — Persist graph positions to MongoDB
+- **Ask AI Button** — Open RAG query dialog (future)
 
 ### Side Areas
 
@@ -409,7 +403,7 @@ Infinite-Desk/
 - **SVG Visualization** — D3.js force-directed graph
 - **Nodes** — Represented as circles (colored by cluster)
 - **Links** — White edges showing similar_to relationships
-- **Cluster Labels** — Centered text for each cluster (auto-named)
+- **Cluster Labels** — Centered text for each cluster (auto-named by KeyBERT)
 - **Tooltips** — Hover to see node details
 
 ---
@@ -424,22 +418,35 @@ Edit in `frontend/main.js`:
 const API_BASE = "http://127.0.0.1:8000";
 ```
 
+For Hugging Face hosted backend, update to the Spaces URL.
+
+### MongoDB Connection
+
+Edit in `backend/main.py`:
+
+```python
+MONGO_URI = "mongodb+srv://username:password@cluster.mongodb.net/"
+DB_NAME = "infinite_desk_demo"
+COLLECTION_NAME = "collections"
+```
+
 ### ML Hyperparameters
 
 Edit in `backend/main.py`:
 
 ```python
-# UMAP configuration
+# UMAP configuration (optimized for 8D output)
 reducer = umap.UMAP(
-    n_neighbors=15,       # Local vs global view
-    n_components=5,       # Dimensionality
+    n_neighbors=12,       # Balance between local and global structure
+    n_components=8,       # 8D for optimal HDBSCAN performance
     metric="cosine",
     random_state=42,
 )
 
-# HDBSCAN configuration
+# HDBSCAN configuration (tuned for fewer outliers)
 clusterer = hdbscan.HDBSCAN(
     min_cluster_size=3,   # Minimum points per cluster
+    min_samples=1,        # Flexible outlier assignment
     metric="euclidean",
     cluster_selection_epsilon=0.05,  # Merge nearby clusters
     prediction_data=True,
@@ -472,20 +479,28 @@ GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
 
 ## 🚀 Deployment
 
-### Render.com (Live Demo)
+### Hugging Face Spaces (Backend)
+
+1. Create a Hugging Face Spaces repo
+2. Push `backend/` folder with `requirements.txt`
+3. Configure MongoDB URI as a secret
+4. Configure Gemini API key as a secret
+5. Spaces will auto-deploy on push
+
+### Render.com (Alternative Backend Hosting)
 
 1. Push code to GitHub
 2. Connect repository to Render
 3. Set build command: `pip install -r requirements.txt`
 4. Set start command: `uvicorn backend.main:app --host 0.0.0.0`
-5. Add environment variable: `GEMINI_API_KEY=your-key`
+5. Add environment variables: `MONGO_URI`, `GEMINI_API_KEY`
 6. Deploy!
 
-### GitHub Pages (Frontend Only)
+### GitHub Pages (Frontend)
 
 1. Place `frontend/` files in `/docs` folder
 2. Enable GitHub Pages in repository settings
-3. Update `API_BASE` to point to your backend server
+3. Update `API_BASE` to point to your Hugging Face/Render backend
 
 ---
 
@@ -497,19 +512,21 @@ GEMINI_MODEL = "gemini-2.5-flash-preview-05-20"
 - **Dimension**: 384-D vectors
 - **Input**: `{title}. {summary}` for each note
 - **Normalization**: L2 normalized for cosine similarity
+- **Caching**: Embeddings cached in EMBEDDING_CACHE for performance
 
 ### 2. Dimensionality Reduction (UMAP)
 
 - **Purpose**: Project high-dimensional embeddings to lower-dimensional space for efficient clustering
 - **Parameters**: 
-  - `n_neighbors=15` — Balance local and global structure
-  - `n_components=5` — Reduce to 5D for HDBSCAN
+  - `n_neighbors=12` — Balance local and global structure
+  - `n_components=8` — Optimize for HDBSCAN clustering
   - `metric="cosine"` — Respects semantic similarity
 
 ### 3. Density-Based Clustering (HDBSCAN)
 
 - **Advantage**: Discovers arbitrary-shaped clusters, handles outliers gracefully
 - **Min Cluster Size**: 3 (minimum points per cluster)
+- **Min Samples**: 1 (flexible outlier assignment)
 - **Outlier Handling**: Nodes labeled with -1 flag
 
 ### 4. Soft Reassignment (Outlier Recovery)
@@ -531,11 +548,20 @@ assign = clf.predict(X[remaining_outliers])
 - **Top-N**: Top-3 most similar nodes per node
 - **Threshold**: Only links with similarity > 0.5
 
-### 6. PageRank-Based Auto Naming
+### 6. KeyBERT-Based Auto Naming
 
-- **Graph**: Nodes as vertices, similar_to edges as directed edges
-- **Algorithm**: NetworkX PageRank with α=0.85
-- **Naming**: Cluster name = title of highest PageRank node
+- **Extraction**: KeyBERT extracts top keywords from cluster corpus
+- **Fallback**: Uses PageRank score (node centrality) as fallback
+- **Cluster Name**: Most relevant keyword or central node title
+
+---
+
+## 🔄 Async Architecture Benefits
+
+- **Non-Blocking I/O**: All MongoDB queries are async (Motor driver)
+- **Better Throughput**: Multiple requests handled concurrently
+- **Scalability**: Ready for production with many concurrent users
+- **Error Handling**: Graceful fallbacks for network/API failures
 
 ---
 
@@ -563,20 +589,26 @@ curl -X POST http://127.0.0.1:8000/api/rag/query/1 \
 curl -X POST http://127.0.0.1:8000/api/ai/recluster/1
 ```
 
+### Test MongoDB Connection
+
+The backend will log on startup:
+```
+MongoDB connection initialized for DB: infinite_desk_demo
+```
+
 ---
 
 ## 🐛 Known Limitations
 
-- Mock data stored in JSON (not persistent across server restarts)
-- Single-user in-browser authentication (demo mode)
 - HDBSCAN clustering computation can be slow for 1000+ nodes
-- Gemini API key required for RAG features
+- Gemini API quota limits apply to RAG queries
+- MongoDB free tier has storage limits
 
 ---
 
 ## 📝 Future Enhancements
 
-- [ ] Real database backend (PostgreSQL + vector store like Qdrant)
+- [ ] Vector database (Qdrant) for faster similarity search
 - [ ] User authentication with JWT
 - [ ] Real-time sync with WebSockets
 - [ ] Batch embedding computation optimization
@@ -585,6 +617,7 @@ curl -X POST http://127.0.0.1:8000/api/ai/recluster/1
 - [ ] Graph export (JSON, GraphML)
 - [ ] Collaborative editing
 - [ ] Mobile app
+- [ ] GPU acceleration for embeddings
 
 ---
 
@@ -592,7 +625,8 @@ curl -X POST http://127.0.0.1:8000/api/ai/recluster/1
 
 Contributions welcome! Areas for improvement:
 
-- Database integration
+- Vector database integration
+- Real-time collaboration
 - Performance optimizations for large datasets
 - Additional LLM providers
 - UI/UX enhancements
@@ -614,9 +648,11 @@ Built by **Valerian060**
 **Technology Stack:**
 - **D3.js** — Interactive data visualization
 - **Sentence Transformers** — Modern semantic embeddings
+- **KeyBERT** — Keyword extraction
 - **HDBSCAN** — Density-based clustering
 - **UMAP** — Fast dimensionality reduction
 - **FastAPI** — Modern Python backend framework
+- **Motor** — Async MongoDB driver
 - **Gemini API** — Generative AI integration
 
 ---
